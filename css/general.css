@@ -11,6 +11,7 @@ html {
 }
 
 body {
+  min-width: 32rem;
   height: 100vh;
   font-size: 1.6rem;
   margin: 0;
