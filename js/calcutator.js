@@ -1,5 +1,15 @@
 const $calculator = document.querySelector(".calculator");
 
+const $numberBtns = document.querySelectorAll(".calculator__btn--number");
+
+const $symbolBtns = document.querySelectorAll(".calculator__btn--symbol");
+
+const $parenBtns = document.querySelectorAll(".calculator__btn--paren");
+
+const $dotBtn = document.querySelector(".calculator__btn--dot");
+
+const $equalsBtn = document.querySelector(".calculator__btn--equals");
+
 const $btns = document.querySelectorAll(".calculator__btn");
 
 const $result = document.querySelector(".calculator__result");
@@ -19,7 +29,7 @@ $btns.forEach((element) => {
     let TogetherElements = arrayValue.join("");
     arrayValue.push(valueElements);
     // console.log(arrayValue
-    $result.innerText = Number(TogetherElements); 
+    $result.innerText = Number(TogetherElements);
 
     console.log(arrayValue);
   });
