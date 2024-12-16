@@ -23,21 +23,23 @@ $entries.forEach((element) => {
     let textElement = element.textContent.trim();
 
     arrayElements.push(textElement);
-    
-    const condition = arrayElements[0];
 
     console.log();
-    if(condition === "+" || condition === "/" || condition === "*" || condition === ")" ){
-      console.log(condition + "invalid");
+    if (
+      arrayElements[0] === "+" ||
+      arrayElements[0] === "/" ||
+      arrayElements[0] === "*" ||
+      arrayElements[0] === ")"
+    ) {
       arrayElements.shift();
       console.log(arrayElements);
     }
-    
-    
+
+
+    /* Comment */
 
     let operation = arrayElements.join("");
-
-    console.log(operation);
+    console.log(7 * 2);
   });
 });
 
