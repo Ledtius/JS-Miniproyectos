@@ -36,7 +36,6 @@ $entries.forEach((element) => {
     }
 
 
-    /* Comment */
 
     let operation = arrayElements.join("");
     console.log(7 * 2);
