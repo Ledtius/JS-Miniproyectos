@@ -42,6 +42,8 @@ $entries.forEach((element) => {
   });
 });
 
+/* Added commennt */
+
 // $numberBtns.forEach((element) => {
 //   element.addEventListener(
 //     "click",
