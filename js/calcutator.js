@@ -18,6 +18,7 @@ const $result = document.querySelector(".calculator__result");
 
 let arrayElements = [];
 
+/* asd */
 $entries.forEach((element) => {
   element.addEventListener("click", () => {
     let textElement = element.textContent.trim();
@@ -40,6 +41,8 @@ $entries.forEach((element) => {
     let operation = arrayElements.join("");
     console.log(7 * 2);
   });
+
+  console.log(arrayElements);
 });
 
 /* Added commennt */
