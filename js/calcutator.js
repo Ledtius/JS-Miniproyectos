@@ -18,7 +18,7 @@ const $result = document.querySelector(".calculator__result");
 
 let arrayElements = [];
 
-/* asd */
+/* asdsaasdf */
 $entries.forEach((element) => {
   element.addEventListener("click", () => {
     let textElement = element.textContent.trim();
