@@ -25,11 +25,11 @@ $entries.forEach((element) => {
 
     arrayElements.push(textElement);
 
-    // console.log(arrayElements);
+    console.log(arrayElements);
     
     let expretion = arrayElements.join("");
     
-    console.log(expretion*1);
+    // console.log(expretion);
     
     
     
