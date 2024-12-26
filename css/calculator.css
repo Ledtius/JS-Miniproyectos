@@ -1,20 +1,22 @@
 .calculator {
   width: 100%;
   display: grid;
-  grid-template-areas: 
-  "result"
-  "btns";
+  grid-template-areas:
+    "result"
+    "btns";
   justify-content: center;
 }
 
 .calculator__result {
   grid-area: result;
+  padding: 1.6rem;
+  background-color: whitesmoke;
 }
 .calculator__btns {
   grid-area: btns;
   display: grid;
   /* align-items: center; */
-  
+
   grid-template-areas:
     "seven  eight  nine   plus     delete"
     "four   five   six    minus    delete"
@@ -24,6 +26,8 @@
 }
 
 .calculator__btn {
+  /* height: 6rem; */
+  padding: 1.6rem;
   width: 6rem;
 }
 
