@@ -1,74 +1,85 @@
 .calculator {
   width: 100%;
   display: grid;
-  /* align-items: center; */
-  grid-template-areas:
-    "result result result result   result"
-    "seven  eight  nine   plus     delete"
-    "four   five   six    minus    ."
-    "one    two    three  multi    reset"
-    "zero   dot    equals division .";
-}
-.calculator__result {
-  grid-area: "result";
-}
-.calculator__btn {
+  grid-template-areas: 
+  "result"
+  "btns";
+  justify-content: center;
 }
 
+.calculator__result {
+  grid-area: result;
+}
+.calculator__btns {
+  grid-area: btns;
+  display: grid;
+  /* align-items: center; */
+  
+  grid-template-areas:
+    "seven  eight  nine   plus     delete"
+    "four   five   six    minus    delete"
+    "one    two    three  multi    reset"
+    "zero   dot    equals division reset";
+  /* gap: 1rem; */
+}
+
+.calculator__btn {
+  width: 6rem;
+}
+
+.calculator__btn:nth-child(1) {
+  grid-area: seven;
+}
 .calculator__btn:nth-child(2) {
-  grid-area: "seven";
+  grid-area: eight;
 }
 .calculator__btn:nth-child(3) {
-  grid-area: "eight";
+  grid-area: nine;
 }
 .calculator__btn:nth-child(4) {
-  grid-area: "nine";
+  grid-area: plus;
 }
 .calculator__btn:nth-child(5) {
-  grid-area: "plus";
+  grid-area: delete;
 }
 .calculator__btn:nth-child(6) {
-  grid-area: "delete";
+  grid-area: four;
 }
 .calculator__btn:nth-child(7) {
-  grid-area: "four";
+  grid-area: five;
 }
 .calculator__btn:nth-child(8) {
-  grid-area: "five";
+  grid-area: six;
 }
 .calculator__btn:nth-child(9) {
-  grid-area: "six";
+  grid-area: minus;
 }
 .calculator__btn:nth-child(10) {
-  grid-area: "minus";
+  grid-area: reset;
 }
 .calculator__btn:nth-child(11) {
-  grid-area: "reset";
+  grid-area: one;
 }
 .calculator__btn:nth-child(12) {
-  grid-area: "one";
+  grid-area: two;
 }
 .calculator__btn:nth-child(13) {
-  grid-area: "two";
+  grid-area: three;
 }
 .calculator__btn:nth-child(14) {
-  grid-area: "three";
+  grid-area: multi;
 }
 .calculator__btn:nth-child(15) {
-  grid-area: "multi";
+  grid-area: zero;
 }
 .calculator__btn:nth-child(16) {
-  grid-area: "zero";
+  grid-area: dot;
 }
 .calculator__btn:nth-child(17) {
-  grid-area: "dot";
+  grid-area: equals;
 }
 .calculator__btn:nth-child(18) {
-  grid-area: "equals";
-}
-.calculator__btn:nth-child(19) {
-  height: 10rem;
-  grid-area: "division";
+  grid-area: division;
 }
 
 .calculator__btn--entry {

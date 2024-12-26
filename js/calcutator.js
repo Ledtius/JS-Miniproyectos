@@ -16,6 +16,10 @@ const $btns = document.querySelectorAll(".calculator__btn");
 
 const $result = document.querySelector(".calculator__result");
 
+const $resultId  = document.getElementById("result");
+
+$resultId.innerHTML = "21";
+
 let arrayElements = [];
 
 /* Recorre los elementos operables */
