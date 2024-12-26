@@ -1,2 +1,87 @@
-.calculator__btn--reset{
+.calculator {
+  width: 100%;
+  display: grid;
+  /* align-items: center; */
+  grid-template-areas:
+    "result result result result   result"
+    "seven  eight  nine   plus     delete"
+    "four   five   six    minus    ."
+    "one    two    three  multi    reset"
+    "zero   dot    equals division .";
+}
+.calculator__result {
+  grid-area: "result";
+}
+.calculator__btn {
+}
+
+.calculator__btn:nth-child(2) {
+  grid-area: "seven";
+}
+.calculator__btn:nth-child(3) {
+  grid-area: "eight";
+}
+.calculator__btn:nth-child(4) {
+  grid-area: "nine";
+}
+.calculator__btn:nth-child(5) {
+  grid-area: "plus";
+}
+.calculator__btn:nth-child(6) {
+  grid-area: "delete";
+}
+.calculator__btn:nth-child(7) {
+  grid-area: "four";
+}
+.calculator__btn:nth-child(8) {
+  grid-area: "five";
+}
+.calculator__btn:nth-child(9) {
+  grid-area: "six";
+}
+.calculator__btn:nth-child(10) {
+  grid-area: "minus";
+}
+.calculator__btn:nth-child(11) {
+  grid-area: "reset";
+}
+.calculator__btn:nth-child(12) {
+  grid-area: "one";
+}
+.calculator__btn:nth-child(13) {
+  grid-area: "two";
+}
+.calculator__btn:nth-child(14) {
+  grid-area: "three";
+}
+.calculator__btn:nth-child(15) {
+  grid-area: "multi";
+}
+.calculator__btn:nth-child(16) {
+  grid-area: "zero";
+}
+.calculator__btn:nth-child(17) {
+  grid-area: "dot";
+}
+.calculator__btn:nth-child(18) {
+  grid-area: "equals";
+}
+.calculator__btn:nth-child(19) {
+  height: 10rem;
+  grid-area: "division";
+}
+
+.calculator__btn--entry {
+}
+.calculator__btn--number {
+}
+.calculator__btn--symbol {
+}
+.calculator__btn--delete {
+}
+.calculator__btn--reset {
+}
+.calculator__btn--dot {
+}
+.calculator__btn--equals {
 }
