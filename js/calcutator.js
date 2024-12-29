@@ -1,46 +1,37 @@
-const $calculator = document.querySelector(".calculator");
+const $numbers = document.querySelectorAll(".calculator__btn--number");
 
-const $numberBtns = document.querySelectorAll(".calculator__btn--number");
+const $symbols = document.querySelectorAll(".calculator__btn--symbol");
 
-const $symbolBtns = document.querySelectorAll(".calculator__btn--symbol");
+const $dot = document.querySelector(".calculator__btn--dot");
 
-const $parenBtns = document.querySelectorAll(".calculator__btn--paren");
+const $equals = document.querySelector(".calculator__btn--equals");
 
-const $dotBtn = document.querySelector(".calculator__btn--dot");
+const $entry = document.querySelectorAll(".calculator__btn--entry");
 
-const $equalsBtn = document.querySelector(".calculator__btn--equals");
+/* Arrays que permitiran operar */
+let count = [];
+let arrayA = [];
+let arrayB = [];
 
-const $entries = document.querySelectorAll(".calculator__btn--entry");
+// $numbers.forEach((element) => {
+//   element.addEventListener("click", () => {
+//     console.log(element.textContent.trim());
+//   });
+// });
 
-const $btns = document.querySelectorAll(".calculator__btn");
-
-const $result = document.querySelector(".calculator__result");
-
-const $resultId  = document.getElementById("result");
-
-$resultId.innerHTML = "21";
-
-let arrayElements = [];
-
-/* Recorre los elementos operables */
-$entries.forEach((element) => {
+$entry.forEach((element) => {
   element.addEventListener("click", () => {
-    let textElement = element.textContent.trim();
-
-    arrayElements.push(textElement);
-
-    console.log(arrayElements);
-    
-    let expretion = arrayElements.join("");
-    
-    // console.log(expretion);
-    
-    
-    
+    arrayA.push(element.textContent.trim())
+    console.log(arrayA);
   });
 });
 
-/* Igual */
-$equalsBtn.addEventListener("subit", () => {
-  event.defaultPrevented();
-});
+// $dot.addEventListener("click", () => {
+//   count.push($dot.textContent.trim());
+
+//   console.log(count);
+//   if (count.length > 3) {
+//     return;
+//   }
+//   console.log(`Number of press 'dot': ${count.length}`);
+// });
