@@ -10,7 +10,7 @@ const $entry = document.querySelectorAll(".calculator__btn--entry");
 
 /* Arrays que permitiran operar */
 let count = [];
-let arrayA = [];
+let arrayMain = [];
 let arrayB = [];
 let arrayC = [];
 
@@ -24,51 +24,75 @@ $entry.forEach((element) => {
   element.addEventListener("click", () => {
     let entryValue = element.textContent.trim();
 
-    arrayA.push(entryValue);
-    // console.log(arrayA);
+    arrayMain.push(entryValue);
+    /* AM = arrayMain */
 
-    // arrayAText = arrayA.join("");
+    const arrayMainText = arrayMain.join("");
 
-    // console.log(arrayAText);
+    const indexAMPlus = arrayMain.findIndex((element) => element === "+");
 
-    const indexArrayAPlus = arrayA.findIndex((element) => element === "+");
+    const indexAMMinus = arrayMain.findIndex((element) => element === "-");
 
-    const indexArrayAMinus = arrayA.findIndex((element) => element === "-");
+    const indexAMMult = arrayMain.findIndex((element) => element === "*");
 
-    const indexArrayAMult = arrayA.findIndex((element) => element === "*");
+    const indexAMDivi = arrayMain.findIndex((element) => element === "/");
 
-    const indexArrayADivi = arrayA.findIndex((element) => element === "/");
-
-    const indexArrayAAllSymbols = arrayA.findIndex(
+    const indexAMAllSymbols = arrayMain.findIndex(
       (element) =>
         element === "+" || element === "-" || element === "*" || element === "/"
     );
 
-    const divideArray = arrayA.slice(indexArrayAAllSymbols + 1, arrayA.length);
+    const divideAM = arrayMain.slice(0, indexAMAllSymbols);
 
-    const divideArray2 = arrayA.slice(0, indexArrayAAllSymbols);
+    const divideAMText = divideAM.join("");
 
-    const divideArray2Text = divideArray2.join("");
+    const divideAM2 = arrayMain.slice(indexAMAllSymbols + 1, arrayMain.length);
 
-    console.log(divideArray2);
-    console.log(divideArray2Text);
+    const divideAM2Text = divideAM2.join("");
+
+    const valueAMAllSymbol = arrayMain.slice(
+      indexAMAllSymbols,
+      indexAMAllSymbols + 1
+    );
+
+    const valueAMAllSymbolText = valueAMAllSymbol.join("");
+
+    // console.log(divideAM2);
+    // console.log(`Array A: ${arrayMain}`);
+    console.log(`Array N°1: ${divideAMText}`);
+    console.log(`Array N°2: ${divideAM2Text}`);
+    console.log(`Symbol choise: ${valueAMAllSymbolText}`);
 
     const operations = () => {
-      const arrayAText = Number(arrayA.join(""));
-      const divideArrayText = divideArray.join("");
-
-      console.log(arrayAText);
-      const resultArrayASymbol = arrayA.slice(
-        indexArrayAAllSymbols,
-        indexArrayAAllSymbols + 1
-      );
-
-      const resultArrayASymbolText = resultArrayASymbol.join("");
-
-      if (resultArrayASymbolText !== "") {
-        switch (resultArrayASymbolText) {
+      if (valueAMAllSymbolText !== "") {
+        switch (valueAMAllSymbolText) {
           case "+":
-            console.log;
+            console.log(
+              `${divideAMText} + ${divideAM2Text} = ${
+                Number(divideAMText) + Number(divideAM2Text)
+              }`
+            );
+            break;
+          case "-":
+            console.log(
+              `${divideAMText} - ${divideAM2Text} = ${Number(
+                divideAMText - divideAM2Text
+              )}`
+            );
+            break;
+          case "*":
+            console.log(
+              `${divideAMText} * ${divideAM2Text} = ${Number(
+                divideAMText * divideAM2Text
+              )}`
+            );
+            break;
+          case "/":
+            console.log(
+              `${divideAMText} / ${divideAM2Text} = ${Number(
+                divideAMText / divideAM2Text
+              )}`
+            );
             break;
 
           default:
@@ -76,17 +100,17 @@ $entry.forEach((element) => {
         }
       }
 
-      // console.log(resultArrayASymbol);
-      console.log(resultArrayASymbolText);
-      // console.log(arrayAText);
-      // console.log(divideArrayText);
+      // console.log(valueAMAllSymbol);
+      // console.log(valueAMAllSymbolText);
+      // console.log(arrayMainText);
+      // console.log(divideAMText);
     };
 
     operations();
-    // const indexDivideArrayOtherSymbols = divideArray.indexOf(element => element === "");
+    // const indexDivideArrayOtherSymbols = divideAM.indexOf(element => element === "");
 
     // console.log(indexArrayAllSymbols);
-    // console.log(divideArray);
+    // console.log(divideAM);
 
     // if(indexArrayPlus || indexArrayMinus || indexArrayMult || indexArrayDivi == -1){
     //   console.log("Find it!");
