@@ -64,41 +64,45 @@ $entry.forEach((element) => {
     console.log(`Symbol choise: ${valueAMAllSymbolText}`);
 
     const operations = () => {
-      if (valueAMAllSymbolText !== "") {
-        switch (valueAMAllSymbolText) {
-          case "+":
-            console.log(
-              `${divideAMText} + ${divideAM2Text} = ${
-                Number(divideAMText) + Number(divideAM2Text)
-              }`
-            );
-            break;
-          case "-":
-            console.log(
-              `${divideAMText} - ${divideAM2Text} = ${Number(
-                divideAMText - divideAM2Text
-              )}`
-            );
-            break;
-          case "*":
-            console.log(
-              `${divideAMText} * ${divideAM2Text} = ${Number(
-                divideAMText * divideAM2Text
-              )}`
-            );
-            break;
-          case "/":
-            console.log(
-              `${divideAMText} / ${divideAM2Text} = ${Number(
-                divideAMText / divideAM2Text
-              )}`
-            );
-            break;
+      $equals.addEventListener("click", () => {
+        event.preventDefault;
 
-          default:
-            break;
+        if (valueAMAllSymbolText !== "") {
+          switch (valueAMAllSymbolText) {
+            case "+":
+              console.log(
+                `${divideAMText} + ${divideAM2Text} = ${
+                  Number(divideAMText) + Number(divideAM2Text)
+                }`
+              );
+              break;
+            case "-":
+              console.log(
+                `${divideAMText} - ${divideAM2Text} = ${Number(
+                  divideAMText - divideAM2Text
+                )}`
+              );
+              break;
+            case "*":
+              console.log(
+                `${divideAMText} * ${divideAM2Text} = ${Number(
+                  divideAMText * divideAM2Text
+                )}`
+              );
+              break;
+            case "/":
+              console.log(
+                `${divideAMText} / ${divideAM2Text} = ${Number(
+                  divideAMText / divideAM2Text
+                )}`
+              );
+              break;
+
+            default:
+              break;
+          }
         }
-      }
+      });
 
       // console.log(valueAMAllSymbol);
       // console.log(valueAMAllSymbolText);
@@ -118,9 +122,8 @@ $entry.forEach((element) => {
   });
 });
 
-$equals.addEventListener("click", () => {
-  event.preventDefault;
-});
+// $equals.addEventListener("click", () => {
+// });
 // $dot.addEventListener("click", () => {
 //   count.push($dot.textContent.trim());
 
