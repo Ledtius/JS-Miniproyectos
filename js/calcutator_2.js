@@ -8,6 +8,17 @@ const $equals = document.querySelector(".calculator__btn--equals");
 
 const $entry = document.querySelectorAll(".calculator__btn--entry");
 
+/* 
+Llamar las variables numericas
+Recorrerlas en el forEach{
+
+necesito que retorne el valor del array cuando se precione el simbolo
+
+}
+
+
+*/
+
 /* Arrays que permitiran operar */
 let count = [];
 let arrayMain = [];
@@ -63,10 +74,11 @@ $entry.forEach((element) => {
     console.log(`Array N°2: ${divideAM2Text}`);
     console.log(`Symbol choise: ${valueAMAllSymbolText}`);
 
-    const operations = () => {
-      $equals.addEventListener("click", () => {
+    $equals.addEventListener(
+      "click",
+      (equals = () => {
         event.preventDefault;
- 
+        let value;
         if (valueAMAllSymbolText !== "") {
           switch (valueAMAllSymbolText) {
             case "+":
@@ -75,40 +87,40 @@ $entry.forEach((element) => {
                   Number(divideAMText) + Number(divideAM2Text)
                 }`
               );
-              break;
+              return (value = divideAMText + divideAM2Text);
             case "-":
               console.log(
                 `${divideAMText} - ${divideAM2Text} = ${Number(
                   divideAMText - divideAM2Text
                 )}`
               );
-              break;
+              return (value = divideAMText - divideAM2Text);
             case "*":
               console.log(
                 `${divideAMText} * ${divideAM2Text} = ${Number(
                   divideAMText * divideAM2Text
                 )}`
               );
-              break;
+              return (value = divideAMText * divideAM2Text);
             case "/":
               console.log(
                 `${divideAMText} / ${divideAM2Text} = ${Number(
                   divideAMText / divideAM2Text
                 )}`
               );
-              break;
+              return (value = divideAMText / divideAM2Text);
 
             default:
-              break;
+              return (value = 0);
           }
         }
-      });
+      })
+    );
 
-      // console.log(valueAMAllSymbol);
-      // console.log(valueAMAllSymbolText);
-      // console.log(arrayMainText);
-      // console.log(divideAMText);
-    };
+    // console.log(valueAMAllSymbol);
+    // console.log(valueAMAllSymbolText);
+    // console.log(arrayMainText);
+    // console.log(divideAMText);
 
     operations();
     // const indexDivideArrayOtherSymbols = divideAM.indexOf(element => element === "");
@@ -122,6 +134,7 @@ $entry.forEach((element) => {
   });
 });
 
+console.log(equals);
 // $equals.addEventListener("click", () => {
 // });
 // $dot.addEventListener("click", () => {
