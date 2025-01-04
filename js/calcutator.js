@@ -20,7 +20,7 @@ let arrayC = [];
 //   });
 // });
 
-$entry.forEach((element) => {
+let prove = $entry.forEach((element) => {
   element.addEventListener("click", () => {
     let entryValue = element.textContent.trim();
 
@@ -42,67 +42,70 @@ $entry.forEach((element) => {
         element === "+" || element === "-" || element === "*" || element === "/"
     );
 
-    const divideAM = arrayMain.slice(0, indexAMAllSymbols);
+  
+      
+      const divideAM = arrayMain.slice(0, indexAMAllSymbols);
 
-    const divideAMText = divideAM.join("");
+      const divideAMText = divideAM.join("");
 
-    const divideAM2 = arrayMain.slice(indexAMAllSymbols + 1, arrayMain.length);
+      const divideAM2 = arrayMain.slice(
+        indexAMAllSymbols + 1,
+        arrayMain.length
+      );
 
-    const divideAM2Text = divideAM2.join("");
+      const divideAM2Text = divideAM2.join("");
 
-    const valueAMAllSymbol = arrayMain.slice(
-      indexAMAllSymbols,
-      indexAMAllSymbols + 1
-    );
+      const valueAMAllSymbol = arrayMain.slice(
+        indexAMAllSymbols,
+        indexAMAllSymbols + 1
+      );
 
-    const valueAMAllSymbolText = valueAMAllSymbol.join("");
+      const valueAMAllSymbolText = valueAMAllSymbol.join("");
 
-    // console.log(divideAM2);
-    // console.log(`Array A: ${arrayMain}`);
-    console.log(`Array N°1: ${divideAMText}`);
-    console.log(`Array N°2: ${divideAM2Text}`);
-    console.log(`Symbol choise: ${valueAMAllSymbolText}`);
-
+      // console.log(divideAM2);
+      // console.log(`Array A: ${arrayMain}`);
+      console.log(`Array N°1: ${divideAMText}`);
+      console.log(`Array N°2: ${divideAM2Text}`);
+      console.log(`Symbol choise: ${valueAMAllSymbolText}`);
+    
     const operations = () => {
-      $equals.addEventListener("click", () => {
-        event.preventDefault;
- 
-        if (valueAMAllSymbolText !== "") {
-          switch (valueAMAllSymbolText) {
-            case "+":
-              console.log(
-                `${divideAMText} + ${divideAM2Text} = ${
-                  Number(divideAMText) + Number(divideAM2Text)
-                }`
-              );
-              break;
-            case "-":
-              console.log(
-                `${divideAMText} - ${divideAM2Text} = ${Number(
-                  divideAMText - divideAM2Text
-                )}`
-              );
-              break;
-            case "*":
-              console.log(
-                `${divideAMText} * ${divideAM2Text} = ${Number(
-                  divideAMText * divideAM2Text
-                )}`
-              );
-              break;
-            case "/":
-              console.log(
-                `${divideAMText} / ${divideAM2Text} = ${Number(
-                  divideAMText / divideAM2Text
-                )}`
-              );
-              break;
+      event.preventDefault;
 
-            default:
-              break;
-          }
+      if (valueAMAllSymbolText !== "") {
+        switch (valueAMAllSymbolText) {
+          case "+":
+            console.log(
+              `${divideAMText} + ${divideAM2Text} = ${
+                Number(divideAMText) + Number(divideAM2Text)
+              }`
+            );
+            break;
+          case "-":
+            console.log(
+              `${divideAMText} - ${divideAM2Text} = ${Number(
+                divideAMText - divideAM2Text
+              )}`
+            );
+            break;
+          case "*":
+            console.log(
+              `${divideAMText} * ${divideAM2Text} = ${Number(
+                divideAMText * divideAM2Text
+              )}`
+            );
+            break;
+          case "/":
+            console.log(
+              `${divideAMText} / ${divideAM2Text} = ${Number(
+                divideAMText / divideAM2Text
+              )}`
+            );
+            break;
+
+          default:
+            break;
         }
-      });
+      }
 
       // console.log(valueAMAllSymbol);
       // console.log(valueAMAllSymbolText);
@@ -121,6 +124,8 @@ $entry.forEach((element) => {
     // }
   });
 });
+
+console.log(prove);
 
 // $equals.addEventListener("click", () => {
 // });
