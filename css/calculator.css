@@ -1,9 +1,12 @@
 .calculator {
+  /* width: fit-content; */
   width: 100%;
+
   display: grid;
   grid-template-areas:
     "result"
     "btns";
+
   justify-content: center;
 }
 
