@@ -14,11 +14,10 @@ $calculator.addEventListener("click", (event) => {
 
   const valueTarget = event.target.textContent.trim();
 
-  
   operations.push(valueTarget);
   let operationsText = operations.join("");
+  console.log(operations);
   $display.innerText = operationsText;
-
 
   if (valueTarget === "AC") {
     operations = [];
@@ -28,7 +27,9 @@ $calculator.addEventListener("click", (event) => {
   if (valueTarget === "C") {
     operations.pop();
     operations.pop();
-    operations.pop();
+
+    operationsText = operations.join("");
+
     $display.innerText = operationsText;
   }
   console.log(operations);
