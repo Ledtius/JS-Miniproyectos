@@ -63,6 +63,16 @@ $calculator.addEventListener("click", (event) => {
       }
       console.log(operation1);
     }
+
+    if (targetDot) {
+      countDot++;
+      console.log(countDot);
+
+      if (countDot > 1) {
+        console.log(countDot);
+        operation1.pop();
+      }
+    }
     // operation1.push(valueTarget);
     operation1Text = operation1.join("");
 
