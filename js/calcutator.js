@@ -6,15 +6,17 @@ const $display = document.querySelector(".calculator__result");
 /* Creamos el array que guarde las operaciones */
 
 let operations = [];
-let operation1 = [];
+let operation1 = ["0"];
 let operation2 = [];
 let symbols = [];
 let dot = [];
 let minus = [];
 let cero = ["0"];
 let result;
-let count = 0;
+let countDot = 0;
 /* Escuchamos los eventos */
+let operation1Text = operation1.join("");
+$display.innerText = operation1Text;
 
 $calculator.addEventListener("click", (event) => {
   event.preventDefault();
@@ -36,42 +38,35 @@ $calculator.addEventListener("click", (event) => {
     "calculator__btn--equals"
   );
 
+  const targetDot = event.target.classList.contains("calculator__btn--dot");
+
   const valueTarget = event.target.textContent.trim();
 
   let operationsText;
+  console.log();
 
-  let operation1Text;
-
-  if (targetNumber || targetOperator || targetSpecial) {
-    operation1.push(valueTarget);
-
-    if (operation1[operation1.lenght] === "") {
-      operation1[operation1.lenght] = "0";
+  if (targetNumber || targetDot) {
+    if (countDot > 1) {
+      countDot++;
+      console.log(countDot);
     }
-    count++;
-    console.log(count);
-    console.log(operation1[operation1.lenght]);
-    console.log(operation1.length);
 
-    operationsText = operation1.join("");
+    const regex = /^[0-9]$/;
 
-    // result = evaluate(operationsText);
-    // console.log(result);
-    // const parts = operationsText.split(/([+\-*/])/); // Divide por operadores
+    operation1.push(valueTarget);
+    console.log(operation1);
+    if (regex.test(operation1[1])) {
+      console.log(operation1);
+      if (operation1[0] === "0" && regex.test(operation1[1])) {
+        operation1.shift();
+        console.log(operation1);
+      }
+      console.log(operation1);
+    }
+    // operation1.push(valueTarget);
+    operation1Text = operation1.join("");
 
-    result = eval(operationsText);
-
-    $display.innerText = operationsText;
-  }
-
-  if (targetEquals) {
-    console.log(result);
-    console.log("equals");
-    operationsText = operation1.join("");
-    $display.innerText = result;
-    operations = [];
-
-    operations.push(result);
+    $display.innerText = operation1Text;
   }
 });
 
