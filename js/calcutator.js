@@ -12,10 +12,12 @@ let symbols = [];
 let dot = [];
 let minus = [];
 let cero = ["0"];
-
+let result;
+let count = 0;
 /* Escuchamos los eventos */
 
 $calculator.addEventListener("click", (event) => {
+  event.preventDefault();
   const target = event.target.classList.contains("calculator__btn");
 
   const targetNumber = event.target.classList.contains(
@@ -30,25 +32,46 @@ $calculator.addEventListener("click", (event) => {
     "calculator__btn--special"
   );
 
+  const targetEquals = event.target.classList.contains(
+    "calculator__btn--equals"
+  );
+
   const valueTarget = event.target.textContent.trim();
 
   let operationsText;
 
   let operation1Text;
-  const regex = /^-?\d+(\.\d+)?$/;
 
-  if (targetNumber || targetSpecial) {
-     operation1.push(valueTarget);
-    operation1Text = operation1.join("");
-    
-    console.log(regex.test(operation1Text));
+  if (targetNumber || targetOperator || targetSpecial) {
+    operation1.push(valueTarget);
 
-     console.log(.43 *2)
-     console.log(1. *2)
-    if (regex.test(operation1Text)) {
-      $display.innerText = operation1Text;
-    } else {
+    if (operation1[operation1.lenght] === "") {
+      operation1[operation1.lenght] = "0";
     }
+    count++;
+    console.log(count);
+    console.log(operation1[operation1.lenght]);
+    console.log(operation1.length);
+
+    operationsText = operation1.join("");
+
+    // result = evaluate(operationsText);
+    // console.log(result);
+    // const parts = operationsText.split(/([+\-*/])/); // Divide por operadores
+
+    result = eval(operationsText);
+
+    $display.innerText = operationsText;
+  }
+
+  if (targetEquals) {
+    console.log(result);
+    console.log("equals");
+    operationsText = operation1.join("");
+    $display.innerText = result;
+    operations = [];
+
+    operations.push(result);
   }
 });
 
