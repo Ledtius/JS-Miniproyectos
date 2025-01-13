@@ -12,11 +12,13 @@ let symbol = [];
 let dot = [];
 let minus = [];
 let cero = ["0"];
-let result;
+let result = 0;
 
 let countDot = 0;
 let countDot2 = 0;
 let countSymbol = 0;
+let symbolText;
+
 const regex = /^[0-9]$/;
 let operation1Text = operation1.join("");
 let operation2Text = operation2.join("");
@@ -51,7 +53,7 @@ $calculator.addEventListener("click", (event) => {
   console.log();
 
   function operation(arrayValue) {
-    if (targetNumber || targetDot || targetOperator) {
+    if (targetNumber || targetDot || targetOperator || targetEquals) {
       if (targetNumber || targetDot) {
         if (countSymbol < 1) {
           operation1.push(valueTarget);
@@ -101,7 +103,6 @@ $calculator.addEventListener("click", (event) => {
 
         $display.innerText = operation1Text;
       }
-      let symbolText;
 
       console.log(countSymbol);
       if (targetOperator) {
@@ -126,9 +127,35 @@ $calculator.addEventListener("click", (event) => {
           $display.innerText = operation2Text;
         }
       }
-      switch (valueTarget) {
-        case "+":
-          eval;
+
+      if (targetEquals) {
+        console.log("I'm enter");
+        switch (symbolText) {
+          case "+":
+            console.log("I'm enter");
+            result = eval(operation1Text + "+" + operation2Text);
+            console.log(result);
+            $display.innerText = result;
+            break;
+
+          case "-":
+            result = eval(operation1Text + "-" + operation2Text);
+            $display.innerText = result;
+            break;
+
+          case "*":
+            result = eval(operation1Text + "*" + operation2Text);
+            $display.innerText = result;
+            break;
+
+          case "/":
+            result = eval(operation1Text + "/" + operation2Text);
+            $display.innerText = result;
+            break;
+          default:
+            result = 0;
+            $display.innerText = result;
+        }
       }
     }
   }
