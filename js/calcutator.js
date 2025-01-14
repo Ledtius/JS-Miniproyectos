@@ -8,11 +8,13 @@ const $display = document.querySelector(".calculator__result");
 let operations = [];
 let operation1 = ["0"];
 let operation2 = ["0"];
+let operation3 = ["0"];
+let ope1Ope2;
 let symbol = [];
 let dot = [];
 let minus = [];
 let cero = ["0"];
-let result = 0;
+let result = "";
 
 let countDot = 0;
 let countDot2 = 0;
@@ -22,6 +24,7 @@ let symbolText;
 const regex = /^[0-9]$/;
 let operation1Text = operation1.join("");
 let operation2Text = operation2.join("");
+let operation3Text = operation3.join("");
 $display.innerText = operation1Text;
 
 /* Escuchamos los eventos */
@@ -52,7 +55,7 @@ $calculator.addEventListener("click", (event) => {
   let operationsText;
   console.log();
 
-  function operation(arrayValue) {
+  function operation() {
     if (targetNumber || targetDot || targetOperator || targetEquals) {
       if (targetNumber || targetDot) {
         if (countSymbol < 1) {
@@ -60,6 +63,8 @@ $calculator.addEventListener("click", (event) => {
           console.log(operation1);
         }
       }
+
+      console.log(result);
 
       function deleteZeros(operation) {
         if (regex.test(operation[1])) {
@@ -116,17 +121,39 @@ $calculator.addEventListener("click", (event) => {
         }
       }
 
+      console.log(operation1);
+      console.log(operation2);
+      console.log(result);
+
       if (countSymbol === 1) {
-        if (targetNumber || targetDot) {
-          operation2.push(valueTarget);
-          console.log(operation2);
-          deleteZeros(operation2);
-          controlDot2(operation2);
-          console.log(operation2);
-          operation2Text = operation2.join("");
-          $display.innerText = operation2Text;
+        if (result === "") {
+          if (targetNumber || targetDot) {
+            operation2.push(valueTarget);
+            console.log(operation2);
+            deleteZeros(operation2);
+            controlDot2(operation2);
+            console.log(operation2);
+            operation2Text = operation2.join("");
+            $display.innerText = operation2Text;
+          }
         }
       }
+
+      // if (result != "") {
+      //   operation2 = ["0"];
+      //   console.log("In");
+      //   if(targetNumber || targetDot){
+
+      //     operation2.push(valueTarget);
+      //     deleteZeros(operation2);
+      //     controlDot2(operation2);
+      //     console.log(operation2);
+      //     operation2Text = operation2.join("");
+      //     $display.innerText = operation2Text;
+      //   }
+      // }
+
+      console.log(operation2);
 
       if (targetEquals) {
         console.log("I'm enter");
@@ -153,13 +180,27 @@ $calculator.addEventListener("click", (event) => {
             $display.innerText = result;
             break;
           default:
-            result = 0;
+            result = "error";
             $display.innerText = result;
         }
+        // operation1 = result.
+      }
+      if (result != "") {
       }
     }
   }
   operation();
+
+  // if (result != "") {
+  //   countSymbol = 0;
+  //   symbol = [];
+  //   operation1 = Array.from(String(result));
+  //   console.log(operation1);
+  //   console.log(Array.from(String(result)));
+  //   // operation2 = ["0"];
+
+  //   // operation2Text = "";
+  // }
 });
 
 /* 

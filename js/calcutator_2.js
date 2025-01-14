@@ -1,68 +1,73 @@
-const $numbers = document.querySelectorAll(".calculator__btn--number");
+/* Elementos del DOM*/
+const $calculator = document.querySelector(".calculator");
 
-const $symbols = document.querySelectorAll(".calculator__btn--symbol");
+const $display = document.querySelector(".calculator__result");
 
-const $dot = document.querySelector(".calculator__btn--dot");
+/* Creamos el array que guarde las operaciones */
 
-const $equals = document.querySelector(".calculator__btn--equals");
+let operations = [];
+let operation1 = ["0"];
+let operation2 = ["0"];
+let symbol = [];
+let dot = [];
+let minus = [];
+let cero = ["0"];
+let result = "";
+let valueN1 = "";
+let answer = "";
 
-const $entry = document.querySelectorAll(".calculator__btn--entry");
+let countDot = 0;
+let countDot2 = 0;
+let countSymbol = 0;
+let symbolText;
 
-/* Creamos los arrays que van a almacenar los respectios valores */
-let arrayMix = [];
-let arrayValueN1 = [];
-let arrayValueN2 = [];
+// const regex = /^[0-9]$/;
+const regex = /^-?\d+(\.\d+)?([+\-*/]-?\d+(\.\d+)?)*$/;
 
-$entry.forEach((element) => {
-  element.addEventListener(
-    "click",
-    (please = () => {
-      console.log(element.textContent.trim());
+let operation1Text = operation1.join("");
+let operation2Text = operation2.join("");
+$display.innerText = operation1Text;
 
-      arrayMix.push(element.textContent.trim());
-      let cut = arrayMix.findIndex((element) => element === "+");
+/* Escuchamos los eventos */
+$calculator.addEventListener("click", (event) => {
+  event.preventDefault();
+  const target = event.target.classList.contains("calculator__btn");
 
-      console.log(cut);
-
-      arrayValueN1 = arrayMix.slice(0, cut);
-      console.log(arrayValueN1);
-
-      if (cut !== -1) {
-        console.log("Different");
-        return arrayValueN1;
-      }
-    })
+  const targetNumber = event.target.classList.contains(
+    "calculator__btn--number"
   );
 
-  let pleaseValue = please();
+  const targetOperator = event.target.classList.contains(
+    "calculator__btn--symbol"
+  );
 
-  console.log(pleaseValue);
+  const targetEquals = event.target.classList.contains(
+    "calculator__btn--equals"
+  );
+
+  const targetDot = event.target.classList.contains("calculator__btn--dot");
+
+  const valueTarget = event.target.textContent.trim();
+
+  let operation = () => {
+    if (targetNumber || targetDot || targetOperator || targetEquals) {
+      if (targetNumber || targetDot || targetOperator) {
+        valueN1 += valueTarget;
+        $display.innerText = valueN1;
+
+        console.log(regex.test(valueN1));
+        console.log(valueN1);
+      }
+      if (targetEquals) {
+        if (regex.test(valueN1));
+        {
+          answer = eval(valueN1);
+
+          $display.innerText = answer;
+        }
+      }
+    }
+
+  };
+  operation();
 });
-
-/* 
-Llamar las variables numericas
-Recorrerlas en el forEach{
-
-necesito que retorne el valor del array cuando se precione el simbolo
-
-}
-
-*/
-
-/*
-1) Pedir un valor numerico
-2) Validar que sea correcto
-2.1) No permitir que pueda escribir como primer caracter los operadores matimaticos como: "+", "*" y "/".
-3) Pedir la operacion a realiar
-4) Pedir otro valor numerico
-
-
-
-
-
-
-
-
-
-
-*/
