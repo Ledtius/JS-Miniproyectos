@@ -1,37 +1,94 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #2216a2;
+}
+.title {
+  margin: 2rem;
+}
 .calculator {
-  /* width: fit-content; */
+  width: fit-content;
+  font-size: 2rem;
   width: 100%;
-
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+  /* background-color: #1f2e43; */
+  background-color: #ecebdb;
+  padding: 1rem;
   display: grid;
+  gap: 1rem;
   grid-template-areas:
     "result"
     "btns";
-
-  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  border-radius: 1rem;
+  /* justify-content: center;
+    justify-content: center;
+  */
+  /* align-content: center; */
 }
 
 .calculator__result {
+  margin-top: 1rem;
+  width: 100%;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.932);
+
+  height: 4rem;
+  max-width: 21rem;
   grid-area: result;
   padding: 1.6rem;
+  border-radius: 1rem;
   background-color: whitesmoke;
+  overflow: scroll;
+
+  z-index: 2;
 }
+
 .calculator__btns {
   grid-area: btns;
+  /* font-weight: 800; */
   display: grid;
+  /* border: 1px solid black; */
+  z-index: 1;
   /* align-items: center; */
-
+  margin-bottom: 1rem;
+  /* grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr; */
   grid-template-areas:
-    "seven  eight  nine   plus     delete"
-    "four   five   six    minus    delete"
-    "one    two    three  multi    reset"
-    "zero   dot    equals division reset";
+    "delete  delete  reset   reset"
+    "seven   eight   nine    plus"
+    "four    five    six     minus"
+    "one     two     three   multi"
+    "zero    dot     equals  division ";
   /* gap: 1rem; */
+}
+
+.calculator__icon {
+  width: 2.1rem;
+  fill: #cc592d;
+}
+.calculator__icon--mini {
+  width: 1.5rem;
+  fill: #cc592d;
 }
 
 .calculator__btn {
   /* height: 6rem; */
   padding: 1.6rem;
+  border: 1px solid whitesmoke;
+  /* background-color: #3D3443; */
+  /* color: #CC592D; */
+  /* color: grey; */
+
   width: 6rem;
+  font-size: 2rem;
+  display: flex;
+  font-weight: bold;
+  align-items: center;
+  gap: 0.2rem;
+  text-align: center;
+  justify-content: center;
 }
 
 .calculator__btn:nth-child(1) {
@@ -48,6 +105,12 @@
 }
 .calculator__btn:nth-child(5) {
   grid-area: delete;
+  width: 12rem;
+  display: flex;
+  color: #cc592d;
+
+  align-items: center;
+  justify-content: center;
 }
 .calculator__btn:nth-child(6) {
   grid-area: four;
@@ -63,6 +126,8 @@
 }
 .calculator__btn:nth-child(10) {
   grid-area: reset;
+  width: 12rem;
+  color: #cc592d;
 }
 .calculator__btn:nth-child(11) {
   grid-area: one;
@@ -92,14 +157,19 @@
 .calculator__btn--entry {
 }
 .calculator__btn--number {
+  /* color: #b2b0ae; */
+  color: #3d3443;
 }
 .calculator__btn--symbol {
+  color: #0d0d0d;
 }
 .calculator__btn--delete {
 }
 .calculator__btn--reset {
 }
 .calculator__btn--dot {
+  color: #3d3443;
 }
 .calculator__btn--equals {
+  color: #3d3443;
 }
