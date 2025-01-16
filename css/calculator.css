@@ -1,37 +1,94 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #b83954;
+}
+.title {
+  margin: 2rem;
+  color: whitesmoke;
+}
 .calculator {
-  /* width: fit-content; */
   width: 100%;
-
+  width: fit-content;
+  font-size: 2rem;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+  background-color: #ecebdb;
+  padding: 2rem;
   display: grid;
+  gap: 1rem;
   grid-template-areas:
     "result"
     "btns";
+  justify-items: center;
+  align-items: center;
+  border-radius: 1rem;
+
+}
+
+.calculator__result {
+  width: 100%;
+  font-weight: 600;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.932);
+
+  height: 4rem;
+  max-width: 21rem;
+  grid-area: result;
+  padding: 1.6rem;
+  border-radius: 1rem;
+  background-color: whitesmoke;
+  overflow: auto;
+
+  z-index: 2;
+}
+
+.calculator__btns {
+  cursor: pointer;
+  gap: 0.1rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  grid-area: btns;
+  display: grid;
+  z-index: 1;
+  grid-template-areas:
+    "delete  delete  reset   reset"
+    "seven   eight   nine    plus"
+    "four    five    six     minus"
+    "one     two     three   multi"
+    "zero    dot     equals  division ";
+  /* gap: 1rem; */
+}
+
+.calculator__icon {
+  width: 2.1rem;
+  fill: #cc592d;
+}
+.calculator__icon--mini {
+  width: 1.5rem;
+  fill: #cc592d;
+}
+
+.calculator__btn {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  padding: 1.6rem;
+  border: 1px solid whitesmoke;
+
+  width: 6rem;
+  font-size: 2rem;
+  display: flex;
+  font-weight: bold;
+  align-items: center;
+  gap: 0.8rem;
+  text-align: center;
+  transition: all 0.5s ease;
 
   justify-content: center;
 }
 
-.calculator__result {
-  grid-area: result;
-  padding: 1.6rem;
-  background-color: whitesmoke;
-}
-.calculator__btns {
-  grid-area: btns;
-  display: grid;
-  /* align-items: center; */
-
-  grid-template-areas:
-    "seven  eight  nine   plus     delete"
-    "four   five   six    minus    delete"
-    "one    two    three  multi    reset"
-    "zero   dot    equals division reset";
-  /* gap: 1rem; */
-}
-
-.calculator__btn {
-  /* height: 6rem; */
-  padding: 1.6rem;
-  width: 6rem;
+.calculator__btn:focus {
+  outline: none;
+  box-shadow: inset 0px 0px 2cqmin grey;
+  border-color: grey;
+  
 }
 
 .calculator__btn:nth-child(1) {
@@ -48,6 +105,12 @@
 }
 .calculator__btn:nth-child(5) {
   grid-area: delete;
+  width: 12rem;
+  display: flex;
+  color: #cc592d;
+
+  align-items: center;
+  justify-content: center;
 }
 .calculator__btn:nth-child(6) {
   grid-area: four;
@@ -63,6 +126,8 @@
 }
 .calculator__btn:nth-child(10) {
   grid-area: reset;
+  width: 12rem;
+  color: #cc592d;
 }
 .calculator__btn:nth-child(11) {
   grid-area: one;
@@ -89,17 +154,3 @@
   grid-area: division;
 }
 
-.calculator__btn--entry {
-}
-.calculator__btn--number {
-}
-.calculator__btn--symbol {
-}
-.calculator__btn--delete {
-}
-.calculator__btn--reset {
-}
-.calculator__btn--dot {
-}
-.calculator__btn--equals {
-}

@@ -1,13 +1,13 @@
-/* Elementos del DOM*/
 const $calculator = document.querySelector(".calculator");
 
 const $display = document.querySelector(".calculator__result");
 
-/* Creamos el array que guarde las operaciones */
+const $btns = document.querySelectorAll(".calculator__btn");
+
+const sound = new Audio("/mp3/botton.mp3");
 
 let variable = "";
 
-/* Escuchamos los eventos */
 $calculator.addEventListener("click", (event) => {
   event.preventDefault();
   const target = event.target.classList.contains("calculator__btn");
@@ -43,6 +43,8 @@ $calculator.addEventListener("click", (event) => {
       targetReset ||
       targetDelete
     ) {
+      $display.style.color = "black ";
+      sound.play();
       if (targetNumber || targetDot || targetOperator) {
         variable += valueTarget;
         $display.innerText = variable;
@@ -52,7 +54,29 @@ $calculator.addEventListener("click", (event) => {
           variable = eval(variable);
           $display.innerText = variable;
         } catch (error) {
-          $display.innerText = "Syntax Error";
+          variable = "Syntax Error";
+          $display.innerText = variable;
+          $display.style.color = "tomato";
+          variable = "";
+        }
+        if (variable == "Infinity") {
+          console.log("Entro");
+          variable = "Math Error";
+          $display.innerText = variable;
+          $display.style.color = "orange";
+          variable = "";
+        }
+        if (variable == "NaN") {
+          variable = "Math Error";
+          console.log("Entro1");
+          $display.innerText = variable;
+          $display.style.color = "orange";
+          variable = "";
+        }
+        if (variable == "undefined") {
+          variable = "Math Error";
+          $display.innerText = variable;
+          $display.style.color = "orange";
           variable = "";
         }
       }
