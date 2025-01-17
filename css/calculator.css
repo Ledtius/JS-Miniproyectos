@@ -84,7 +84,7 @@ body {
   justify-content: center;
 }
 
-.calculator__btn:focus {
+.calculator__btn:active {
   outline: none;
   box-shadow: inset 0px 0px 2cqmin grey;
   border-color: grey;
