@@ -4,7 +4,7 @@ const $display = document.querySelector(".calculator__result");
 
 const $btns = document.querySelectorAll(".calculator__btn");
 
-const sound = new Audio("/sound/botton.mp3");
+const sound = new Audio("/calculator/sound/botton.mp3");
 
 let variable = "";
 
