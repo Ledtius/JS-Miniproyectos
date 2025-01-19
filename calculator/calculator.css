@@ -86,11 +86,11 @@ footer {
 
 .calculator__icon {
   width: 2.1rem;
-  fill: #cc592d;
+  fill: #c71d1c;
 }
 .calculator__icon--mini {
   width: 1.5rem;
-  fill: #cc592d;
+  fill: #c71d1c;
 }
 
 .calculator__btn {
@@ -132,7 +132,7 @@ footer {
   grid-area: delete;
   width: 12rem;
   display: flex;
-  color: #cc592d;
+  color: #c71d1c;
 
   align-items: center;
   justify-content: center;
@@ -152,7 +152,7 @@ footer {
 .calculator__btn:nth-child(10) {
   grid-area: reset;
   width: 12rem;
-  color: #cc592d;
+  color: #c71d1c;
 }
 .calculator__btn:nth-child(11) {
   grid-area: one;
