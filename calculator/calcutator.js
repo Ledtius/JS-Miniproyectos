@@ -32,6 +32,11 @@ $calculator.addEventListener("click", (event) => {
 
   const targetReset = event.target.classList.contains("calculator__btn--reset");
 
+  const newElement = document.createElement("strong");
+  newElement.textContent = "New element";
+
+  $calculator.appendChild(newElement)
+
   let valueTarget = event.target.textContent.trim();
 
   let operation = () => {
@@ -94,6 +99,7 @@ $calculator.addEventListener("click", (event) => {
         variable = variable.slice(0, variable.length - 1);
         $display.innerText = variable;
       }
+      
     }
   };
   operation();
