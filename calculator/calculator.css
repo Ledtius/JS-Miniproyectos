@@ -53,8 +53,8 @@ footer {
   padding: 2rem;
 }
 
-.history__title{
- color: whitesmoke;
+.history__title {
+  color: whitesmoke;
 }
 
 .history__box {
@@ -72,8 +72,8 @@ footer {
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
   text-overflow: clip;
 }
- 
-.history__element{
+
+.history__element {
   display: flex;
 
   align-items: center;
@@ -107,7 +107,21 @@ footer {
 
   width: fit-content;
   padding: 0.6rem;
+  transition: all 0.5s ease;
 }
+
+.btns__messague{
+  height: 16.2px;
+  
+  font-weight: 500;
+  border: 1px solid transparent;
+  /* min-width: 16.2px; */
+}
+
+.history__btn:active {
+  transform: scale(0.8);
+}
+
 .history__btn--copy {
   background-color: #049541;
   fill: whitesmoke;
