@@ -23,12 +23,24 @@ console.log($historyBtnCopy, $historyBtnDelete);
 $historyBtnCopy.addEventListener("click", () => {
   historyMessague = "Copied!";
   // historyMessague.style.color("#049541");
-  $historyBtnsMessague.style = "color: #049541";
-  $historyBtnsMessague.innerText = historyMessague;
+  const writeTextInClipboard = () => {
+    navigator.clipboard
+      .writeText($historyOperation.textContent)
+      .then(() => {
+        $historyBtnsMessague.style = "color: #049541";
+        $historyBtnsMessague.innerText = historyMessague;
 
-  setTimeout(() => {
-    $historyBtnsMessague.innerText = "";
-  }, 500);
+        setTimeout(() => {
+          $historyBtnsMessague.innerText = "";
+        }, 500);
+      })
+      .catch((err) => {
+        historyMessague.style = "color: tomato";
+        historyMessague = "Failed to copy";
+        $historyBtnsMessague = historyMessague;
+      });
+  };
+  writeTextInClipboard();
 
   console.log($historyOperation.textContent.trim());
 });
