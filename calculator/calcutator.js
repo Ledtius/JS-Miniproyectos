@@ -32,10 +32,10 @@ $historyBtnCopy.addEventListener("click", () => {
 
         setTimeout(() => {
           $historyBtnsMessague.innerText = "";
-        }, 500);
+        }, 700);
       })
       .catch((err) => {
-        historyMessague.style = "color: tomato";
+        $historyBtnsMessague.style = "color: tomato";
         historyMessague = "Failed to copy";
         $historyBtnsMessague = historyMessague;
       });
@@ -45,6 +45,16 @@ $historyBtnCopy.addEventListener("click", () => {
   console.log($historyOperation.textContent.trim());
 });
 
+$historyBtnDelete.addEventListener("click", () => {
+  historyMessague = "Deleted";
+
+  $historyBtnsMessague.style = "color: tomato";
+
+  $historyBtnsMessague.innerText = historyMessague;
+  setTimeout(() => {
+    $history.remove();
+  }, 700);
+});
 let variable = "";
 
 $calculator.addEventListener("click", (event) => {
