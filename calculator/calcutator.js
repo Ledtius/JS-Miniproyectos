@@ -40,6 +40,20 @@ const historyElementFunction = (variable) => {
 
     return;
   }
+
+  localStorage.setItem("variable", variable);
+  localStorage.setItem("result", result);
+
+  const variableLocalStorage = localStorage.getItem("variable");
+
+  const resultLocalStorage = localStorage.getItem("result");
+
+  /* Retornar como un objeto y fuera de la funcion imprimirlo en una seccion aparte que se llae historial */
+
+  /* Eso quiere decir que esto, en realidad se deberia llamar en vez de historial de operaciones, a mejor: "operaciones actuales" */
+  console.log(variableLocalStorage);
+  console.log(resultLocalStorage);
+
   console.log("Why dog?");
 
   const $historyElement = document.createElement("div");
