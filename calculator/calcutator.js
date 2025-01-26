@@ -21,43 +21,44 @@ const $historyBox = document.querySelector(".history__box");
 
 let historyMessague = "";
 
-const $historyElement = document.createElement("div");
+const historyElementFunction = (variable) => {
+  const $historyElement = document.createElement("div");
 
-$historyElement.className = "history__element";
+  $historyElement.className = "history__element";
 
-$historyBox.appendChild($historyElement);
+  $historyBox.appendChild($historyElement);
 
-const $historyOperation = document.createElement("strong");
+  const $historyOperation = document.createElement("strong");
 
-$historyOperation.className = "history__operation";
+  $historyOperation.className = "history__operation";
 
-$historyOperation.innerText = "${variable} = ${eval(variable)}";
+  $historyOperation.innerText = `${variable} = ${eval(variable)}`;
 
-$historyElement.appendChild($historyOperation);
+  $historyElement.appendChild($historyOperation);
 
-const $historyBtnsMessague = document.createElement("div");
+  const $historyBtnsMessague = document.createElement("div");
 
-$historyBtnsMessague.className = "history__btns-messague";
+  $historyBtnsMessague.className = "history__btns-messague";
 
-$historyElement.appendChild($historyBtnsMessague);
+  $historyElement.appendChild($historyBtnsMessague);
 
-const $historyBtns = document.createElement("div");
+  const $historyBtns = document.createElement("div");
 
-$historyBtns.className = "history__btns";
+  $historyBtns.className = "history__btns";
 
-$historyBtnsMessague.appendChild($historyBtns);
+  $historyBtnsMessague.appendChild($historyBtns);
 
-const $historyMessague = document.createElement("span");
+  const $historyMessague = document.createElement("span");
 
-$historyMessague.className = "btns__messague";
+  $historyMessague.className = "btns__messague";
 
-$historyBtnsMessague.appendChild($historyMessague);
+  $historyBtnsMessague.appendChild($historyMessague);
 
-const $historyBtnCopy = document.createElement("button");
+  const $historyBtnCopy = document.createElement("button");
 
-$historyBtnCopy.className = "history__btn history__btn--copy";
+  $historyBtnCopy.className = "history__btn history__btn--copy";
 
-$historyBtnCopy.innerHTML = `<svg
+  $historyBtnCopy.innerHTML = `<svg
                     class="history__icon"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 448 512"
@@ -67,13 +68,13 @@ $historyBtnCopy.innerHTML = `<svg
                     />
                   </svg>`;
 
-$historyBtns.appendChild($historyBtnCopy);
+  $historyBtns.appendChild($historyBtnCopy);
 
-const $historyBtnDelete = document.createElement("button");
+  const $historyBtnDelete = document.createElement("button");
 
-$historyBtnDelete.className = "history__btn history__btn--delete";
+  $historyBtnDelete.className = "history__btn history__btn--delete";
 
-$historyBtnDelete.innerHTML = `<svg
+  $historyBtnDelete.innerHTML = `<svg
                     class="history__icon"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 448 512"
@@ -83,43 +84,47 @@ $historyBtnDelete.innerHTML = `<svg
                     />
                   </svg>`;
 
-$historyBtns.appendChild($historyBtnDelete);
+  $historyBtns.appendChild($historyBtnDelete);
 
-console.log($historyBtnCopy, $historyBtnDelete);
+  $historyBtnCopy.addEventListener("click", () => {
+    historyMessague = "Copied!";
+    // historyMessague.style.color("#049541");
+    const writeTextInClipboard = () => {
+      navigator.clipboard
+        .writeText($historyOperation.textContent)
+        .then(() => {
+          $historyMessague.style = "color: #049541";
+          $historyMessague.innerText = historyMessague;
+  
+          setTimeout(() => {
+            $historyMessague.innerText = "";
+          }, 700);
+        })
+        .catch((err) => {
+          $historyMessague.style = "color: tomato";
+          historyMessague = "Failed to copy";
+          $historyBtnsMessague = historyMessague;
+        });
+    };
+    writeTextInClipboard();
+  
+    console.log($historyOperation.textContent.trim());
+  });
+  
+  $historyBtnDelete.addEventListener("click", () => {
+    historyMessague = "Deleted";
+    $historyMessague.style = "color: tomato";
+    $historyMessague.innerText = historyMessague;
+    setTimeout(() => {
+      $historyElement.remove();
+    }, 700);
+  });
 
-$historyBtnCopy.addEventListener("click", () => {
-  historyMessague = "Copied!";
-  // historyMessague.style.color("#049541");
-  const writeTextInClipboard = () => {
-    navigator.clipboard
-      .writeText($historyOperation.textContent)
-      .then(() => {
-        $historyMessague.style = "color: #049541";
-        $historyMessague.innerText = historyMessague;
+};
 
-        setTimeout(() => {
-          $historyMessague.innerText = "";
-        }, 700);
-      })
-      .catch((err) => {
-        $historyMessague.style = "color: tomato";
-        historyMessague = "Failed to copy";
-        $historyBtnsMessague = historyMessague;
-      });
-  };
-  writeTextInClipboard();
 
-  console.log($historyOperation.textContent.trim());
-});
 
-$historyBtnDelete.addEventListener("click", () => {
-  historyMessague = "Deleted";
-  $historyMessague.style = "color: tomato";
-  $historyMessague.innerText = historyMessague;
-  setTimeout(() => {
-    $historyElement.remove();
-  }, 700);
-});
+
 let variable = "";
 
 $calculator.addEventListener("click", (event) => {
@@ -165,6 +170,9 @@ $calculator.addEventListener("click", (event) => {
       }
       if (targetEquals) {
         try {
+historyElementFunction(variable);
+
+
           variable = eval(variable);
           $display.innerText = variable;
         } catch (error) {
