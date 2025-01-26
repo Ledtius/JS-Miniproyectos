@@ -33,7 +33,7 @@ const historyElementFunction = (variable) => {
   if (
     result === SyntaxError ||
     result === undefined ||
-    !result ||
+    isNaN(result) ||
     result === Infinity
   ) {
     console.log("I'm in");
@@ -204,7 +204,7 @@ $calculator.addEventListener("click", (event) => {
           $display.style.color = "tomato";
           variable = "";
         }
-        if (!variable) {
+        if (isNaN(variable)) {
           variable = "Math Error";
           console.log("Entro1");
           $display.innerText = variable;
