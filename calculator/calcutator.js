@@ -22,6 +22,26 @@ const $historyBox = document.querySelector(".history__box");
 let historyMessague = "";
 
 const historyElementFunction = (variable) => {
+  let result = eval(variable);
+
+  console.log(result);
+
+  if (result == "") {
+    console.log("You're fucking genius!");
+  }
+
+  if (
+    result === SyntaxError ||
+    result === undefined ||
+    !result ||
+    result === Infinity
+  ) {
+    console.log("I'm in");
+
+    return;
+  }
+  console.log("Why dog?");
+
   const $historyElement = document.createElement("div");
 
   $historyElement.className = "history__element";
@@ -59,7 +79,7 @@ const historyElementFunction = (variable) => {
   $historyBtnCopy.className = "history__btn history__btn--copy";
 
   $historyBtnCopy.innerHTML = `<svg
-                    class="history__icon"
+  class="history__icon"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 448 512"
                   >
@@ -95,7 +115,7 @@ const historyElementFunction = (variable) => {
         .then(() => {
           $historyMessague.style = "color: #049541";
           $historyMessague.innerText = historyMessague;
-  
+
           setTimeout(() => {
             $historyMessague.innerText = "";
           }, 700);
@@ -107,10 +127,10 @@ const historyElementFunction = (variable) => {
         });
     };
     writeTextInClipboard();
-  
+
     console.log($historyOperation.textContent.trim());
   });
-  
+
   $historyBtnDelete.addEventListener("click", () => {
     historyMessague = "Deleted";
     $historyMessague.style = "color: tomato";
@@ -119,11 +139,7 @@ const historyElementFunction = (variable) => {
       $historyElement.remove();
     }, 700);
   });
-
 };
-
-
-
 
 let variable = "";
 
@@ -170,12 +186,12 @@ $calculator.addEventListener("click", (event) => {
       }
       if (targetEquals) {
         try {
-historyElementFunction(variable);
-
-
+          historyElementFunction(variable);
           variable = eval(variable);
+          console.log(variable);
           $display.innerText = variable;
         } catch (error) {
+          // console.log(error);
           variable = "Syntax Error";
           $display.innerText = variable;
           $display.style.color = "tomato";
@@ -188,14 +204,15 @@ historyElementFunction(variable);
           $display.style.color = "tomato";
           variable = "";
         }
-        if (variable == "NaN") {
+        if (!variable) {
           variable = "Math Error";
           console.log("Entro1");
           $display.innerText = variable;
           $display.style.color = "tomato";
           variable = "";
         }
-        if (variable == "undefined") {
+        if (variable === undefined) {
+          console.log("Are you in?");
           variable = "Math Error";
           $display.innerText = variable;
           $display.style.color = "tomato";
