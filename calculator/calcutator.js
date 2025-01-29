@@ -4,6 +4,8 @@ const $display = document.querySelector(".calculator__result");
 
 const $btns = document.querySelectorAll(".calculator__btn");
 
+const $section = document.querySelector(".section");
+
 const sound = new Audio("/calculator/sound/botton.mp3");
 
 // const $history = document.querySelector(".history__box");
@@ -40,7 +42,7 @@ const historyElementFunction = (variable) => {
 
     return;
   }
-/* Add a comment */
+  /* Add a comment */
   localStorage.setItem("variable", variable);
   localStorage.setItem("result", result);
 
@@ -53,6 +55,8 @@ const historyElementFunction = (variable) => {
   /* Eso quiere decir que esto, en realidad se deberia llamar en vez de historial de operaciones, a mejor: "operaciones actuales" */
   console.log(variableLocalStorage);
   console.log(resultLocalStorage);
+
+  // $hola.appendChild(resultLocalStorage);
 
   console.log("Why dog?");
 
@@ -251,3 +255,13 @@ $calculator.addEventListener("click", (event) => {
   };
   operation();
 });
+
+let name;
+if (!localStorage.getItem("name", name)) {
+  name = prompt("Digite un nombre");
+  localStorage.setItemname("name", name);
+}
+
+let nameLocalStorage = localStorage.getItem("name");
+
+$section.innerText = nameLocalStorage;
