@@ -40,7 +40,7 @@ const historyElementFunction = (variable) => {
 
     return;
   }
-
+/* Add a comment */
   localStorage.setItem("variable", variable);
   localStorage.setItem("result", result);
 
