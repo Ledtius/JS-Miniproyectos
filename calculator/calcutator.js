@@ -59,6 +59,8 @@ const historyElementFunction = (variable) => {
   // $hola.appendChild(resultLocalStorage);
 
   console.log("Why dog?");
+  if (!localStorage.getItem(variableLocalStorage)) {
+  }
 
   const $historyElement = document.createElement("div");
 
@@ -205,6 +207,14 @@ $calculator.addEventListener("click", (event) => {
       if (targetEquals) {
         try {
           historyElementFunction(variable);
+
+          const $valueLocalStorage = document.createElement("span");
+
+          console.log($valueLocalStorage);
+
+          $valueLocalStorage.innerText = localStorage.getItem("variable");
+          $section.appendChild($valueLocalStorage);
+
           variable = eval(variable);
           console.log(variable);
           $display.innerText = variable;
