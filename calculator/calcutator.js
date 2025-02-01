@@ -13,6 +13,8 @@ const sound = new Audio("/calculator/sound/botton.mp3");
 // const $historyElement = document.querySelector(".history__element");
 const $historyBox = document.querySelector(".history__box");
 
+const $equals = document.querySelector(".calculator__btn--equals");
+
 // const $historyBtnCopy = document.querySelector(".history__btn--copy");
 
 // const $historyOperation = document.querySelector(".history__operation");
@@ -21,7 +23,11 @@ const $historyBox = document.querySelector(".history__box");
 
 // const $historyBtnDelete = document.querySelector(".history__btn--delete");
 
+const $deleteOpeBtn = document.querySelector(".history__btn--delete");
+
 let historyMessague = "";
+
+let deleteLocalStorage = () => {};
 
 const historyElementFunction = (variable) => {
   let result = eval(variable);
@@ -43,24 +49,24 @@ const historyElementFunction = (variable) => {
     return;
   }
   /* Add a comment */
-  localStorage.setItem("variable", variable);
-  localStorage.setItem("result", result);
+  // localStorage.setItem("variable", variable);
+  // localStorage.setItem("result", result);
 
-  const variableLocalStorage = localStorage.getItem("variable");
+  // const variableLocalStorage = localStorage.getItem("variable");
 
-  const resultLocalStorage = localStorage.getItem("result");
+  // const resultLocalStorage = localStorage.getItem("result");
 
   /* Retornar como un objeto y fuera de la funcion imprimirlo en una seccion aparte que se llae historial */
 
   /* Eso quiere decir que esto, en realidad se deberia llamar en vez de historial de operaciones, a mejor: "operaciones actuales" */
-  console.log(variableLocalStorage);
-  console.log(resultLocalStorage);
+  // console.log(variableLocalStorage);
+  // console.log(resultLocalStorage);
 
   // $hola.appendChild(resultLocalStorage);
 
   console.log("Why dog?");
-  if (!localStorage.getItem(variableLocalStorage)) {
-  }
+  // if (!localStorage.getItem(variableLocalStorage)) {
+  // }
 
   const $historyElement = document.createElement("div");
 
@@ -156,12 +162,15 @@ const historyElementFunction = (variable) => {
     $historyMessague.style = "color: tomato";
     $historyMessague.innerText = historyMessague;
     setTimeout(() => {
+      deleteLocalStorage();
       $historyElement.remove();
     }, 700);
+    return 1;
   });
 };
 
 let variable = "";
+let countVariable = 0;
 
 $calculator.addEventListener("click", (event) => {
   event.preventDefault();
@@ -206,14 +215,17 @@ $calculator.addEventListener("click", (event) => {
       }
       if (targetEquals) {
         try {
-          historyElementFunction(variable);
+          // console.log($valueLocalStorage);
 
-          const $valueLocalStorage = document.createElement("span");
+          // $valueLocalStorage.innerText = localStorage.getItem("variable");
+          // $section.appendChild($valueLocalStorage);
+          localStorage.setItem(`variable${countVariable}`, variable);
+          countVariable++;
 
-          console.log($valueLocalStorage);
+          console.log(countVariable);
+          // historyElementFunction(variable);
 
-          $valueLocalStorage.innerText = localStorage.getItem("variable");
-          $section.appendChild($valueLocalStorage);
+          // const $valueLocalStorage = document.createElement("span");
 
           variable = eval(variable);
           console.log(variable);
@@ -275,3 +287,11 @@ if (!localStorage.getItem("name", name)) {
 let nameLocalStorage = localStorage.getItem("name");
 
 $section.innerText = nameLocalStorage;
+$equals.addEventListener("click", () => {
+  console.log(localStorage.getItem(`variable${countVariable}`));
+
+  historyElementFunction(`variable${countVariable}`);
+  console.log(countVariable);
+});
+
+historyElementFunction(localStorage.getItem("variable"));
