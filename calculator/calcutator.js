@@ -273,15 +273,5 @@ $calculator.addEventListener("click", (event) => {
   operation();
 });
 
-let name;
-if (!localStorage.getItem("name", name)) {
-  name = prompt("Digite un nombre");
-  localStorage.setItem("name", name);
-}
-
-let nameLocalStorage = localStorage.getItem("name");
-
-$section.innerText = nameLocalStorage;
-
 
 
