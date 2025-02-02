@@ -24,10 +24,9 @@ const $equals = document.querySelector(".calculator__btn--equals");
 // const $historyBtnDelete = document.querySelector(".history__btn--delete");
 
 const $deleteOpeBtn = document.querySelector(".history__btn--delete");
+console.log($deleteOpeBtn);
 
 let historyMessague = "";
-
-let deleteLocalStorage = () => {};
 
 const historyElementFunction = (variable) => {
   let result = eval(variable);
@@ -172,6 +171,13 @@ const historyElementFunction = (variable) => {
 let variable = "";
 let countVariable = 0;
 
+let deleteLocalStorage = () => {
+  $deleteOpeBtn.addEventListener("click", () => {
+    localStorage.removeItem(`variable${countVariable}`);
+    console.log("All in");
+  });
+};
+
 $calculator.addEventListener("click", (event) => {
   event.preventDefault();
   const target = event.target.classList.contains("calculator__btn");
@@ -221,6 +227,11 @@ $calculator.addEventListener("click", (event) => {
           // $section.appendChild($valueLocalStorage);
           localStorage.setItem(`variable${countVariable}`, variable);
           countVariable++;
+
+          console.log(localStorage.getItem(`variable${countVariable}`));
+
+          console.log(countVariable);
+          historyElementFunction(`variable${countVariable}`);
 
           console.log(countVariable);
           // historyElementFunction(variable);
@@ -287,11 +298,10 @@ if (!localStorage.getItem("name", name)) {
 let nameLocalStorage = localStorage.getItem("name");
 
 $section.innerText = nameLocalStorage;
-$equals.addEventListener("click", () => {
-  console.log(localStorage.getItem(`variable${countVariable}`));
+$equals.addEventListener("click", () => {});
 
-  historyElementFunction(`variable${countVariable}`);
-  console.log(countVariable);
-});
+historyElementFunction(localStorage.getItem(`variable${countVariable}`));
 
-historyElementFunction(localStorage.getItem("variable"));
+localStorage.clear();
+
+deleteLocalStorage();
