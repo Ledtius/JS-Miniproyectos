@@ -161,7 +161,6 @@ const historyElementFunction = (variable) => {
     $historyMessague.style = "color: tomato";
     $historyMessague.innerText = historyMessague;
     setTimeout(() => {
-      deleteLocalStorage();
       $historyElement.remove();
     }, 700);
     return 1;
@@ -170,13 +169,6 @@ const historyElementFunction = (variable) => {
 
 let variable = "";
 let countVariable = 0;
-
-let deleteLocalStorage = () => {
-  $deleteOpeBtn.addEventListener("click", () => {
-    localStorage.removeItem(`variable${countVariable}`);
-    console.log("All in");
-  });
-};
 
 $calculator.addEventListener("click", (event) => {
   event.preventDefault();
@@ -225,16 +217,8 @@ $calculator.addEventListener("click", (event) => {
 
           // $valueLocalStorage.innerText = localStorage.getItem("variable");
           // $section.appendChild($valueLocalStorage);
-          localStorage.setItem(`variable${countVariable}`, variable);
-          countVariable++;
 
-          console.log(localStorage.getItem(`variable${countVariable}`));
-
-          console.log(countVariable);
-          historyElementFunction(`variable${countVariable}`);
-
-          console.log(countVariable);
-          // historyElementFunction(variable);
+          historyElementFunction(variable);
 
           // const $valueLocalStorage = document.createElement("span");
 
@@ -292,16 +276,12 @@ $calculator.addEventListener("click", (event) => {
 let name;
 if (!localStorage.getItem("name", name)) {
   name = prompt("Digite un nombre");
-  localStorage.setItemname("name", name);
+  localStorage.setItem("name", name);
 }
 
 let nameLocalStorage = localStorage.getItem("name");
 
 $section.innerText = nameLocalStorage;
-$equals.addEventListener("click", () => {});
 
-historyElementFunction(localStorage.getItem(`variable${countVariable}`));
 
-localStorage.clear();
 
-deleteLocalStorage();
