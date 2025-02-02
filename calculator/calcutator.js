@@ -4,9 +4,171 @@ const $display = document.querySelector(".calculator__result");
 
 const $btns = document.querySelectorAll(".calculator__btn");
 
+const $section = document.querySelector(".section");
+
 const sound = new Audio("/calculator/sound/botton.mp3");
 
+// const $history = document.querySelector(".history__box");
+
+// const $historyElement = document.querySelector(".history__element");
+const $historyBox = document.querySelector(".history__box");
+
+const $equals = document.querySelector(".calculator__btn--equals");
+
+// const $historyBtnCopy = document.querySelector(".history__btn--copy");
+
+// const $historyOperation = document.querySelector(".history__operation");
+
+// const $historyBtnsMessague = document.querySelector(".btns__messague");
+
+// const $historyBtnDelete = document.querySelector(".history__btn--delete");
+
+const $deleteOpeBtn = document.querySelector(".history__btn--delete");
+console.log($deleteOpeBtn);
+
+let historyMessague = "";
+
+const historyElementFunction = (variable) => {
+  let result = eval(variable);
+
+  console.log(result);
+
+  if (result == "") {
+    console.log("You're fucking genius!");
+  }
+
+  if (
+    result === SyntaxError ||
+    result === undefined ||
+    isNaN(result) ||
+    result === Infinity
+  ) {
+    console.log("I'm in");
+
+    return;
+  }
+  /* Add a comment */
+  // localStorage.setItem("variable", variable);
+  // localStorage.setItem("result", result);
+
+  // const variableLocalStorage = localStorage.getItem("variable");
+
+  // const resultLocalStorage = localStorage.getItem("result");
+
+  /* Retornar como un objeto y fuera de la funcion imprimirlo en una seccion aparte que se llae historial */
+
+  /* Eso quiere decir que esto, en realidad se deberia llamar en vez de historial de operaciones, a mejor: "operaciones actuales" */
+  // console.log(variableLocalStorage);
+  // console.log(resultLocalStorage);
+
+  // $hola.appendChild(resultLocalStorage);
+
+  console.log("Why dog?");
+  // if (!localStorage.getItem(variableLocalStorage)) {
+  // }
+
+  const $historyElement = document.createElement("div");
+
+  $historyElement.className = "history__element";
+
+  $historyBox.appendChild($historyElement);
+
+  const $historyOperation = document.createElement("strong");
+
+  $historyOperation.className = "history__operation";
+
+  $historyOperation.innerText = `${variable} = ${eval(variable)}`;
+
+  $historyElement.appendChild($historyOperation);
+
+  const $historyBtnsMessague = document.createElement("div");
+
+  $historyBtnsMessague.className = "history__btns-messague";
+
+  $historyElement.appendChild($historyBtnsMessague);
+
+  const $historyBtns = document.createElement("div");
+
+  $historyBtns.className = "history__btns";
+
+  $historyBtnsMessague.appendChild($historyBtns);
+
+  const $historyMessague = document.createElement("span");
+
+  $historyMessague.className = "btns__messague";
+
+  $historyBtnsMessague.appendChild($historyMessague);
+
+  const $historyBtnCopy = document.createElement("button");
+
+  $historyBtnCopy.className = "history__btn history__btn--copy";
+
+  $historyBtnCopy.innerHTML = `<svg
+  class="history__icon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 448 512"
+                  >
+                    <path
+                      d="M384 336l-192 0c-8.8 0-16-7.2-16-16l0-256c0-8.8 7.2-16 16-16l140.1 0L400 115.9 400 320c0 8.8-7.2 16-16 16zM192 384l192 0c35.3 0 64-28.7 64-64l0-204.1c0-12.7-5.1-24.9-14.1-33.9L366.1 14.1c-9-9-21.2-14.1-33.9-14.1L192 0c-35.3 0-64 28.7-64 64l0 256c0 35.3 28.7 64 64 64zM64 128c-35.3 0-64 28.7-64 64L0 448c0 35.3 28.7 64 64 64l192 0c35.3 0 64-28.7 64-64l0-32-48 0 0 32c0 8.8-7.2 16-16 16L64 464c-8.8 0-16-7.2-16-16l0-256c0-8.8 7.2-16 16-16l32 0 0-48-32 0z"
+                    />
+                  </svg>`;
+
+  $historyBtns.appendChild($historyBtnCopy);
+
+  const $historyBtnDelete = document.createElement("button");
+
+  $historyBtnDelete.className = "history__btn history__btn--delete";
+
+  $historyBtnDelete.innerHTML = `<svg
+                    class="history__icon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 448 512"
+                  >
+                    <path
+                      d="M170.5 51.6L151.5 80l145 0-19-28.4c-1.5-2.2-4-3.6-6.7-3.6l-93.7 0c-2.7 0-5.2 1.3-6.7 3.6zm147-26.6L354.2 80 368 80l48 0 8 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-8 0 0 304c0 44.2-35.8 80-80 80l-224 0c-44.2 0-80-35.8-80-80l0-304-8 0c-13.3 0-24-10.7-24-24S10.7 80 24 80l8 0 48 0 13.8 0 36.7-55.1C140.9 9.4 158.4 0 177.1 0l93.7 0c18.7 0 36.2 9.4 46.6 24.9zM80 128l0 304c0 17.7 14.3 32 32 32l224 0c17.7 0 32-14.3 32-32l0-304L80 128zm80 64l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16z"
+                    />
+                  </svg>`;
+
+  $historyBtns.appendChild($historyBtnDelete);
+
+  $historyBtnCopy.addEventListener("click", () => {
+    historyMessague = "Copied!";
+    // historyMessague.style.color("#049541");
+    const writeTextInClipboard = () => {
+      navigator.clipboard
+        .writeText($historyOperation.textContent)
+        .then(() => {
+          $historyMessague.style = "color: #049541";
+          $historyMessague.innerText = historyMessague;
+
+          setTimeout(() => {
+            $historyMessague.innerText = "";
+          }, 700);
+        })
+        .catch((err) => {
+          $historyMessague.style = "color: tomato";
+          historyMessague = "Failed to copy";
+          $historyBtnsMessague = historyMessague;
+        });
+    };
+    writeTextInClipboard();
+
+    console.log($historyOperation.textContent.trim());
+  });
+
+  $historyBtnDelete.addEventListener("click", () => {
+    historyMessague = "Deleted";
+    $historyMessague.style = "color: tomato";
+    $historyMessague.innerText = historyMessague;
+    setTimeout(() => {
+      $historyElement.remove();
+    }, 700);
+    return 1;
+  });
+};
+
 let variable = "";
+let countVariable = 0;
 
 $calculator.addEventListener("click", (event) => {
   event.preventDefault();
@@ -51,9 +213,20 @@ $calculator.addEventListener("click", (event) => {
       }
       if (targetEquals) {
         try {
+          // console.log($valueLocalStorage);
+
+          // $valueLocalStorage.innerText = localStorage.getItem("variable");
+          // $section.appendChild($valueLocalStorage);
+
+          historyElementFunction(variable);
+
+          // const $valueLocalStorage = document.createElement("span");
+
           variable = eval(variable);
+          console.log(variable);
           $display.innerText = variable;
         } catch (error) {
+          // console.log(error);
           variable = "Syntax Error";
           $display.innerText = variable;
           $display.style.color = "tomato";
@@ -66,14 +239,15 @@ $calculator.addEventListener("click", (event) => {
           $display.style.color = "tomato";
           variable = "";
         }
-        if (variable == "NaN") {
+        if (isNaN(variable)) {
           variable = "Math Error";
           console.log("Entro1");
           $display.innerText = variable;
           $display.style.color = "tomato";
           variable = "";
         }
-        if (variable == "undefined") {
+        if (variable === undefined) {
+          console.log("Are you in?");
           variable = "Math Error";
           $display.innerText = variable;
           $display.style.color = "tomato";
@@ -98,3 +272,16 @@ $calculator.addEventListener("click", (event) => {
   };
   operation();
 });
+
+let name;
+if (!localStorage.getItem("name", name)) {
+  name = prompt("Digite un nombre");
+  localStorage.setItem("name", name);
+}
+
+let nameLocalStorage = localStorage.getItem("name");
+
+$section.innerText = nameLocalStorage;
+
+
+
