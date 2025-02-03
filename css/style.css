@@ -55,6 +55,8 @@ footer {
   /* align-items: center; */
   justify-content: center;
   /* padding: 2rem; */
+  flex-wrap: wrap;
+  gap: 8rem;
 
   width: 100%;
 }
@@ -67,6 +69,7 @@ footer {
   border-radius: 2rem;
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
   max-width: 240px;
+  max-height: 421.234px;
   /* transition: all 0.5s ease; */
 }
 
@@ -76,12 +79,23 @@ footer {
 }
 .card__icon {
   fill: #ffafad;
+  min-height: 160px;
   /* align-self: center; */
   width: 12rem;
 }
+
+.card__icon--todolist {
+  /* height: 46rem; */
+  width: 15rem;
+}
+
 .card__description {
   text-align: justify;
   /* color: #192bc2; */
+  max-height: 63px;
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: grey transparent;
 }
 .card__footer {
   display: flex;
