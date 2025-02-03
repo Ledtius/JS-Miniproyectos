@@ -8,7 +8,7 @@ const $section = document.querySelector(".section");
 
 const $body = document.body;
 
-const sound = new Audio("/calculator/sound/botton.mp3");
+const sound = new Audio("sound/botton.mp3");
 
 // const $history = document.querySelector(".history__box");
 
