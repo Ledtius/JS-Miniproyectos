@@ -4,10 +4,18 @@ body {
   /* height: 100%; */
   display: flex;
   flex-direction: column;
-
+  /* background-image: url(/image/fernanda.jpg); */
   justify-content: space-between;
   /* gap: 12rem; */
 }
+
+.body--fernanda{
+  display: flex;
+  flex-direction: column;
+  background-image: url(/image/fernanda.jpg);
+  justify-content: space-between;
+}
+
 main {
   /* padding: 1rem; */
   display: flex;

@@ -6,6 +6,8 @@ const $btns = document.querySelectorAll(".calculator__btn");
 
 const $section = document.querySelector(".section");
 
+const $body = document.body;
+
 const sound = new Audio("/calculator/sound/botton.mp3");
 
 // const $history = document.querySelector(".history__box");
@@ -77,7 +79,15 @@ const historyElementFunction = (variable) => {
 
   $historyOperation.className = "history__operation";
 
-  $historyOperation.innerText = `${variable} = ${eval(variable)}`;
+  console.log(variable);
+  if (variable === "14/05/97") {
+    console.log("Fer?");
+    $historyOperation.innerText =
+      "Te amo mucho mi linda! ♥, eres muy especial para mi ♥";
+    $historyOperation.style.color = "tomato";
+  } else {
+    $historyOperation.innerText = `${variable} = ${eval(variable)}`;
+  }
 
   $historyElement.appendChild($historyOperation);
 
@@ -221,7 +231,15 @@ $calculator.addEventListener("click", (event) => {
           historyElementFunction(variable);
 
           // const $valueLocalStorage = document.createElement("span");
-
+          console.log(variable);
+          if (variable === "14/05/97") {
+            console.log("Fer?");
+            $display.innerText =
+              "Te amo mucho mi linda! ♥, eres muy especial para mi ♥";
+            $display.style.color = "tomato";
+            $body.classList.add("body--fernanda");
+            return;
+          }
           variable = eval(variable);
           console.log(variable);
           $display.innerText = variable;
@@ -272,6 +290,3 @@ $calculator.addEventListener("click", (event) => {
   };
   operation();
 });
-
-
-
