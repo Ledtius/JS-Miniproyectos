@@ -10,20 +10,9 @@ const $body = document.body;
 
 const sound = new Audio("sound/botton.mp3");
 
-// const $history = document.querySelector(".history__box");
-
-// const $historyElement = document.querySelector(".history__element");
 const $historyBox = document.querySelector(".history__box");
 
 const $equals = document.querySelector(".calculator__btn--equals");
-
-// const $historyBtnCopy = document.querySelector(".history__btn--copy");
-
-// const $historyOperation = document.querySelector(".history__operation");
-
-// const $historyBtnsMessague = document.querySelector(".btns__messague");
-
-// const $historyBtnDelete = document.querySelector(".history__btn--delete");
 
 const $deleteOpeBtn = document.querySelector(".history__btn--delete");
 console.log($deleteOpeBtn);
@@ -32,12 +21,6 @@ let historyMessague = "";
 
 const historyElementFunction = (variable) => {
   let result = eval(variable);
-
-  console.log(result);
-
-  if (result == "") {
-    console.log("You're fucking genius!");
-  }
 
   if (
     result === SyntaxError ||
@@ -49,25 +32,6 @@ const historyElementFunction = (variable) => {
 
     return;
   }
-  /* Add a comment */
-  // localStorage.setItem("variable", variable);
-  // localStorage.setItem("result", result);
-
-  // const variableLocalStorage = localStorage.getItem("variable");
-
-  // const resultLocalStorage = localStorage.getItem("result");
-
-  /* Retornar como un objeto y fuera de la funcion imprimirlo en una seccion aparte que se llae historial */
-
-  /* Eso quiere decir que esto, en realidad se deberia llamar en vez de historial de operaciones, a mejor: "operaciones actuales" */
-  // console.log(variableLocalStorage);
-  // console.log(resultLocalStorage);
-
-  // $hola.appendChild(resultLocalStorage);
-
-  console.log("Why dog?");
-  // if (!localStorage.getItem(variableLocalStorage)) {
-  // }
 
   const $historyElement = document.createElement("div");
 
@@ -79,9 +43,7 @@ const historyElementFunction = (variable) => {
 
   $historyOperation.className = "history__operation";
 
-  console.log(variable);
   if (variable === "14/05/97") {
-    console.log("Fer?");
     $historyOperation.innerText =
       "Te amo mucho mi linda! ♥, eres muy especial para mi ♥";
     $historyOperation.style.color = "tomato";
@@ -143,7 +105,7 @@ const historyElementFunction = (variable) => {
 
   $historyBtnCopy.addEventListener("click", () => {
     historyMessague = "Copied!";
-    // historyMessague.style.color("#049541");
+
     const writeTextInClipboard = () => {
       navigator.clipboard
         .writeText($historyOperation.textContent)
@@ -162,8 +124,6 @@ const historyElementFunction = (variable) => {
         });
     };
     writeTextInClipboard();
-
-    console.log($historyOperation.textContent.trim());
   });
 
   $historyBtnDelete.addEventListener("click", () => {
@@ -223,17 +183,10 @@ $calculator.addEventListener("click", (event) => {
       }
       if (targetEquals) {
         try {
-          // console.log($valueLocalStorage);
-
-          // $valueLocalStorage.innerText = localStorage.getItem("variable");
-          // $section.appendChild($valueLocalStorage);
-
           historyElementFunction(variable);
 
-          // const $valueLocalStorage = document.createElement("span");
           console.log(variable);
           if (variable === "14/05/97") {
-            console.log("Fer?");
             $display.innerText =
               "Te amo mucho mi linda! ♥, eres muy especial para mi ♥";
             $display.style.color = "tomato";
@@ -241,7 +194,7 @@ $calculator.addEventListener("click", (event) => {
             return;
           }
           variable = eval(variable);
-          console.log(variable);
+
           $display.innerText = variable;
         } catch (error) {
           // console.log(error);
@@ -251,7 +204,6 @@ $calculator.addEventListener("click", (event) => {
           variable = "";
         }
         if (variable == "Infinity") {
-          console.log("Entro");
           variable = "Math Error";
           $display.innerText = variable;
           $display.style.color = "tomato";
@@ -259,13 +211,12 @@ $calculator.addEventListener("click", (event) => {
         }
         if (isNaN(variable)) {
           variable = "Math Error";
-          console.log("Entro1");
+
           $display.innerText = variable;
           $display.style.color = "tomato";
           variable = "";
         }
         if (variable === undefined) {
-          console.log("Are you in?");
           variable = "Math Error";
           $display.innerText = variable;
           $display.style.color = "tomato";
