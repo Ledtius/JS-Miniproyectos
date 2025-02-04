@@ -43,9 +43,9 @@ const historyElementFunction = (variable) => {
 
   $historyOperation.className = "history__operation";
 
-  if (variable === "14/05/97") {
+  if (variable === "14/06/97") {
     $historyOperation.innerText =
-      "Te amo mucho mi linda! ♥, eres muy especial para mi ♥";
+      "Te amo mucho mi linda! ♥, eres muy especial para mi ♥ (Linda, perdoname por equivocarme en la fecha, te amo ♥!)";
     $historyOperation.style.color = "tomato";
   } else {
     $historyOperation.innerText = `${variable} = ${eval(variable)}`;
@@ -186,9 +186,9 @@ $calculator.addEventListener("click", (event) => {
           historyElementFunction(variable);
 
           console.log(variable);
-          if (variable === "14/05/97") {
+          if (variable === "14/06/97") {
             $display.innerText =
-              "Te amo mucho mi linda! ♥, eres muy especial para mi ♥";
+              "Te amo mucho mi linda! ♥, eres muy especial para mi ♥ (Linda, perdoname por equivocarme en la fecha, te amo ♥!)";
             $display.style.color = "tomato";
             $body.classList.add("body--fernanda");
             return;
