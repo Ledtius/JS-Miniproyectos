@@ -1,0 +1,36 @@
+body {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+.todo-list {
+    padding: 2rem;
+    background: grey;
+    height: fit-content;
+}
+.todo-list__title {
+}
+.todo-list__form {
+}
+.todo-list__bar {
+}
+.todo-list__text {
+  border-radius: 2rem;
+  outline: none;
+  border: 1px solid black;
+  padding: 1.6rem;
+  width:100%;
+  max-width: 25rem;
+  /* padding-right: 4rem; */
+}
+.todo-list__button {
+  padding: 1.6rem;
+  border-radius: 2rem;
+  border: 1px solid black;
+  position: relative;
+  bottom: 4.9rem;
+  left: 22rem;
+  z-index: 2;
+  /* margin-left: 5rem; */
+  /* right: 6rem; */
+}
