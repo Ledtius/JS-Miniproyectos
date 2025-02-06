@@ -6,6 +6,7 @@ body {
   text-align: center;
   /* align-items: center; */
   width: 100%;
+  /* position: relative; */
 }
 
 .todo-list {
@@ -20,21 +21,29 @@ body {
 }
 .todo-list__bar {
   display: flex;
-  align-items: center;
-  gap: 1rem;
+  /* flex-direction: column; */
+  width: 100%;
+  position: relative;
 }
 
 .todo-list__input {
   padding: 1.6rem;
+  padding-right: 6.6rem;
   border-radius: 2rem;
   border: 1px solid grey;
+  width: 188px;
+  z-index: 1;
   /* font-weight: 600; */
 }
 .todo-list__button {
-  padding: 1.6rem;
+  padding: 1.4rem;
   border-radius: 2rem;
   border: 1px solid grey;
   font-weight: 800;
+  position: absolute;
+  right: -1rem;
+  z-index: 2;
+  /* display: none; */
 }
 
 footer {
