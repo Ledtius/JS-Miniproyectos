@@ -9,6 +9,7 @@ const $todoListForm = document.querySelector(".todo-list__bar");
 console.log($todoListForm);
 
 let inputValue;
+let count = 0;
 
 $todoListBtn.addEventListener("click", () => {
   inputValue = $todoListInput.value;
@@ -35,13 +36,15 @@ function createListElement(inputValue) {
 
   const $check = document.createElement("input");
 
+  count++;
+
   $check.classList.add("todo-list__check");
   $check.type = "checkbox";
-  $check.id = "task1";
+  $check.id = `task${count}`;
 
   const $task = document.createElement("label");
   $task.classList.add("todo-list__task");
-  $task.for = "task1";
+  $task.htmlFor = `task${count}`;
   $task.textContent = inputValue;
   /* 1 area */
 
