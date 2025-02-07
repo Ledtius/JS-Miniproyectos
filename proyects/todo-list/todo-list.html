@@ -24,28 +24,24 @@
     <main class="todo-list">
       <div class="todo-list__general">
         <h1 class="todo-list__title">ToDo List Básico</h1>
-        <form class="todo-list__bar" action="" method="#">
+
+        <form class="todo-list__bar" action="" method="">
           <input
             placeholder="Digita tus tareas del dia"
             class="todo-list__input"
             type="text"
           />
-          <button class="todo-list__button">Añadir</button>
+          <button class="todo-list__button" type="submit">Añadir</button>
         </form>
       </div>
 
       <section class="todo-list__list">
         <div class="todo-list__element">
           <div class="todo-list__check-task">
-            <input
-              class="todo-list__check"
-              type="checkbox"
-              id="task"
-              name="task"
-            />
+            <input class="todo-list__check" type="checkbox" id="task" />
             <label for="task" class="todo-list__task">Limpiar la casa </label>
           </div>
-          <!-- y matar al ladron que robo a mi vecina -->
+
           <div class="todo-list___edit-delete">
             <button class="todo-list__option">
               <svg
@@ -74,5 +70,6 @@
       </section>
     </main>
     <footer>© 2025 - Calet Devia - Todos los Derechos Reservados</footer>
+    <script src="todo-list.js" defer></script>
   </body>
 </html>
