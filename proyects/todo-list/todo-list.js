@@ -8,17 +8,21 @@ const $todoListForm = document.querySelector(".todo-list__bar");
 
 let inputValue;
 let count = 0;
+let countElement = 0;
 
 $todoListForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
   inputValue = $todoListInput.value;
 
-  console.log(inputValue);
-
-  createListElements(inputValue);
-
-  $todoListInput.value = "";
+  if (inputValue !== "") {
+    console.log(inputValue);
+    createListElements(inputValue);
+    countElement++;
+    localStorage.setItem("countElement", countElement);
+    console.log(countElement);
+    $todoListInput.value = "";
+  }
 });
 
 function createListElements(inputValue) {
@@ -97,12 +101,16 @@ function createListElements(inputValue) {
   deleteListElements($option2, $listElement);
 
   editListElements($task, $option1, $listElement);
+
+  setLocalStorage($task, countElement);
 }
 
 function deleteListElements($option2, $listElement) {
   $option2.addEventListener("click", () => {
     /* Delay */
     setTimeout(() => {
+      removeLocalStorage();
+
       $listElement.remove();
     }, 200);
   });
@@ -119,7 +127,48 @@ function editListElements($task, $option1, $listElement) {
     $todoListBtn.addEventListener("click", () => {
       $task.textContent = $todoListInput.value;
 
+      editLocalStorage($task);
+      /* countEleent-- is to dont change the next task  to the value edited */
+      countElement--;
+
       $listElement.remove();
     });
   });
 }
+
+function setLocalStorage($task, countElement) {
+  localStorage.setItem(`task${countElement}`, $task.textContent);
+
+  let taskName = localStorage.getItem("task");
+
+  console.log(taskName);
+}
+
+function removeLocalStorage() {
+  console.log(countElement);
+  localStorage.removeItem(`task${countElement}`);
+}
+
+function editLocalStorage($task) {
+  // localStorage.getItem("task");
+
+  localStorage.setItem(`task${countElement}`, $task.textContent);
+}
+
+console.log(countElement);
+
+console.log(localStorage.getItem("task"));
+// localStorage.clear();
+
+function printLocalStorageValue() {
+
+
+  if (localStorage.getItem(`task${countElement}`) !== null) {
+    while (countElement < localStorage.getItem("countElement")) {
+      createListElements(localStorage.getItem(`task${countElement}`));
+      countElement++;
+    }
+  }
+}
+
+printLocalStorageValue();
