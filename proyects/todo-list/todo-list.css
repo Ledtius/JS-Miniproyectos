@@ -44,7 +44,7 @@ body {
   border-radius: 2rem;
   border: 1px solid grey;
   width: 188px;
-  z-index: 1;
+  /* z-index: 1; */
   transition: all 0.5 ease;
   box-shadow: inset 0 1px 3px rgba(182, 181, 181, 0.87);
   /* font-weight: 600; */
@@ -69,7 +69,7 @@ body {
   font-weight: 800;
   position: absolute;
   right: -1rem;
-  z-index: 2;
+  /* z-index: 2; */
 
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.582);
   transition: all 0.5s ease;
@@ -89,8 +89,8 @@ body {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  width: 100%;
-
+  /* width: 100%; */
+  /* height: 100%; */
   /* border: 1px solid red; */
   /* padding: 1rem; */
   border-radius: 2rem;
@@ -99,28 +99,29 @@ body {
 .todo-list__element {
   background-color: #000050;
   /* padding: 1.6rem; */
-  overflow: auto;
   scrollbar-width: thin;
   scrollbar-color: #63e6be transparent;
   display: flex;
   border-radius: 2rem;
   box-shadow: 0px 1px 5px #fcfcfc96;
-
+  /* height: 20rem; */
+  height: fit-content;
   /* gap: 1rem; */
   /* width: 100%; */
   align-items: center;
   justify-content: space-between;
-  padding: 1rem;
+  padding: 2rem;
 }
 .todo-list__check-task {
-  padding: 1rem;
+  /* padding: 1rem; */
   display: flex;
+
   /* min-width: 281.781px; */
   align-items: center;
   /* justify-content: center; */
 }
 .todo-list__check {
-  padding: 2rem;
+  /* padding: 2rem; */
   cursor: pointer;
   width: 2rem;
   height: 2rem;
@@ -148,12 +149,13 @@ label::before {
   border-radius: 100%;
   border: solid 2px #63e6be;
   /* border-color: ; */
+
   width: 2.2rem;
   height: 2.2rem;
   position: absolute;
-  left: -5px;
-  z-index: 2;
-  transition: all 0.2s ease;
+  left: 0;
+  /* z-index: 1; */
+  transition: all 0.1s ease;
   /* margin-left: 1rem; */
   /* background-color: red; */
 }
@@ -166,7 +168,7 @@ label::before {
   background-image: url(asents/check-solid.svg);
   background-repeat: no-repeat;
   opacity: 1;
-  transform: scale(1.2);
+  /* transform: scale(1.09); */
   background-size: cover;
 }
 
@@ -174,12 +176,14 @@ label::before {
   margin: 0;
   color: white;
   font-weight: 600;
-
+  overflow: auto;
+  /* display: flex; */
+  /* z-index: 2; */
   text-align: left;
   /* text-wrap: wrap; */
   max-width: 120px;
   max-height: 42px;
-  padding: 5px;
+  /* padding-bottom: 2rem; */
   /* text-wrap: wrap; */
 }
 

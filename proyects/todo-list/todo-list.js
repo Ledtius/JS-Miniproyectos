@@ -1,7 +1,5 @@
 const $todoLists = document.querySelector(".todo-list");
 
-const $todoListBtn = document.querySelector(".todo-list__button");
-
 const $todoListInput = document.querySelector(".todo-list__input");
 
 const $todoListForm = document.querySelector(".todo-list__bar");
@@ -11,16 +9,14 @@ console.log($todoListForm);
 let inputValue;
 let count = 0;
 
-$todoListBtn.addEventListener("click", () => {
+$todoListForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+
   inputValue = $todoListInput.value;
 
   console.log(inputValue);
 
   createListElement(inputValue);
-});
-
-$todoListForm.addEventListener("submit", (event) => {
-  event.preventDefault();
 });
 
 function createListElement(inputValue) {
@@ -36,6 +32,7 @@ function createListElement(inputValue) {
 
   const $check = document.createElement("input");
 
+  /* Increase the count to don't have problems with the tasks */
   count++;
 
   $check.classList.add("todo-list__check");
@@ -95,3 +92,4 @@ function createListElement(inputValue) {
   /* 2 area */
   /* Unit elements */
 }
+
