@@ -6,8 +6,6 @@ const $todoListBtn = document.querySelector(".todo-list__button");
 
 const $todoListForm = document.querySelector(".todo-list__bar");
 
-console.log($todoListForm);
-
 let inputValue;
 let count = 0;
 
@@ -19,6 +17,8 @@ $todoListForm.addEventListener("submit", (event) => {
   console.log(inputValue);
 
   createListElements(inputValue);
+
+  $todoListInput.value = "";
 });
 
 function createListElements(inputValue) {
@@ -96,25 +96,30 @@ function createListElements(inputValue) {
 
   deleteListElements($option2, $listElement);
 
-  editListElements($task, $option1, $todoListInput, $todoListForm);
+  editListElements($task, $option1, $listElement);
 }
 
 function deleteListElements($option2, $listElement) {
   $option2.addEventListener("click", () => {
+    /* Delay */
     setTimeout(() => {
       $listElement.remove();
-    }, 500);
+    }, 200);
   });
 }
 
-function editListElements($task, $option1, $todoListInput, $todoListForm) {
+function editListElements($task, $option1, $listElement) {
   $option1.addEventListener("click", () => {
     let taskText = $task.textContent;
 
     $todoListInput.value = taskText;
 
+    console.log($task.textContent);
+
     $todoListBtn.addEventListener("click", () => {
-      taskText = $todoListInput.value;
+      $task.textContent = $todoListInput.value;
+
+      $listElement.remove();
     });
   });
 }
