@@ -2,6 +2,8 @@ const $todoLists = document.querySelector(".todo-list");
 
 const $todoListInput = document.querySelector(".todo-list__input");
 
+const $todoListBtn = document.querySelector(".todo-list__button");
+
 const $todoListForm = document.querySelector(".todo-list__bar");
 
 console.log($todoListForm);
@@ -16,10 +18,10 @@ $todoListForm.addEventListener("submit", (event) => {
 
   console.log(inputValue);
 
-  createListElement(inputValue);
+  createListElements(inputValue);
 });
 
-function createListElement(inputValue) {
+function createListElements(inputValue) {
   const $lists = document.querySelector(".todo-list__list");
 
   /* Father */
@@ -91,5 +93,28 @@ function createListElement(inputValue) {
   $editDelete.appendChild($option2);
   /* 2 area */
   /* Unit elements */
+
+  deleteListElements($option2, $listElement);
+
+  editListElements($task, $option1, $todoListInput, $todoListForm);
 }
 
+function deleteListElements($option2, $listElement) {
+  $option2.addEventListener("click", () => {
+    setTimeout(() => {
+      $listElement.remove();
+    }, 500);
+  });
+}
+
+function editListElements($task, $option1, $todoListInput, $todoListForm) {
+  $option1.addEventListener("click", () => {
+    let taskText = $task.textContent;
+
+    $todoListInput.value = taskText;
+
+    $todoListBtn.addEventListener("click", () => {
+      taskText = $todoListInput.value;
+    });
+  });
+}
