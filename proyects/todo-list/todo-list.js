@@ -8,9 +8,6 @@ const $todoListForm = document.querySelector(".todo-list__bar");
 
 let inputValue;
 let count = 0;
-let countElement = 0;
-let countDelete = 0;
-let countEdit = 0;
 
 // $todoListForm.addEventListener("submit", (event) => {
 //   event.preventDefault();
@@ -102,42 +99,4 @@ function createListElements(inputValue) {
   $editDelete.appendChild($option2);
   /* 2 area */
   /* Unit elements */
-
-  deleteListElements($option2, $listElement);
-
-  editListElements($task, $option1, $listElement);
-}
-
-function deleteListElements($option2, $listElement) {
-  $option2.addEventListener("click", () => {
-    /* Delay */
-    setTimeout(() => {
-      $listElement.remove();
-    }, 200);
-  });
-}
-
-function editListElements($task, $option1, $listElement) {
-  $option1.addEventListener("click", () => {
-    $todoListInput.value = $task.textContent;
-
-    console.log($task.textContent);
-    const $todoListBar = document.querySelector(".todo-list__bar");
-
-    const $editBtn = document.createElement("button");
-
-    $todoListBtn.style.display = "none";
-    $editBtn.classList.add("todo-list__edit-button");
-    $editBtn.textContent = "Editar";
-
-    $todoListBar.appendChild($editBtn);
-
-    $editBtn.addEventListener("click", () => {
-      $task.textContent = $todoListInput.value;
-      // $listElement.remove();
-      $editBtn.style.display = "none";
-      $todoListBtn.style.display = "block";
-      $todoListInput.value = "";
-    });
-  });
 }
