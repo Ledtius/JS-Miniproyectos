@@ -9,18 +9,23 @@ const $todoListForm = document.querySelector(".todo-list__bar");
 let inputValue;
 let count = 0;
 let countElement = 0;
+let countDelete = 0;
+let countEdit = 0;
+
+// $todoListForm.addEventListener("submit", (event) => {
+//   event.preventDefault();
+// });
 
 $todoListForm.addEventListener("submit", (event) => {
   event.preventDefault();
+  console.log("I reading you");
 
   inputValue = $todoListInput.value;
 
   if (inputValue !== "") {
-    console.log(inputValue);
     createListElements(inputValue);
     countElement++;
-    localStorage.setItem("countElement", countElement);
-    console.log(countElement);
+
     $todoListInput.value = "";
   }
 });
@@ -101,16 +106,12 @@ function createListElements(inputValue) {
   deleteListElements($option2, $listElement);
 
   editListElements($task, $option1, $listElement);
-
-  setLocalStorage($task, countElement);
 }
 
 function deleteListElements($option2, $listElement) {
   $option2.addEventListener("click", () => {
     /* Delay */
     setTimeout(() => {
-      removeLocalStorage();
-
       $listElement.remove();
     }, 200);
   });
@@ -118,57 +119,25 @@ function deleteListElements($option2, $listElement) {
 
 function editListElements($task, $option1, $listElement) {
   $option1.addEventListener("click", () => {
-    let taskText = $task.textContent;
-
-    $todoListInput.value = taskText;
+    $todoListInput.value = $task.textContent;
 
     console.log($task.textContent);
+    const $todoListBar = document.querySelector(".todo-list__bar");
 
-    $todoListBtn.addEventListener("click", () => {
+    const $editBtn = document.createElement("button");
+
+    $todoListBtn.style.display = "none";
+    $editBtn.classList.add("todo-list__edit-button");
+    $editBtn.textContent = "Editar";
+
+    $todoListBar.appendChild($editBtn);
+
+    $editBtn.addEventListener("click", () => {
       $task.textContent = $todoListInput.value;
-
-      editLocalStorage($task);
-      /* countEleent-- is to dont change the next task  to the value edited */
-      countElement--;
-
-      $listElement.remove();
+      // $listElement.remove();
+      $editBtn.style.display = "none";
+      $todoListBtn.style.display = "block";
+      $todoListInput.value = "";
     });
   });
 }
-
-function setLocalStorage($task, countElement) {
-  localStorage.setItem(`task${countElement}`, $task.textContent);
-
-  let taskName = localStorage.getItem("task");
-
-  console.log(taskName);
-}
-
-function removeLocalStorage() {
-  console.log(countElement);
-  localStorage.removeItem(`task${countElement}`);
-}
-
-function editLocalStorage($task) {
-  // localStorage.getItem("task");
-
-  localStorage.setItem(`task${countElement}`, $task.textContent);
-}
-
-console.log(countElement);
-
-console.log(localStorage.getItem("task"));
-// localStorage.clear();
-
-function printLocalStorageValue() {
-
-
-  if (localStorage.getItem(`task${countElement}`) !== null) {
-    while (countElement < localStorage.getItem("countElement")) {
-      createListElements(localStorage.getItem(`task${countElement}`));
-      countElement++;
-    }
-  }
-}
-
-printLocalStorageValue();
