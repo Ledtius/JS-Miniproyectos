@@ -2,9 +2,36 @@ const $todoList = document.querySelector(".todo-list");
 
 const $input = document.querySelector(".todo-list__input");
 
-let tasksArray = [];
+let tasksArray = JSON.parse(localStorage.getItem("tasks")) || [];
 
 let tasksLocal;
+
+let countTask = 0;
+
+function createElement() {
+  if ($input.value === "") return;
+
+  tasksArray.push($input.value);
+
+  localStorage.setItem("tasks", JSON.stringify(tasksArray));
+
+  $input.value = "";
+
+  printElement();
+}
+
+function printElement() {
+  tasksLocal = JSON.parse(localStorage.getItem("tasks")) || [];
+
+  if (tasksLocal == "") {
+    return;
+  }
+  tasksLocal.forEach((element) => {
+    console.log(element);
+  });
+  // console.log(tasksLocal[countTask]);
+  // countTask++;
+}
 
 $todoList.addEventListener("click", (event) => {
   const todoInput = event.target.classList.contains("todo-list__input");
@@ -22,22 +49,9 @@ $todoList.addEventListener("click", (event) => {
   if (todoButton) {
     event.preventDefault();
 
-    if ($input.value === "") return;
-
-    tasksArray.push($input.value);
-
-    if (localStorage.getItem("tasks")) {
-      tasksArray = JSON.parse(localStorage.getItem("tasks"));
-
-      tasksArray.push($input.value);
-    }
-
-    localStorage.setItem("tasks", JSON.stringify(tasksArray));
-
-    $input.value = "";
+    createElement();
   }
 });
+// console.log(countTask);
 
-tasksLocal = JSON.parse(localStorage.getItem("tasks"));
-
-console.log(tasksLocal);
+printElement();
