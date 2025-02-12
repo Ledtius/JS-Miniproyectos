@@ -4,8 +4,6 @@ const $input = document.querySelector(".todo-list__input");
 
 let tasksArray = JSON.parse(localStorage.getItem("tasks")) || [];
 
-let tasksLocal;
-
 let countTask = 0;
 
 function createElement() {
@@ -21,14 +19,26 @@ function createElement() {
 }
 
 function printElement() {
-  tasksLocal = JSON.parse(localStorage.getItem("tasks")) || [];
-
-  if (tasksLocal == "") {
+  if (!tasksArray.length) {
     return;
   }
-  tasksLocal.forEach((element) => {
-    console.log(element);
-  });
+
+  console.log(tasksArray[tasksArray.length - 1]);
+  if (localStorage.getItem("tasks")) {
+  } else {
+    tasksArray.forEach((element) => {
+      console.log(element);
+    });
+  }
+
+  // do {
+  //   console.log(tasksArray[countTask]);
+
+  //   countTask++;
+  // } while (tasksArray.length > countTask);
+
+  // tasksLocal.forEach((element) => {});
+  // countTask++;
   // console.log(tasksLocal[countTask]);
   // countTask++;
 }
