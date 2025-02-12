@@ -88,7 +88,6 @@ body {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.582);
   transition: all 0.5s ease;
   cursor: pointer;
-
 }
 
 .todo-list__button:active {
@@ -213,6 +212,11 @@ label::before {
   background-color: transparent;
   border: transparent;
   transition: all 0.5s ease;
+  /* width: 100%; */
+}
+
+.todo-list__option svg {
+  pointer-events: none;
 }
 
 .todo-list__option:hover {
@@ -224,7 +228,14 @@ label::before {
 
 .todo-list__icon {
   width: 2rem;
+  height: 2rem;
 }
+
+/* .todo-list__icon,
+.todo-list__icon path {
+  pointer-events: none;
+} */
+
 .todo-list__icon--delete {
   width: 1.6rem;
 }
