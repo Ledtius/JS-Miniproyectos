@@ -1,43 +1,48 @@
 const $todoList = document.querySelector(".todo-list");
 
-// $element = document.querySelector(".todo-list__element");
-
 const $input = document.querySelector(".todo-list__input");
 
 const $list = document.querySelector(".todo-list__list");
 
-function Task() {
-  this.id = "";
-  this.name = "";
-  this.printValue = function () {
-    return `Id: ${this.id}\nTask name: ${this.name}`;
-  };
+let arrayObjects = JSON.parse(localStorage.getItem("arrayObjects")) || [];
+
+let arrayIds = JSON.parse(localStorage.getItem("taskIds")) || [];
+
+for (let i = 0; i <= 5; i++) {
+  arrayIds.push(i);
+  // console.log(arrayIds);
 }
-
-let task1 = new Task();
-task1.id = Math.floor(Math.random() * 100);
-task1.name = "Labar la ropa";
-console.log(task1.printValue());
-
-function CreateTask() {}
-
-let taskObject = {
-  id: Math.floor(Math.random() * 100),
-  name: "Lavar la letrina",
-};
-
-console.log(taskObject.id);
+// console.log(arrayIds);
 
 let tasksArray = JSON.parse(localStorage.getItem("tasks")) || [];
-
-console.log(tasksArray);
 
 function createTask() {
   if ($input.value === "") return;
 
-  tasksArray.push($input.value);
+  let task = {
+    id: "",
+    name: "",
+  };
 
-  localStorage.setItem("tasks", JSON.stringify(tasksArray));
+  let randomValue = Math.floor(Math.random() * arrayIds.length);
+
+  console.log(`Random: ${randomValue}`);
+
+  console.log(arrayIds.includes(randomValue));
+
+  let idOfArrayIds = arrayIds.splice(randomValue, 1);
+  console.log(arrayIds);
+
+  arrayIds.push(Math.floor(Math.random() * 100));
+
+  localStorage.setItem("taskIds", JSON.stringify(arrayIds));
+
+  task.id = idOfArrayIds;
+  task.name = $input.value;
+
+  arrayObjects.push(task);
+
+  localStorage.setItem("arrayObjects", JSON.stringify(arrayObjects));
 
   $input.value = "";
 
@@ -45,8 +50,10 @@ function createTask() {
     return;
   }
 
-  printElement();
+  // printElement();
 }
+
+console.log(arrayIds);
 
 function printElement() {
   $list.innerHTML = "";
@@ -58,33 +65,13 @@ function printElement() {
 }
 
 $todoList.addEventListener("click", (event) => {
-  const todoInput = event.target.classList.contains("todo-list__input");
-
   const todoButton = event.target.classList.contains("todo-list__button");
-
-  const todoEdit = event.target.classList.contains("todo-list__option--edit");
-
-  const todoDelete = event.target.classList.contains(
-    "todo-list__option--delete"
-  );
 
   if (todoButton) {
     event.preventDefault();
     createTask();
   }
-
-  // if (todoEdit) {
-  //   console.log("Edited");
-  // }
-
-  // if (todoDelete) {
-  //   console.log("Deleted");
-  // }
 });
-// console.log(countTask);
-
-// let countTaskID = 0;
-// console.log(`Outside: ${countTaskID}`);
 
 function taskElement(taskName, countTaskID) {
   const $element = document.createElement("div");
@@ -213,5 +200,4 @@ function deleteFuntion() {
   });
 }
 
-// deleteFuntion();
 printElement();
