@@ -6,7 +6,31 @@ const $input = document.querySelector(".todo-list__input");
 
 const $list = document.querySelector(".todo-list__list");
 
+function Task() {
+  this.id = "";
+  this.name = "";
+  this.printValue = function () {
+    return `Id: ${this.id}\nTask name: ${this.name}`;
+  };
+}
+
+let task1 = new Task();
+task1.id = Math.floor(Math.random() * 100);
+task1.name = "Labar la ropa";
+console.log(task1.printValue());
+
+function CreateTask() {}
+
+let taskObject = {
+  id: Math.floor(Math.random() * 100),
+  name: "Lavar la letrina",
+};
+
+console.log(taskObject.id);
+
 let tasksArray = JSON.parse(localStorage.getItem("tasks")) || [];
+
+console.log(tasksArray);
 
 function createTask() {
   if ($input.value === "") return;
@@ -29,10 +53,9 @@ function printElement() {
 
   tasksArray.forEach((element, id) => {
     taskElement(element, id);
+    deleteFuntion();
   });
 }
-
-printElement();
 
 $todoList.addEventListener("click", (event) => {
   const todoInput = event.target.classList.contains("todo-list__input");
@@ -45,22 +68,18 @@ $todoList.addEventListener("click", (event) => {
     "todo-list__option--delete"
   );
 
-  const valueTarget = event.target.textContent.trim();
-
   if (todoButton) {
     event.preventDefault();
     createTask();
   }
 
-  if (todoEdit) {
-    let indexPosition = tasksArray.indexOf($element.id);
-    console.log(indexPosition);
-    console.log("Edited");
-  }
+  // if (todoEdit) {
+  //   console.log("Edited");
+  // }
 
-  if (todoDelete) {
-    console.log("Deleted");
-  }
+  // if (todoDelete) {
+  //   console.log("Deleted");
+  // }
 });
 // console.log(countTask);
 
@@ -114,6 +133,8 @@ function taskElement(taskName, countTaskID) {
   $task.className = "todo-list__task";
   $task.htmlFor = `task${countTaskID}`;
   $task.textContent = taskName;
+  // taskIndex(countTaskID);
+
   countTaskID++;
   // console.log(`Inside: ${countTaskID}`);
 
@@ -158,4 +179,39 @@ function taskElement(taskName, countTaskID) {
   $editDelete.appendChild($deleteOption);
   $deleteOption.appendChild($deleteSvg);
   $deleteSvg.appendChild($deletePath);
+  // deleteFuntion();
 }
+
+const $element = document.querySelector(".todo-list__element");
+
+function deleteFuntion() {
+  const $delete = document.querySelectorAll(".todo-list__option--delete");
+  $delete.forEach((element) => {
+    let knowArray = JSON.parse(localStorage.getItem("tasks") || []);
+    element.addEventListener("click", () => {
+      console.clear();
+      const elementID = element.parentNode.parentNode.id;
+      const regex = /\d+/g;
+
+      console.log(elementID);
+      const onlyID = elementID.match(regex);
+
+      console.log(onlyID);
+
+      knowArray.splice(onlyID, 1);
+
+      console.log(knowArray);
+
+      localStorage.setItem("tasks", JSON.stringify(knowArray));
+
+      console.log(knowArray[onlyID]);
+      console.log(elementID);
+
+      element.parentNode.parentNode.remove();
+      document.location.reload();
+    });
+  });
+}
+
+// deleteFuntion();
+printElement();
