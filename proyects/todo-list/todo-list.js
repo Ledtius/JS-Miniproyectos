@@ -7,11 +7,13 @@ const $list = document.querySelector(".todo-list__list");
 let arrayTaskObjects =
   JSON.parse(localStorage.getItem("arrayTaskObjects")) || [];
 
+console.log(arrayTaskObjects);
+
 let arrayTaskIDs = JSON.parse(localStorage.getItem("arrayTaskIDs")) || [];
 
 let tasksArray = JSON.parse(localStorage.getItem("tasks")) || [];
 
-const countOfIDs = 15;
+const countOfIDs = 2;
 
 if (arrayTaskIDs.length === 0) {
   for (let i = 0; i <= countOfIDs; i++) {
@@ -29,11 +31,7 @@ function createTask() {
 
   let randomIndex = Math.floor(Math.random() * arrayTaskIDs.length);
 
-  console.log(`arrayTaskIDs: ${arrayTaskIDs}`);
-  console.log(`randomIndex: ${randomIndex}`);
-  console.log(`arrayTaskIDs[randomIndex]: ${arrayTaskIDs[randomIndex]}`);
-
-  if (arrayTaskIDs[randomIndex] !== undefined) {
+  if (arrayTaskIDs.length !== 0) {
     task.id = arrayTaskIDs.splice(randomIndex, 1).join("");
 
     localStorage.setItem("arrayTaskIDs", JSON.stringify(arrayTaskIDs));
@@ -59,10 +57,19 @@ function createTask() {
 function printElement() {
   $list.innerHTML = "";
 
-  tasksArray.forEach((element, id) => {
-    taskElement(element, id);
-    deleteFunction();
+  arrayTaskObjects = JSON.parse(localStorage.getItem("arrayTaskObjects")) || [];
+
+  console.log(arrayTaskObjects);
+  if (arrayTaskObjects.length !== 0) return;
+
+  arrayTaskObjects.forEach((element) => {
+    createElement(element.name, element.id);
   });
+
+  // tasksArray.forEach((element, id) => {
+  //   createElement(element, id);
+  //   deleteFunction();
+  // });
 }
 
 $todoList.addEventListener("click", (event) => {
@@ -74,7 +81,7 @@ $todoList.addEventListener("click", (event) => {
   }
 });
 
-function taskElement(taskName, countTaskID) {
+function createElement(taskName, countTaskID) {
   const $element = document.createElement("div");
 
   const $checkTask = document.createElement("div");
@@ -123,7 +130,6 @@ function taskElement(taskName, countTaskID) {
   $task.textContent = taskName;
   // taskIndex(countTaskID);
 
-  countTaskID++;
   // console.log(`Inside: ${countTaskID}`);
 
   $editDelete.className = "todo-list__edit-delete";
