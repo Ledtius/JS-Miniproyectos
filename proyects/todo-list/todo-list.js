@@ -8,14 +8,15 @@ let arrayObjects = JSON.parse(localStorage.getItem("arrayObjects")) || [];
 
 let arrayIds = JSON.parse(localStorage.getItem("taskIds")) || [];
 
-for (let i = 0; i <= 5; i++) {
-  arrayIds.push(i);
-  // console.log(arrayIds);
-}
-// console.log(arrayIds);
-
 let tasksArray = JSON.parse(localStorage.getItem("tasks")) || [];
 
+console.log(arrayIds);
+
+if (arrayIds.length === 0) {
+  for (let i = 0; i <= 10; i++) {
+    arrayIds.push(i);
+  }
+}
 function createTask() {
   if ($input.value === "") return;
 
@@ -24,25 +25,28 @@ function createTask() {
     name: "",
   };
 
-  let randomValue = Math.floor(Math.random() * arrayIds.length);
+  let randomValue = Math.floor(Math.random() * 10);
 
-  console.log(`Random: ${randomValue}`);
+  console.log(arrayIds[randomValue]);
 
-  console.log(arrayIds.includes(randomValue));
+  while (!arrayIds[randomValue] && arrayIds.length > 0) {
+    randomValue = Math.floor(Math.random() * 10);
+  }
+  console.log(arrayIds.length);
+  console.log(`In ${randomValue}`);
 
-  let idOfArrayIds = arrayIds.splice(randomValue, 1);
-  console.log(arrayIds);
+  if (arrayIds[randomValue] !== undefined) {
+    task.id = arrayIds.splice(randomValue, 1).join("");
 
-  arrayIds.push(Math.floor(Math.random() * 100));
+    localStorage.setItem("taskIds", JSON.stringify(arrayIds));
 
-  localStorage.setItem("taskIds", JSON.stringify(arrayIds));
+    console.log(arrayIds);
+    task.name = $input.value;
 
-  task.id = idOfArrayIds;
-  task.name = $input.value;
+    arrayObjects.push(task);
 
-  arrayObjects.push(task);
-
-  localStorage.setItem("arrayObjects", JSON.stringify(arrayObjects));
+    localStorage.setItem("arrayObjects", JSON.stringify(arrayObjects));
+  }
 
   $input.value = "";
 
