@@ -11,19 +11,13 @@ let arrayTaskIDs = JSON.parse(localStorage.getItem("arrayTaskIDs")) || [];
 
 let tasksArray = JSON.parse(localStorage.getItem("tasks")) || [];
 
-const countOfIDs = 10;
+const countOfIDs = 15;
 
 if (arrayTaskIDs.length === 0) {
   for (let i = 0; i <= countOfIDs; i++) {
     arrayTaskIDs.push(i);
   }
 }
-
-arrayTaskIDs.forEach((element, index) => {
-  console.log(
-    `\nValue outside\n\narrayTaskIDs element:[${element}] arrayTaskIDs index: ${index}\n`
-  );
-});
 
 function createTask() {
   if ($input.value === "") return;
@@ -33,26 +27,14 @@ function createTask() {
     name: "",
   };
 
-  let randomIndexArray = Math.floor(Math.random() * countOfIDs);
+  let randomIndex = Math.floor(Math.random() * arrayTaskIDs.length);
 
-  console.log(
-    `\nrandomIndexArray before the while: ${randomIndexArray}\narrayTaskIDs[randomIndexArray]: [${arrayTaskIDs[randomIndexArray]}]\narrayTaskIDs.length: ${arrayTaskIDs.length}`
-  );
+  console.log(`arrayTaskIDs: ${arrayTaskIDs}`);
+  console.log(`randomIndex: ${randomIndex}`);
+  console.log(`arrayTaskIDs[randomIndex]: ${arrayTaskIDs[randomIndex]}`);
 
-  while (
-    arrayTaskIDs[randomIndexArray] === undefined &&
-    arrayTaskIDs.length > 0
-  ) {
-    randomIndexArray = Math.floor(Math.random() * countOfIDs);
-    console.log(
-      `\nrandomIndexArray IN the while: ${randomIndexArray}\narrayTaskIDs[randomIndexArray]: [${arrayTaskIDs[randomIndexArray]}]\narrayTaskIDs.length: ${arrayTaskIDs.length}`
-    );
-  }
-
-  console.log(`\nrandomIndexArray after the while:${randomIndexArray}\n`);
-
-  if (arrayTaskIDs[randomIndexArray] !== undefined) {
-    task.id = arrayTaskIDs.splice(randomIndexArray, 1).join("");
+  if (arrayTaskIDs[randomIndex] !== undefined) {
+    task.id = arrayTaskIDs.splice(randomIndex, 1).join("");
 
     localStorage.setItem("arrayTaskIDs", JSON.stringify(arrayTaskIDs));
 
@@ -62,12 +44,6 @@ function createTask() {
 
     localStorage.setItem("arrayTaskObjects", JSON.stringify(arrayTaskObjects));
   }
-
-  arrayTaskIDs.forEach((element, index) => {
-    console.log(
-      `\n--Value inside--\n\narrayTaskIDs element:[${element}] arrayTaskIDs index: ${index}\n`
-    );
-  });
 
   $input.value = "";
 
@@ -85,7 +61,7 @@ function printElement() {
 
   tasksArray.forEach((element, id) => {
     taskElement(element, id);
-    deleteFuntion();
+    deleteFunction();
   });
 }
 
@@ -191,12 +167,12 @@ function taskElement(taskName, countTaskID) {
   $editDelete.appendChild($deleteOption);
   $deleteOption.appendChild($deleteSvg);
   $deleteSvg.appendChild($deletePath);
-  // deleteFuntion();
+  // deleteFunction();
 }
 
 const $element = document.querySelector(".todo-list__element");
 
-function deleteFuntion() {
+function deleteFunction() {
   const $delete = document.querySelectorAll(".todo-list__option--delete");
   $delete.forEach((element) => {
     let knowArray = JSON.parse(localStorage.getItem("tasks") || []);
