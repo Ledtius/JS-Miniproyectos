@@ -46,26 +46,17 @@ function createTask() {
   printElement();
 }
 
-let count1 = 0;
-
+let count = 0;
 function printElement() {
   arrayTaskObjects = JSON.parse(localStorage.getItem("arrayTaskObjects")) || [];
 
   arrayTaskIDs;
 
-  if (arrayTaskObjects.length === 0) return;
-  // do {
-  //   createElement(arrayTaskObjects[count1].name, arrayTaskObjects[count1].id);
-  //   count1++;
-  // } while (arrayTaskObjects.length !== count1);
-
-  // $list.innerHTML = "";
-
-  arrayTaskObjects.forEach((task) => {
-    if (!document.getElementById(`task-element${task.id}`)) {
-      createElement(task.name, task.id);
-    }
-  });
+  do {
+    if (arrayTaskObjects.length === 0) return;
+    createElement(arrayTaskObjects[count].name, arrayTaskObjects[count].id);
+    count++;
+  } while (arrayTaskObjects.length > count);
 }
 
 $todoList.addEventListener("click", (event) => {
@@ -171,35 +162,47 @@ function createElement(taskName, taskID) {
   $deleteSvg.appendChild($deletePath);
 }
 
+// function deleteFunction() {
+//   const $delete = document.querySelectorAll(".todo-list__option--delete");
+//   $delete.forEach((element) => {
+//     let knowArray = JSON.parse(localStorage.getItem("tasks") || []);
+//     element.addEventListener("click", () => {
+//       console.clear();
+//       const elementID = element.parentNode.parentNode.id;
+//       const regex = /\d+/g;
+
+//       console.log(elementID);
+//       const onlyID = elementID.match(regex);
+
+//       console.log(onlyID);
+
+//       knowArray.splice(onlyID, 1);
+
+//       console.log(knowArray);
+
+//       localStorage.setItem("tasks", JSON.stringify(knowArray));
+
+//       console.log(knowArray[onlyID]);
+//       console.log(elementID);
+
+//       element.parentNode.parentNode.remove();
+//       document.location.reload();
+//     });
+//   });
+// }
+
+printElement();
+
 const $element = document.querySelector(".todo-list__element");
-
-function deleteFunction() {
-  const $delete = document.querySelectorAll(".todo-list__option--delete");
-  $delete.forEach((element) => {
-    let knowArray = JSON.parse(localStorage.getItem("tasks") || []);
-    element.addEventListener("click", () => {
-      console.clear();
-      const elementID = element.parentNode.parentNode.id;
-      const regex = /\d+/g;
-
-      console.log(elementID);
-      const onlyID = elementID.match(regex);
-
-      console.log(onlyID);
-
-      knowArray.splice(onlyID, 1);
-
-      console.log(knowArray);
-
-      localStorage.setItem("tasks", JSON.stringify(knowArray));
-
-      console.log(knowArray[onlyID]);
-      console.log(elementID);
-
-      element.parentNode.parentNode.remove();
-      document.location.reload();
-    });
+// $element.forEach((value) => {
+//   console.log("Ahh?");
+//   console.log("asd" + value);
+// });
+function deleteElement() {
+  $element.addEventListener("click", (event) => {
+    console.log(event.target);
   });
 }
 
-printElement();
+console.log($element);
+deleteElement();
