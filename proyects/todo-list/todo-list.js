@@ -230,4 +230,71 @@ function deleteElement() {
 
 deleteElement();
 
+function editElement() {
+  const $edit = document.querySelectorAll(".todo-list__option--edit");
+
+  $edit.forEach((element) => {
+    element.addEventListener("click", () => {
+      const parentElementDOM = element.parentNode.parentNode;
+      const idElementDOM = parentElementDOM.id;
+
+      const regex = /\d+/g;
+
+      let idEDNumber = Number(idElementDOM.match(regex).join());
+
+      let id;
+
+      // arrayTaskIDs = JSON.parse(localStorage.getItem("arrayTaskIDs"));
+
+      arrayTaskObjects = JSON.parse(localStorage.getItem("arrayTaskObjects"));
+
+      console.log(arrayTaskObjects);
+      arrayTaskObjects.forEach((taskObject, index) => {
+        if (taskObject.id == idEDNumber) {
+          console.log(index);
+          const $form = document.querySelector(".todo-list__bar");
+
+          const $button = document.querySelector(".todo-list__button");
+
+          console.log($button);
+          const $editButton = document.createElement("button");
+
+          $editButton.className = "todo-list__edit-button";
+
+          $editButton.textContent = "Editar";
+
+          $button.className = "todo-list__button-disable";
+
+          $form.appendChild($editButton);
+
+          $editButton.addEventListener("click", (event) => {
+            event.preventDefault();
+            console.log("aaa");
+            if ($input.value === "") return;
+
+            taskObject.name = $input.value;
+            $input.value = "";
+
+            console.log(taskObject);
+            localStorage.setItem(
+              "arrayTaskObjects",
+              JSON.stringify(arrayTaskObjects)
+            );
+
+            $editButton.className = "todo-list__edit-button-disable";
+
+            $button.className = "todo-list__button";
+
+            location.reload();
+          });
+        }
+      });
+
+      parentElementDOM;
+    });
+  });
+}
+
+editElement();
+
 // console.log($element);
