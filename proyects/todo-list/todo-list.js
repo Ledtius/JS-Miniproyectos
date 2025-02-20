@@ -11,7 +11,7 @@ let arrayTaskIDs = JSON.parse(localStorage.getItem("arrayTaskIDs")) || [];
 
 let tasksArray = JSON.parse(localStorage.getItem("tasks")) || [];
 
-const countOfIDs = 5;
+const countOfIDs = 10;
 
 if (arrayTaskIDs.length === 0) {
   for (let i = 0; i <= countOfIDs; i++) {
@@ -43,7 +43,9 @@ function createTask() {
 
   $input.value = "";
 
+  location.reload(); /* No move please */
   printElement();
+  // deleteElement();
 }
 
 let count = 0;
@@ -54,9 +56,21 @@ function printElement() {
 
   do {
     if (arrayTaskObjects.length === 0) return;
+    // if (
+    //   arrayTaskObjects[count].id === undefined &&
+    //   arrayTaskObjects[count].name === undefined
+    // )
+    //   return;
+    console.log(arrayTaskObjects[count].name);
     createElement(arrayTaskObjects[count].name, arrayTaskObjects[count].id);
     count++;
   } while (arrayTaskObjects.length > count);
+
+  // arrayTaskObjects.forEach((element) => {
+  //   if (!document.getElementById(`task-element${element.id}`)) {
+  //     deleteElement();
+  //   }
+  // });
 }
 
 $todoList.addEventListener("click", (event) => {
@@ -65,6 +79,7 @@ $todoList.addEventListener("click", (event) => {
   if (todoButton) {
     event.preventDefault();
     createTask();
+    // location.reload();
   }
 });
 
@@ -162,47 +177,57 @@ function createElement(taskName, taskID) {
   $deleteSvg.appendChild($deletePath);
 }
 
-// function deleteFunction() {
-//   const $delete = document.querySelectorAll(".todo-list__option--delete");
-//   $delete.forEach((element) => {
-//     let knowArray = JSON.parse(localStorage.getItem("tasks") || []);
-//     element.addEventListener("click", () => {
-//       console.clear();
-//       const elementID = element.parentNode.parentNode.id;
-//       const regex = /\d+/g;
-
-//       console.log(elementID);
-//       const onlyID = elementID.match(regex);
-
-//       console.log(onlyID);
-
-//       knowArray.splice(onlyID, 1);
-
-//       console.log(knowArray);
-
-//       localStorage.setItem("tasks", JSON.stringify(knowArray));
-
-//       console.log(knowArray[onlyID]);
-//       console.log(elementID);
-
-//       element.parentNode.parentNode.remove();
-//       document.location.reload();
-//     });
-//   });
-// }
-
 printElement();
+let indexValue;
 
-const $element = document.querySelector(".todo-list__element");
-// $element.forEach((value) => {
-//   console.log("Ahh?");
-//   console.log("asd" + value);
-// });
 function deleteElement() {
-  $element.addEventListener("click", (event) => {
-    console.log(event.target);
+  const $delete = document.querySelectorAll(".todo-list__option--delete");
+
+  $delete.forEach((element) => {
+    element.addEventListener("click", () => {
+      const idElementDOM = element.parentNode.parentNode.id;
+      const parentElementDOM = element.parentNode.parentNode;
+
+      const regex = /\d+/g;
+
+      let idEDNumber = Number(idElementDOM.match(regex).join(""));
+
+      console.log(idElementDOM);
+      console.log(parentElementDOM);
+      console.log(idEDNumber);
+
+      arrayTaskObjects = JSON.parse(localStorage.getItem("arrayTaskObjects"));
+
+      console.log(arrayTaskObjects);
+      arrayTaskObjects.forEach((taskObject, index) => {
+        console.log(taskObject.id);
+        console.log(idEDNumber);
+        if (taskObject.id == idEDNumber) {
+          indexValue = index;
+          console.log(index);
+        }
+      });
+
+      console.log(indexValue);
+      arrayTaskObjects.splice(indexValue, 1);
+
+      localStorage.setItem(
+        "arrayTaskObjects",
+        JSON.stringify(arrayTaskObjects)
+      );
+      console.log(arrayTaskObjects);
+      arrayTaskIDs = JSON.parse(localStorage.getItem("arrayTaskIDs"));
+
+      arrayTaskIDs.push(idEDNumber);
+      console.log(arrayTaskIDs);
+
+      localStorage.setItem("arrayTaskIDs", JSON.stringify(arrayTaskIDs));
+
+      parentElementDOM.remove();
+    });
   });
 }
 
-console.log($element);
 deleteElement();
+
+// console.log($element);
