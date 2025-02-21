@@ -25,6 +25,7 @@ function createTask() {
   let task = {
     id: "",
     name: "",
+    state: false,
   };
 
   let randomIndex = Math.floor(Math.random() * arrayTaskIDs.length);
@@ -62,7 +63,11 @@ function printElement() {
     // )
     //   return;
     console.log(arrayTaskObjects[count].name);
-    createElement(arrayTaskObjects[count].name, arrayTaskObjects[count].id);
+    createElement(
+      arrayTaskObjects[count].name,
+      arrayTaskObjects[count].id,
+      arrayTaskObjects[count].state
+    );
     count++;
   } while (arrayTaskObjects.length > count);
 
@@ -83,7 +88,7 @@ $todoList.addEventListener("click", (event) => {
   }
 });
 
-function createElement(taskName, taskID) {
+function createElement(taskName, taskID, state) {
   const $element = document.createElement("div");
 
   const $checkTask = document.createElement("div");
@@ -125,6 +130,10 @@ function createElement(taskName, taskID) {
 
   $check.className = "todo-list__check";
   $check.type = "checkbox";
+  $check.checked = state;
+
+  console.log(state);
+
   $check.id = `task${taskID}`;
 
   $task.className = "todo-list__task";
@@ -132,6 +141,14 @@ function createElement(taskName, taskID) {
   $task.textContent = taskName;
   // taskIndex(taskID);
 
+  if ($check.checked === true) {
+    $task.setAttribute(
+      "style",
+      "text-decoration:line-through; text-decoration-color:white; opacity: 0.9"
+    );
+  } else {
+    $task.style = "text-decoration: none";
+  }
   // console.log(`Inside: ${taskID}`);
 
   $editDelete.className = "todo-list__edit-delete";
@@ -293,29 +310,74 @@ function editElement() {
 
 editElement();
 
-const $checkBox = document.querySelectorAll(".todo-list__check");
+function checkTasks() {
+  const $checkBox = document.querySelectorAll(".todo-list__check");
 
-const $checkTask = document.querySelectorAll(".todo-list__task");
+  const $checkTask = document.querySelectorAll(".todo-list__task");
 
-$checkBox.forEach((element) => {
-  element.addEventListener("click", () => {
-    console.log(element.checked);
-    if (element.checked === true) {
-      element.parentElement.setAttribute(
-        "style",
-        "text-decoration:line-through; text-decoration-color:white; opacity: 0.7"
-      );
+  arrayTaskObjects = JSON.parse(localStorage.getItem("arrayTaskObjects"));
 
-      // element.parentNode.style = "text-decoration: line-through";
-      // element.parentNode.style = "text-decoration-color: red";
+  console.log(arrayTaskObjects);
 
-      // $checkTask.style = "text-decoration: line-through";
+  $checkBox.forEach((element) => {
+    element.addEventListener("click", () => {
+      console.log(element.checked);
 
-      // element.style = "text-decoration: line-through";
-    } else {
-      element.parentNode.style = "text-decoration: none";
-    }
+      location.reload();
+
+      parentElementDOM = element.parentNode;
+      parentElementDOM2ID = element.parentNode.parentNode.id;
+
+      const regex = /\d+/g;
+
+      let idEDNumber = parentElementDOM2ID.match(regex).join("");
+
+      let taskObject;
+
+      arrayTaskObjects.forEach((task) => {
+        if (task.id == idEDNumber) {
+          taskObject = task;
+        }
+      });
+      console.log(taskObject);
+      if (element.checked === true) {
+        taskObject.state = true;
+        arrayTaskObjects.forEach((task, index) => {
+          if (taskObject.id === task) {
+            arrayTaskObjects.splice(index, 1, taskObject);
+            /*  */
+          }
+        });
+        console.log(arrayTaskObjects);
+
+        localStorage.setItem(
+          "arrayTaskObjects",
+          JSON.stringify(arrayTaskObjects)
+        );
+
+        console.log(parentElementDOM2ID);
+      } else {
+        taskObject.state = false;
+
+        arrayTaskObjects.forEach((task, index) => {
+          if (taskObject.id === index) {
+            arrayTaskObjects.splice(index, 1, taskObject);
+          }
+        });
+        console.log(arrayTaskObjects);
+
+        localStorage.setItem(
+          "arrayTaskObjects",
+          JSON.stringify(arrayTaskObjects)
+        );
+
+        /*  */
+      }
+    });
   });
-});
+}
 
+checkTasks();
+
+// function
 // console.log($element);
