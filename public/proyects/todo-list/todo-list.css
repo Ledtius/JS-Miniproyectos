@@ -291,11 +291,11 @@ footer {
 
 @media (min-width: 1024px) {
   .todo-list__button {
-    padding: 1.4rem;
+    padding: 1.6rem;
   }
 
   .todo-list__edit-button {
-    padding: 1.4rem;
+    padding: 1.6rem;
     border-radius: 2rem;
     border: 1px solid #63e6be;
     background-color: #63e6be;
