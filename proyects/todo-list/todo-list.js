@@ -11,7 +11,7 @@ let arrayTaskIDs = JSON.parse(localStorage.getItem("arrayTaskIDs")) || [];
 
 let tasksArray = JSON.parse(localStorage.getItem("tasks")) || [];
 
-const countOfIDs = 10;
+const countOfIDs = 30;
 
 if (arrayTaskIDs.length === 0) {
   for (let i = 0; i <= countOfIDs; i++) {
@@ -242,8 +242,6 @@ function editElement() {
 
       let idEDNumber = Number(idElementDOM.match(regex).join());
 
-      let id;
-
       // arrayTaskIDs = JSON.parse(localStorage.getItem("arrayTaskIDs"));
 
       arrayTaskObjects = JSON.parse(localStorage.getItem("arrayTaskObjects"));
@@ -289,12 +287,30 @@ function editElement() {
           });
         }
       });
-
-      parentElementDOM;
     });
   });
 }
 
 editElement();
+
+const $checkBox = document.querySelectorAll(".todo-list__check");
+
+const $checkTask = document.querySelectorAll(".todo-list__task");
+
+$checkBox.forEach((element) => {
+  element.addEventListener("click", () => {
+    console.log(element.checked);
+    if (element.checked === true) {
+      element.parentNode.style = "text-decoration: line-through";
+      
+
+      // $checkTask.style = "text-decoration: line-through";
+
+      // element.style = "text-decoration: line-through";
+    } else {
+      element.parentNode.style = "text-decoration: none";
+    }
+  });
+});
 
 // console.log($element);

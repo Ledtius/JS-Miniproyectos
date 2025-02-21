@@ -213,12 +213,15 @@ label::before {
   transition: all 0.1s ease;
   /* margin-left: 1rem; */
   /* background-color: red; */
+
 }
 
 [type="checkbox"]:checked + label::before {
   border-color: #63e6be;
   background-color: #63e6be;
   color: greenyellow;
+
+
 
   background-image: url(asents/check-solid.svg);
   background-repeat: no-repeat;
@@ -238,6 +241,7 @@ label::before {
   max-width: 120px;
   overflow: auto;
   max-height: 42px;
+
   /* padding-bottom: 2rem; */
   /* text-wrap: wrap; */
 }
