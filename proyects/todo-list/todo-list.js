@@ -36,6 +36,10 @@ function createTask() {
     localStorage.setItem("arrayTaskIDs", JSON.stringify(arrayTaskIDs));
 
     task.name = $input.value;
+    task.state = false;
+
+    console.log(task);
+    console.log(arrayTaskObjects);
 
     arrayTaskObjects.push(task);
 
@@ -144,7 +148,7 @@ function createElement(taskName, taskID, state) {
   if ($check.checked === true) {
     $task.setAttribute(
       "style",
-      "text-decoration:line-through; text-decoration-color:white; opacity: 0.9"
+      "text-decoration:line-through; text-decoration-color:#63e6be;text-decoration-thickness:3px;"
     );
   } else {
     $task.style = "text-decoration: none";
@@ -261,7 +265,7 @@ function editElement() {
 
       // arrayTaskIDs = JSON.parse(localStorage.getItem("arrayTaskIDs"));
 
-      arrayTaskObjects = JSON.parse(localStorage.getItem("arrayTaskObjects"));
+      arrayTaskObjects = JSON.parse(localStorage.getItem("arrayTaskObjects")) || [];
 
       console.log(arrayTaskObjects);
       arrayTaskObjects.forEach((taskObject, index) => {
@@ -315,7 +319,7 @@ function checkTasks() {
 
   const $checkTask = document.querySelectorAll(".todo-list__task");
 
-  arrayTaskObjects = JSON.parse(localStorage.getItem("arrayTaskObjects"));
+  arrayTaskObjects = JSON.parse(localStorage.getItem("arrayTaskObjects")) || [];
 
   console.log(arrayTaskObjects);
 
