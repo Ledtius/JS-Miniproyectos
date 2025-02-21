@@ -62,7 +62,6 @@ body {
   outline: none;
 }
 
-
 .todo-list__button {
   padding: 1.4rem;
   border-radius: 2rem;
@@ -179,6 +178,8 @@ body {
   cursor: pointer;
   width: 2rem;
   height: 2rem;
+
+
   /* appearance: none; */
   background-color: blue;
   border-radius: 100%;
@@ -195,6 +196,8 @@ body {
 }
 
 label {
+  /* text-decoration: line-through;
+  text-decoration-color: red;  */
   position: relative;
 }
 
@@ -213,15 +216,12 @@ label::before {
   transition: all 0.1s ease;
   /* margin-left: 1rem; */
   /* background-color: red; */
-
 }
 
 [type="checkbox"]:checked + label::before {
   border-color: #63e6be;
   background-color: #63e6be;
   color: greenyellow;
-
-
 
   background-image: url(asents/check-solid.svg);
   background-repeat: no-repeat;

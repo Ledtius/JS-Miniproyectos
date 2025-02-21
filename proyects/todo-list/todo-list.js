@@ -301,8 +301,13 @@ $checkBox.forEach((element) => {
   element.addEventListener("click", () => {
     console.log(element.checked);
     if (element.checked === true) {
-      element.parentNode.style = "text-decoration: line-through";
-      
+      element.parentElement.setAttribute(
+        "style",
+        "text-decoration:line-through; text-decoration-color:white; opacity: 0.7"
+      );
+
+      // element.parentNode.style = "text-decoration: line-through";
+      // element.parentNode.style = "text-decoration-color: red";
 
       // $checkTask.style = "text-decoration: line-through";
 
