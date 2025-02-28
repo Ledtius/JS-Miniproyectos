@@ -64,12 +64,16 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  gap: 1rem;
   padding: 20px;
   background-color: #fffcf8;
   border-radius: 2rem;
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
   max-width: 240px;
-  max-height: 421.234px;
+  /* max-height: 421.234px; */
+  height: 420px;
+
   /* transition: all 0.5s ease; */
 }
 
@@ -93,12 +97,13 @@ footer {
   text-align: justify;
   /* color: #192bc2; */
   max-height: 63px;
-  overflow: auto;
+  /* overflow: hidden; */
   scrollbar-width: thin;
   scrollbar-color: grey transparent;
 }
 .card__footer {
   display: flex;
+  /* padding: 0; */
   justify-content: space-between;
   width: 100%;
 }
@@ -142,6 +147,7 @@ footer {
   .card {
     box-shadow: none;
     transition: all 0.5s ease;
+    max-height: 421.234px;
   }
 
   .card:hover {
