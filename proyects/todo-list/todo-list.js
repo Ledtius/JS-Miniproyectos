@@ -6,13 +6,13 @@ const $todoListList = document.querySelector(".todo-list__list");
 
 let arrayTasks = JSON.parse(localStorage.getItem("arrayTasks")) || [];
 
+printElement();
+
 console.log(arrayTasks);
 
 $todoListButton.addEventListener("click", (e) => {
   e.preventDefault();
   extractInputValue();
-  saveLocalStorage();
-  printElement();
 });
 
 let extractInputValue = () => {
@@ -28,9 +28,11 @@ let extractInputValue = () => {
   $todoListInput.value = "";
 
   arrayTasks.push(task);
+  saveLocalStorage();
+  printElement();
 };
 
-let printElement = () => {
+function printElement() {
   $todoListList.innerHTML = "";
 
   arrayTasks = callLocalStorage();
@@ -42,7 +44,8 @@ let printElement = () => {
   arrayTasks.forEach((task, id) => {
     DOMElement(task, id);
   });
-};
+  deleteTask();
+}
 
 function DOMElement(task, id) {
   const $element = document.createElement("div");
@@ -149,14 +152,35 @@ let saveLocalStorage = () => {
   localStorage.setItem("arrayTasks", arrayTaskJSON);
 };
 
-let callLocalStorage = () => {
+function callLocalStorage() {
   arrayTasks = JSON.parse(localStorage.getItem("arrayTasks"));
 
-  console.log("In");
-
   return arrayTasks || [];
-};
+}
 
-printElement();
+function deleteTask() {
+  const $tasks = document.querySelectorAll(".todo-list__element");
 
-console.log();
+  $tasks.forEach((task, index) => {
+    let deleteBtns = task.lastChild.lastChild;
+
+    deleteBtns.addEventListener("click", () => {
+      arrayTasks = callLocalStorage();
+
+      arrayTasks = arrayTasks.filter((_, index2) => index2 !== index);
+
+      saveLocalStorage();
+      printElement();
+    });
+  });
+}
+
+// let updateElement = () => {
+
+//   arrayTasks.forEach((task, id) => {
+//     DOMElement(task, id);
+//     deleteTask();
+//   });
+// };
+
+// updateElement();
