@@ -45,6 +45,8 @@ function printElement() {
     DOMElement(task, id);
   });
   deleteTask();
+
+  editTask();
 }
 
 function DOMElement(task, id) {
@@ -160,7 +162,6 @@ function callLocalStorage() {
 
 function deleteTask() {
   const $tasks = document.querySelectorAll(".todo-list__element");
-
   $tasks.forEach((task, index) => {
     let deleteBtns = task.lastChild.lastChild;
 
@@ -175,12 +176,68 @@ function deleteTask() {
   });
 }
 
-// let updateElement = () => {
+function editTask() {
+  const $tasks = document.querySelectorAll(".todo-list__element");
 
-//   arrayTasks.forEach((task, id) => {
-//     DOMElement(task, id);
-//     deleteTask();
-//   });
-// };
+  $tasks.forEach((task, index) => {
+    const editBtnBar = task.lastChild.firstChild;
 
-// updateElement();
+    editBtnBar.addEventListener("click", () => {
+      arrayTasks = callLocalStorage();
+
+      const $editBtnBar = createEditBtnBar();
+
+      editValueBar();
+
+      $editBtnBar.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        if ($todoListInput.value.trim() === "") {
+          return;
+        }
+
+        arrayTasks[index].name = $todoListInput.value.trim();
+
+        $todoListInput.value = "";
+
+        normalBar($editBtnBar);
+
+        saveLocalStorage();
+        printElement();
+      });
+
+      // task.name = $todoListInput.value.trim();
+    });
+
+    console.log(editBtnBar);
+  });
+}
+
+function createEditBtnBar() {
+  const $bar = document.querySelector(".todo-list__bar");
+
+  const $editBtnBar = document.createElement("button");
+
+  $editBtnBar.className = "todo-list__edit-button";
+
+  $editBtnBar.textContent = "Editar";
+
+  $bar.append($editBtnBar);
+
+  return $editBtnBar;
+}
+
+function editValueBar() {
+  $todoListButton.style = "display:none";
+
+  $todoListInput.placeholder = "Editando tarea...";
+}
+
+function normalBar($editBtnBar) {
+  $editBtnBar.style = "display: none";
+
+  $todoListButton.style = "display:flex";
+
+  $todoListInput.placeholder = "Digita tus tareas del dia";
+}
+
