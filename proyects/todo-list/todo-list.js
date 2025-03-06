@@ -42,14 +42,16 @@ function printElement() {
   console.log(arrayTasks);
 
   arrayTasks.forEach((task, id) => {
-    DOMElement(task, id);
+    DOMElement(task.name, id, task.state);
   });
   deleteTask();
 
   editTask();
+
+  checkTask();
 }
 
-function DOMElement(task, id) {
+function DOMElement(taskName, id, taskState) {
   const $element = document.createElement("div");
 
   $element.className = "todo-list__element";
@@ -65,6 +67,7 @@ function DOMElement(task, id) {
   $input.className = "todo-list__check";
   $input.type = "checkbox";
   $input.id = `task${id}`;
+  $input.checked = taskState;
 
   $checkTask.appendChild($input);
 
@@ -72,7 +75,7 @@ function DOMElement(task, id) {
 
   $label.className = "todo-list__task";
   $label.htmlFor = `task${id}`;
-  $label.textContent = task.name;
+  $label.textContent = taskName;
 
   $checkTask.appendChild($label);
 
@@ -241,3 +244,23 @@ function normalBar($editBtnBar) {
   $todoListInput.placeholder = "Digita tus tareas del dia";
 }
 
+function checkTask() {
+  const $tasks = document.querySelectorAll(".todo-list__element");
+
+  $tasks.forEach((task, index) => {
+    const taskCheckBox = task.firstChild.firstChild;
+
+    taskCheckBox.addEventListener("change", () => {
+      console.log(taskCheckBox.checked);
+
+      arrayTasks = callLocalStorage();
+      console.log(index);
+
+      arrayTasks[index].state = taskCheckBox.checked;
+
+      saveLocalStorage();
+      printElement();
+      console.log("a");
+    });
+  });
+}
