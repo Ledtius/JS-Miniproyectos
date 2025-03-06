@@ -182,6 +182,8 @@ function deleteTask() {
 function editTask() {
   const $tasks = document.querySelectorAll(".todo-list__element");
 
+  const $taskElement = document.querySelectorAll(".todo-list__element");
+
   $tasks.forEach((task, index) => {
     const editBtnBar = task.lastChild.firstChild;
 
@@ -191,6 +193,10 @@ function editTask() {
       const $editBtnBar = createEditBtnBar();
 
       editValueBar();
+
+      task.style = "display:none";
+
+      $todoListInput.value = task.textContent;
 
       $editBtnBar.addEventListener("click", (e) => {
         e.preventDefault();
@@ -202,6 +208,8 @@ function editTask() {
         arrayTasks[index].name = $todoListInput.value.trim();
 
         $todoListInput.value = "";
+
+        task.style = "display:flex";
 
         normalBar($editBtnBar);
 
