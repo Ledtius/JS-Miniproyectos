@@ -50,6 +50,7 @@ footer {
 }
 
 .calculator {
+  background-color: floralwhite;
   width: 100%;
   width: fit-content;
   font-size: 2rem;
