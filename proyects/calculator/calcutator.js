@@ -19,4 +19,3 @@ function extractValue($HTMLElements) {
   });
 }
 
-// array.forEach((element) => {});
