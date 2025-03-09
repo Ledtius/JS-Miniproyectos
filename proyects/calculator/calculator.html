@@ -33,7 +33,9 @@
         <h1 class="title">Calculadora Básica</h1>
 
         <form class="calculator" id="calculator" action="">
-          <section class="calculator__result"></section>
+          <section class="calculator__result">
+            <span class="calculator__result-text"> </span>
+          </section>
           <section class="calculator__btns">
             <button
               class="calculator__btn calculator__btn--number calculator__btn--entry"
@@ -65,10 +67,10 @@
             </button>
 
             <button
-              class="calculator__btn calculator__btn--delete"
+              class="calculator__btn calculator__btn--all-clear"
               type="button"
             >
-              C
+              AC
               <svg
                 class="calculator__icon calculator__icon--mini"
                 xmlns="http://www.w3.org/2000/svg"
@@ -109,10 +111,10 @@
               -
             </button>
             <button
-              class="calculator__btn calculator__btn--reset"
+              class="calculator__btn calculator__btn--clear"
               type="button"
             >
-              AC
+              C
               <svg
                 class="calculator__icon"
                 xmlns="http://www.w3.org/2000/svg"
@@ -191,7 +193,7 @@
             <strong class="history__operation">
               ${variable} = ${eval(variable)}
             </strong>
-            <div class="history__btns-messague">
+            <div class="history__btns-message">
               <div class="history__btns">
                 <button class="history__btn history__btn--copy">
                   <svg
@@ -217,7 +219,7 @@
                   </svg>
                 </button>
               </div>
-              <span class="btns__messague"></span>
+              <span class="btns__message"></span>
             </div>
           </div> -->
         </section>
