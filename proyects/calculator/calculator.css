@@ -9,7 +9,7 @@ body {
   /* gap: 12rem; */
 }
 
-.body--fernanda{
+.body--fernanda {
   display: flex;
   flex-direction: column;
   background-image: url(image/fernanda.webp);
@@ -56,7 +56,7 @@ footer {
   font-size: 2rem;
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
   /* background-color:floralwhite; */
-  background-color:e;
+  background-color: e;
   padding: 2rem;
   display: grid;
   gap: 1rem;
@@ -111,7 +111,6 @@ footer {
   text-overflow: clip;
   background-color: whitesmoke;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-
 }
 
 .history__operation {
@@ -144,13 +143,13 @@ footer {
   transition: all 0.5s ease;
 }
 
-.history__btns-messague {
+.history__btns-message {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.btns__messague {
+.btns__message {
   height: 16.2px;
   font-weight: 700;
 
@@ -165,6 +164,7 @@ footer {
 .history__btn--copy {
   background-color: #049541;
   fill: whitesmoke;
+  cursor: pointer;
 }
 .history__icon {
   width: 2rem;
@@ -172,6 +172,7 @@ footer {
 .history__btn--delete {
   background-color: #ed642b;
   fill: whitesmoke;
+  cursor: pointer;
 }
 
 @media (min-width: 1024px) {
@@ -192,6 +193,9 @@ footer {
 }
 
 .calculator__result {
+  display: flex;
+  justify-items: flex-end;
+  align-items: center;
   scrollbar-width: thin;
   scrollbar-color: grey transparent;
   width: 100%;
@@ -205,9 +209,15 @@ footer {
   padding: 1.6rem;
   border-radius: 1rem;
   background-color: whitesmoke;
-  overflow: auto;
+  overflow-x: auto;
 
   z-index: 2;
+}
+
+.calculator__result-text {
+  width: 100%;
+  height: fit-content;
+  text-align: right;
 }
 
 .calculator__btns {
@@ -248,15 +258,20 @@ footer {
   gap: 0.8rem;
   text-align: center;
   transition: all 0.5s ease;
+  cursor: pointer;
 
   justify-content: center;
 }
 
 .calculator__btn:active {
   outline: none;
-  box-shadow: inset 0px 0px 2cqmin grey;
+  box-shadow: inset 0px 0px 2px grey;
   border-color: grey;
 }
+
+/* .calculator__btn:hover {
+  box-shadow: 0px 0px 1px #c71d1c;
+} */
 
 .calculator__btn:nth-child(1) {
   grid-area: seven;
