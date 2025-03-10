@@ -176,8 +176,8 @@ function deleteHistoryElement($deleteBtn, $element, $btnMessage) {
     let index = Number($element.id.match(/-?\d+/g).join(""));
 
     console.log(typeof index);
-    $btnMessage.style = "color: #ed642b";
-    $btnMessage.innerText = "Eliminado";
+    $btnMessage.style = "color: #e63946";
+    $btnMessage.innerText = "Desecho";
 
     setTimeout(() => {
       $btnMessage.innerText = "";
@@ -199,7 +199,7 @@ function copyHistoryElement($copyBtn, $element, $btnMessage) {
 
     console.log(textOperation);
 
-    $btnMessage.style = "color: #049541";
+    $btnMessage.style = "color: #4caf50";
     $btnMessage.innerText = "Copiado!";
 
     setTimeout(() => {
