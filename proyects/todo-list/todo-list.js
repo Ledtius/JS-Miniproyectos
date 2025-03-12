@@ -171,30 +171,33 @@ function deleteTask() {
     deleteBtns.addEventListener("click", () => {
       arrayTasks = callLocalStorage();
 
-      arrayTasks = arrayTasks.filter((_, index2) => index2 !== index);
+      setTimeout(() => {
+        arrayTasks = arrayTasks.filter((_, index2) => index2 !== index);
 
-      saveLocalStorage();
-      printElement();
+        saveLocalStorage();
+        printElement();
+      }, 200);
     });
   });
 }
 
 function editTask() {
   const $tasks = document.querySelectorAll(".todo-list__element");
-
-  const $taskElement = document.querySelectorAll(".todo-list__element");
-
   $tasks.forEach((task, index) => {
     const editBtnBar = task.lastChild.firstChild;
 
     editBtnBar.addEventListener("click", () => {
+      console.log(editBtnBar);
+
       arrayTasks = callLocalStorage();
 
       const $editBtnBar = createEditBtnBar();
 
       editValueBar();
-
-      task.style = "display:none";
+      // task.style = "display:none";
+      setTimeout(() => {
+        $todoListList.style = "display:none";
+      }, 200);
 
       $todoListInput.value = task.textContent;
 
@@ -209,7 +212,8 @@ function editTask() {
 
         $todoListInput.value = "";
 
-        task.style = "display:flex";
+        // task.style = "display:flex";
+        $todoListList.style = "display:flex";
 
         normalBar($editBtnBar);
 
