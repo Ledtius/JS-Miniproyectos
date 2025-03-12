@@ -169,7 +169,6 @@ footer {
   background-color: #4caf50;
   fill: #ffffff;
   cursor: pointer;
-  
 }
 .history__icon {
   width: 2rem;
@@ -275,9 +274,19 @@ footer {
   text-align: center;
   transition: all 0.5s ease;
   cursor: pointer;
+  outline: none;
 
   justify-content: center;
   transition: all 0.2s ease;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.calculator:focus {
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 .calculator__btn:active {
@@ -287,9 +296,11 @@ footer {
   border-color: grey;
 }
 
-
-
 .calculator__btn--entry {
+}
+
+*:focus {
+  outline: none;
 }
 
 .calculator__btn--symbol {
@@ -318,7 +329,6 @@ footer {
 
 .calculator__btn--equals {
   background-color: #4caf50;
-  
 }
 
 /* .calculator__btn:hover {

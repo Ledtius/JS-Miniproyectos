@@ -11,6 +11,10 @@ body {
   /* position: relative; */
 }
 
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
 .todo-list {
   display: flex;
   flex-direction: column;
@@ -145,8 +149,7 @@ input {
 .todo-list__element {
   background-color: #000050;
   /* padding: 1.6rem; */
-  scrollbar-width: thin;
-  scrollbar-color: #63e6be transparent;
+
   display: flex;
   border-radius: 2rem;
   box-shadow: 0px 1px 5px #fcfcfc96;
@@ -191,6 +194,9 @@ input {
 label {
   /* text-decoration: line-through;
   text-decoration-color: red;  */
+  scrollbar-width: thin;
+  scrollbar-color: #63e6be transparent;
+  padding: 2rem;
   position: relative;
 }
 
@@ -204,7 +210,7 @@ label::before {
   height: 1.8rem;
   position: absolute;
   left: 0;
-  top: 2px;
+  top: 4px;
   /* z-index: 1; */
   transition: all 0.1s ease;
   /* margin-left: 1rem; */
@@ -227,6 +233,7 @@ label::before {
   margin: 0;
   color: white;
   font-weight: 600;
+  padding: 0.4rem;
   /* display: flex; */
   /* z-index: 2; */
   text-align: left;
@@ -248,7 +255,7 @@ label::before {
   border-radius: 1rem;
   background-color: transparent;
   border: transparent;
-  transition: all 0.5s ease;
+  transition: all 0.4s ease;
   /* width: 100%; */
 }
 
@@ -261,6 +268,10 @@ label::before {
 }
 .todo-list__option:focus {
   transform: scale(1.2);
+}
+
+.todo-list__option:active {
+  transform: scale(1.4);
 }
 
 .todo-list__icon {
@@ -290,6 +301,10 @@ footer {
 @media (min-width: 1024px) {
   .todo-list__button {
     padding: 1.6rem;
+  }
+
+  label::before {
+    top: 7px;
   }
 
   .todo-list__edit-button {
