@@ -187,7 +187,7 @@ function deleteHistoryElement($deleteBtn, $element, $btnMessage) {
       saveLocalStorage(arrayOperation);
 
       printHistoryElement();
-    }, 500);
+    }, 400);
 
     // $element.id.remove();
   });
@@ -204,7 +204,7 @@ function copyHistoryElement($copyBtn, $element, $btnMessage) {
 
     setTimeout(() => {
       $btnMessage.innerText = "";
-    }, 500);
+    }, 400);
 
     navigator.clipboard.writeText(textOperation);
   });
