@@ -5,7 +5,7 @@ body {
   gap: 4rem;
   /* height: 100vh; */
 
-  background-color: #E3F2FD;
+  background-color: #f5f7fa;
 }
 .main-content {
   display: flex;
@@ -17,6 +17,7 @@ body {
   padding: 2rem;
   text-align: center;
   font-weight: 500;
+  color: #0D1B2A;
 }
 
 .main__header {
@@ -40,7 +41,7 @@ body {
   /* text-shadow: 2px 2px 20px black; */
   text-align: center;
   width: min-content;
-  /* color: #fffcf8; */
+  color: #0d1b2a;
 }
 
 .cards {
@@ -60,8 +61,8 @@ body {
   justify-content: center;
   gap: 2.6rem;
   padding: 20px;
-  background-color: #FFFFFF;
-  border-color: #BBDEFB;
+  background-color: #ffffff;
+  border-color: #dce1e8;
   border-radius: 2rem;
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
   max-width: 240px;
@@ -72,28 +73,40 @@ body {
 }
 .card__btn--view {
   color: #ffffff;
-  background-color: #0D47A1;
+  background-color: #1b263b;
   fill: #fffcf8;
 }
 
 .card__btn--github {
   color: #ffffff;
-  background-color: #37474F;
-  fill: #fffcf8;
+  background-color: #606060;
+  fill: #ffffff;
 }
 
-
 .card__title {
-  color: #000000;
+  color: #0d1b2a;
   margin-top: 0;
   margin: 0;
   /* align-self: center; */
 }
 .card__icon {
-  fill: #1565C0;
+  fill: #ff9f1c;
   min-height: 160px;
   /* align-self: center; */
   width: 9rem;
+}
+
+.card__btn--github:hover {
+  transform: scale(1.04);
+  background-color: #ffffff;
+  color: #606060;
+  fill: #606060;
+}
+.card__btn--view:hover {
+  transform: scale(1.04);
+  background-color: #ffffff;
+  color: #1b263b;
+  fill: #1b263b;
 }
 
 .card__icon--todolist {
@@ -102,10 +115,11 @@ body {
 }
 
 .card__description {
+  /* display: none; */
   text-align: justify;
   /* color: #192bc2; */
   max-height: 63px;
-  color: #333333;
+  color: #3d5a80;
   /* overflow: hidden; */
   scrollbar-width: thin;
   scrollbar-color: grey transparent;
@@ -119,6 +133,7 @@ body {
 
 .card__btn {
   display: flex;
+  font-weight: 600;
   gap: 8px;
   padding: 1.2rem;
   border-radius: 2.4rem;
@@ -127,13 +142,6 @@ body {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 
   transition: all 0.4s ease;
-}
-
-.card__btn:hover {
-  transform: scale(1.04);
-  background-color: #fffcf8;
-  color: #ff64b0;
-  fill: #ff64b0;
 }
 
 .card__icon-btn {
