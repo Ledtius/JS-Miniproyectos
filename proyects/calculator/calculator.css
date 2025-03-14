@@ -7,13 +7,6 @@ body {
   min-width: 320px;
 }
 
-.body--fernanda {
-  background-image: url(image/fernanda.webp);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
 main {
   padding: 4rem;
   /* padding: 1rem; */
@@ -177,30 +170,6 @@ footer {
   background-color: #e63946;
   fill: #ffffff;
   cursor: pointer;
-}
-
-@media (min-width: 1024px) {
-  main {
-    /* flex-direction: row; */
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
-  }
-
-  .calculator-history {
-    display: flex;
-    flex-direction: row;
-    gap: 2rem;
-  }
-
-  .calculator__section {
-    align-self: flex-start;
-  }
-
-  .history {
-    align-self: flex-start;
-    padding: 0;
-  }
 }
 
 .calculator__result {
@@ -395,4 +364,32 @@ footer {
 }
 .calculator__btn:nth-child(18) {
   grid-area: division;
+}
+
+@media (min-width: 1024px) {
+  .title {
+    padding-top: 4rem;
+  }
+  main {
+    padding: 0;
+    /* flex-direction: row; */
+    align-items: center;
+    justify-content: center;
+    gap: 2.8rem;
+  }
+
+  .calculator-history {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+  }
+
+  .calculator__section {
+    align-self: flex-start;
+  }
+
+  .history {
+    align-self: flex-start;
+    padding: 0;
+  }
 }
