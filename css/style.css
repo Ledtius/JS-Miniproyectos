@@ -92,8 +92,7 @@ body {
 }
 .card__icon {
   fill: #ff9f1c;
-  stroke:#0d1b2a;
-
+  stroke: #0d1b2a;
   min-height: 160px;
   /* align-self: center; */
   width: 15rem;
