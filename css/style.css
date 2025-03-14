@@ -92,9 +92,11 @@ body {
 }
 .card__icon {
   fill: #ff9f1c;
+  stroke:#0d1b2a;
+
   min-height: 160px;
   /* align-self: center; */
-  width: 9rem;
+  width: 15rem;
 }
 
 .card__btn--github:hover {
@@ -112,7 +114,8 @@ body {
 
 .card__icon--todolist {
   /* height: 10rem; */
-  width: 12rem;
+  /* stroke: #0d1b2a; */
+  /* width: 20rem; */
 }
 
 .card__description {
@@ -147,6 +150,7 @@ body {
 
 .card__icon-btn {
   width: 2rem;
+
   /* fill: #fffcf8; */
   transition: all 0.4s ease;
 }
