@@ -18,6 +18,8 @@
     <meta property="og:url" content=".app" />
     <meta property="og:type" content="website" />
 
+    <link rel="stylesheet" href="/css/general.css" />
+
     <link rel="stylesheet" href="weather-app.css" />
 
     <link
@@ -28,6 +30,21 @@
     <title>App del clima | JS Miniproyectos</title>
   </head>
   <body>
+    <form class="form" action="">
+      <label class="label" for="input">Aplicacion del clima</label>
+      <div class="input-btn">
+        <input
+          class="input"
+          id="input"
+          type="text"
+          placeholder="Escribe el nombre de la ciudad o pais"
+        />
+        <button class="btn">Buscar</button>
+      </div>
+    </form>
+
+    <p class="answer">Answer</p>
+
     <script src="weather-app.js" defer></script>
   </body>
 </html>
