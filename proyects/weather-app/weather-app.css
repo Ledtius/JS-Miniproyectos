@@ -1,24 +1,71 @@
 body {
+  background-color: #f2ece9;
+}
+
+.weather-card__title {
+  text-align: center;
+}
+.weather-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem;
+  background-color: #ded3ce;
 }
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
+.weather-card__search-bar {
+  position: inherit;
 }
-
-.input-btn {
-  /* display: flex;  */
+.weather-card__input {
+  width: 30rem;
+  height: 1rem;
+  border-radius: 2rem;
+  outline: none;
+  padding: 1.8rem;
+  font-size: 2rem;
 }
-
-p {
-  font-weight: 500;
+.weather-card__button {
+  position: relative;
 }
-
-input {
-  width: 23rem;
+.weather-card__icon {
+}
+.weather-card__information {
+}
+.weather-card__location {
+}
+.weather-card__place {
+}
+.weather-card__flag {
+}
+.weather-card__status {
+}
+.weather-card__status-icon {
+}
+.weather-card__status-text {
+}
+.weather-card__degrees {
+}
+.weather-card__status-description {
+}
+.weather-card__humidity-wind {
+}
+.weather-card__humidity-card {
+}
+.humidity-card__icon {
+  width: 4rem;
+}
+.humidity-card__status {
+}
+.humidity-card__percent {
+}
+.humidity-card__title {
+}
+.weather-card__wind-card {
+}
+.wind-card__icon {
+  width: 4rem;
+}
+.wind-card__status {
+}
+.wind-card__value {
+}
+.wind-card__title {
 }
