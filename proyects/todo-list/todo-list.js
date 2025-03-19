@@ -77,6 +77,14 @@ function DOMElement(taskName, id, taskState) {
   $label.htmlFor = `task${id}`;
   $label.textContent = taskName;
 
+  if (taskState) {
+    $label.style.setProperty("text-decoration", "line-through");
+
+    $element.style.setProperty("opacity", "0.5");
+  } else {
+    $label.style = "text-decoration:dashed";
+  }
+
   $checkTask.appendChild($label);
 
   const $editDelete = document.createElement("div");
