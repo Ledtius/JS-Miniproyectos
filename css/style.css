@@ -3,14 +3,12 @@ body {
   flex-direction: column;
   justify-content: space-between;
   gap: 4rem;
-  /* height: 100vh; */
 
   background-color: #f5f7fa;
 }
 .main-content {
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
 }
 
 .footer {
@@ -25,9 +23,6 @@ body {
   align-items: center;
   justify-content: center;
   gap: 2rem;
-  /* justify-content: space-around; */
-  /* width: fit-content; */
-  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); */
 
   margin-bottom: 4rem;
   width: 100%;
@@ -38,7 +33,6 @@ body {
   height: 5rem;
 }
 .main__title {
-  /* text-shadow: 2px 2px 20px black; */
   text-align: center;
   width: min-content;
   color: #0d1b2a;
@@ -46,9 +40,9 @@ body {
 
 .cards {
   display: flex;
-  /* align-items: center; */
+
   justify-content: center;
-  /* padding: 2rem; */
+
   flex-wrap: wrap;
   gap: 8rem;
 
@@ -63,14 +57,10 @@ body {
   padding: 20px;
   background-color: #ffffff;
   border: 1px solid #dce1e8;
-  /* border-color: #DCE1E8; */
+
   border-radius: 2rem;
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
-  max-width: 240px;
-  /* max-height: 421.234px; */
-  height: 420px;
-
-  /* transition: all 0.5s ease; */
+  max-width: 300px;
 }
 .card__btn--view {
   color: #ffffff;
@@ -88,13 +78,12 @@ body {
   color: #0d1b2a;
   margin-top: 0;
   margin: 0;
-  /* align-self: center; */
 }
 .card__icon {
   fill: #ff9f1c;
   stroke: #0d1b2a;
   min-height: 160px;
-  /* align-self: center; */
+
   width: 15rem;
 }
 
@@ -112,31 +101,30 @@ body {
 }
 
 .card__icon--todolist {
-  /* height: 10rem; */
-  /* stroke: #0d1b2a; */
-  /* width: 20rem; */
 }
 
 .card__description {
-  /* display: none; */
   text-align: justify;
-  /* color: #192bc2; */
+
   max-height: 63px;
+
   color: #3d5a80;
-  /* overflow: hidden; */
+
   scrollbar-width: thin;
   scrollbar-color: grey transparent;
 }
 .card__footer {
   display: flex;
-  /* padding: 0; */
+
   justify-content: space-between;
   width: 100%;
 }
 
 .card__btn {
   display: flex;
+  align-items: center;
   font-weight: 600;
+  height: 5rem;
   gap: 8px;
   padding: 1.2rem;
   border-radius: 2.4rem;
@@ -150,12 +138,8 @@ body {
 .card__icon-btn {
   width: 2rem;
 
-  /* fill: #fffcf8; */
   transition: all 0.4s ease;
 }
-/* .card__icon-btn:hover {
-  fill: #ff64b0;
-} */
 
 @media (min-width: 600px) {
   .main__title {
@@ -166,17 +150,10 @@ body {
   .card {
     box-shadow: none;
     transition: all 0.5s ease;
-    max-height: 421.234px;
   }
 
   .card:hover {
     transform: scale(1.04);
     box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
-  }
-}
-
-@media (min-width: 480px) {
-  .main__header {
-    gap: 8px;
   }
 }
