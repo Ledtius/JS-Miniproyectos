@@ -4,11 +4,8 @@ body {
   justify-content: space-between;
   align-items: center;
   text-align: center;
-
   background-color: #000036;
-  /* align-items: center; */
-  /* height: 100%; */
-  /* position: relative; */
+  min-width: 320px;
 }
 
 * {
@@ -16,13 +13,14 @@ body {
 }
 
 .todo-list {
+  padding-top: 4rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
   width: fit-content;
   background-color: #000036;
-  padding: 4rem;
 }
+
 .todo-list__general {
   display: flex;
   flex-direction: column;
@@ -54,7 +52,7 @@ input {
   padding-right: 6.6rem;
   border-radius: 2rem;
   border: 1px solid grey;
-  max-width: 188px;
+  /* max-width: 188px; */
   /* z-index: 1; */
   transition: all 0.5 ease;
   box-shadow: inset 0 1px 3px rgba(182, 181, 181, 0.87);
@@ -241,7 +239,8 @@ label::before {
   max-width: 120px;
   overflow: auto;
   max-height: 42px;
-
+  /* text-decoration: line-through;
+  text-decoration-thickness: 1px; */
   /* padding-bottom: 2rem; */
   /* text-wrap: wrap; */
 }
