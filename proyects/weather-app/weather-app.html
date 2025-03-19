@@ -31,13 +31,13 @@
   </head>
   <body>
     <main>
-      <h1 class="weather-card__title">Aplicacion del clima</h1>
+      <h1 class="weather-card__title">App del clima</h1>
       <form class="weather-card">
         <div class="weather-card__search-bar">
           <input
             class="weather-card__input"
             type="text"
-            placeholder="Nombre una ciudad o país"
+            placeholder="Ingresa una ciudad..."
           />
           <button class="weather-card__button" type="button">
             <svg
@@ -53,7 +53,9 @@
         </div>
         <div class="weather-card__information">
           <div class="weather-card__location">
-            <h2 class="weather-card__place">Barrrancabermeja</h2>
+            <p class="weather-card__place">
+              Barrancabermeja
+            </p>
             <img
               class="weather-card__flag"
               src="https://flagsapi.com/CO/shiny/64.png"
@@ -61,9 +63,15 @@
             />
           </div>
           <div class="weather-card__status">
-            <img class="weather-card__status-icon" src="#" alt="Nublado" />
+            <img
+              class="weather-card__status-icon"
+              src="https://openweathermap.org/img/wn/11d@4x.png"
+              alt="Nublado"
+            />
             <div class="weather-card__status-text">
-              <h3 class="weather-card__degrees">31°C</h3>
+              <p class="weather-card__temperature">
+                31<small class="weather-card__degree-symbol">°C</small>
+              </p>
               <p class="weather-card__status-description">Nublado</p>
             </div>
           </div>
@@ -80,14 +88,23 @@
               </svg>
               <div class="humidity-card__status">
                 <p class="humidity-card__percent">63%</p>
-                <p class="humidity-card__title">Humedad</p>
+                <small class="humidity-card__title">Humedad</small>
               </div>
             </div>
 
             <div class="weather-card__wind-card">
+              <svg
+                class="wind-card__icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+              >
+                <path
+                  d="M288 32c0 17.7 14.3 32 32 32l32 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128c-17.7 0-32 14.3-32 32s14.3 32 32 32l320 0c53 0 96-43 96-96s-43-96-96-96L320 0c-17.7 0-32 14.3-32 32zm64 352c0 17.7 14.3 32 32 32l32 0c53 0 96-43 96-96s-43-96-96-96L32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-32 0c-17.7 0-32 14.3-32 32zM128 512l32 0c53 0 96-43 96-96s-43-96-96-96L32 320c-17.7 0-32 14.3-32 32s14.3 32 32 32l128 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-32 0c-17.7 0-32 14.3-32 32s14.3 32 32 32z"
+                />
+              </svg>
               <div class="wind-card__status">
-                <p class="wind-card__value">3Km/h</p>
-                <p class="wind-card__title">Vel. viento</p>
+                <p class="wind-card__value">3 <small class="wind-card__unit">Km/h</small></p>
+                <small class="wind-card__title">Vel. viento</small>
               </div>
             </div>
           </div>
