@@ -8,7 +8,7 @@ body {
 }
 
 main {
-  padding: 4rem;
+  /* padding: 4rem; */
   /* padding: 1rem; */
   display: flex;
   flex-direction: column;
@@ -31,7 +31,7 @@ footer {
 }
 
 .title {
-  /* padding-bottom: 2rem; */
+  padding-top: 4rem;
   margin: 0;
   color: #0d1b2a;
 }
@@ -84,10 +84,11 @@ footer {
   align-items: center;
   justify-content: space-between;
   min-height: 137.219px;
+  width: 287px;
   /* padding: 2rem; */
-
+  /* width: 100%; */
   background-color: #0d1b2a;
-  width: 248px;
+  /* width: 248px; */
   padding: 2rem;
   border-radius: 1rem;
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4);
@@ -101,6 +102,7 @@ footer {
   justify-content: space-between;
   width: 100%;
   padding: 2rem;
+  /* max-width: 188px; */
   text-align: center;
   border-radius: 1rem;
   text-overflow: clip;
@@ -322,7 +324,7 @@ footer {
 .calculator__btn:nth-child(5) {
   grid-area: delete;
   width: 12rem;
-  border-top-left-radius: 1rem ;
+  border-top-left-radius: 1rem;
   display: flex;
 
   align-items: center;
