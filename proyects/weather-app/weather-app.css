@@ -1,4 +1,9 @@
 body {
+  display: flex;
+  flex-direction: column;
+  /* padding: 2rem; */
+  align-items: center;
+  justify-content: space-around;
   background-color: #f2ece9;
 }
 
@@ -9,63 +14,178 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 4rem;
   background-color: #ded3ce;
+  padding: 2rem;
+  border-radius: 2rem;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+  /* max-width: 263px; */
+  /* max-width: 263px; */
 }
 .weather-card__search-bar {
-  position: inherit;
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  position: relative;
+  width: 100%;
 }
 .weather-card__input {
-  width: 30rem;
-  height: 1rem;
+  /* min-width: 25rem; */
+  height: 5rem;
   border-radius: 2rem;
   outline: none;
   padding: 1.8rem;
-  font-size: 2rem;
+  padding-right: 5rem;
+  font-size: 1.6rem;
+  border: none;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
 .weather-card__button {
-  position: relative;
+  position: absolute;
+  right: 1px;
+  z-index: 2;
+  padding: 2rem;
+  height: 5rem;
+  border-radius: 3rem;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
 }
 .weather-card__icon {
+  fill: black;
+  width: 2rem;
 }
+
+.weather-card__button:active {
+  transform: scale(1.2);
+}
+
 .weather-card__information {
+  display: flex;
+  /* gap: rem; */
+  align-items: center;
+  flex-direction: column;
+  z-index: 2;
 }
 .weather-card__location {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 33rem;
+  z-index: 2;
+  /* margin-bottom: 2rem; */
 }
 .weather-card__place {
+  margin: 0;
+  font-weight: 500;
+  font-size: large;
+  max-width: 15rem;
+  overflow: auto;
+  scrollbar-width: thin;
+  padding-bottom: 5px;
+  scrollbar-color: grey transparent;
 }
 .weather-card__flag {
+  width: 4rem;
+  padding-bottom: 5px;
 }
 .weather-card__status {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  /* width: fit-content; */
+  position: relative;
 }
+
 .weather-card__status-icon {
+  /* width: 24rem; */
+  z-index: 1;
+  margin-bottom: 10rem;
 }
+
 .weather-card__status-text {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  z-index: 2;
+  position: absolute;
+  top: 16rem;
 }
-.weather-card__degrees {
+.weather-card__temperature {
+  font-size: 6rem;
+  font-weight: 500;
+  margin: 0;
+}
+.weather-card__degree-symbol {
+  /* font-weight: 500; */
 }
 .weather-card__status-description {
+  margin: 0;
+  font-weight: 500;
 }
 .weather-card__humidity-wind {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 2rem;
+  /* justify-content: space-between; */
 }
 .weather-card__humidity-card {
+  width: fit-content;
+  display: flex;
+  gap: 1rem;
+  /* background-color: white;
+  padding: 2rem; */
+  border-radius: 2rem;
 }
 .humidity-card__icon {
   width: 4rem;
 }
 .humidity-card__status {
+  font-weight: 500;
 }
 .humidity-card__percent {
+  margin: 0;
 }
 .humidity-card__title {
+  margin: 0;
 }
 .weather-card__wind-card {
+  width: fit-content;
+  display: flex;
+  gap: 1rem;
+  /* background-color: white;
+  padding: 2rem; */
+  border-radius: 2rem;
 }
 .wind-card__icon {
-  width: 4rem;
+  width: 3rem;
 }
 .wind-card__status {
+  font-weight: 500;
 }
 .wind-card__value {
+  margin: 0;
+  width: fit-content;
 }
+
+.wind-card__unit{
+font-size: small;
+}
+
 .wind-card__title {
+  margin: 0;
+}
+
+footer {
+  text-align: center;
+  padding: 2rem;
 }
