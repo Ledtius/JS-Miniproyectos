@@ -1,60 +1,18 @@
-const $form = document.querySelector(".form");
-const $input = document.querySelector(".input");
-const $answer = document.querySelector(".answer");
+const apiKey = "Nop";
 
-const apiKey = "In this case, I'm deleted for now";
+const $weatherCard = document.querySelector(".weather-card");
 
-let arrayKelvin = [];
+const $input = document.querySelector(".weather-card__input");
 
-$form.addEventListener("click", (e) => {
-  e.preventDefault();
+const $btn = document.querySelector(".weather-card__button");
 
-  const input = e.target.classList.contains("input").textValue;
-
-  const btn = e.target.classList.contains("btn");
-
-  if (btn) {
-    APIExtractLatLon($input.value);
-    $input.value = "";
-  }
+$btn.addEventListener("click", () => {
+  const inputValue = $input.value.trim();
+  callAPILatLon();
 });
 
-function APIExtractLatLon(value) {
-  if (value === "") return;
-
-  fetch(
-    `http://api.openweathermap.org/geo/1.0/direct?q=${value}&limit=1&appid=${apiKey}`
-  )
+function callAPILatLon() {
+  fetch(`http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit=1&appid=${APIkey}`)
     .then((response) => response.json())
-    .then((data) => APIExtractWeather(data[0].lat, data[0].lon));
-}
-
-function APIExtractWeather(lat, lon) {
-  fetch(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`
-  )
-    .then((response) => response.json())
-    .then((data) =>
-      KelvinToCelsius(
-        data.main.temp,
-        data.main.feels_like,
-        data.main.humidity
-      )
-    );
-}
-arrayCelsius = [];
-
-function KelvinToCelsius(tempK, feels_likeK, humidityK) {
-  console.log(tempK);
-  arrayKelvin.push(tempK);
-  arrayKelvin.push(feels_likeK);
-  arrayKelvin.push(humidityK);
-
-  arrayKelvin.forEach((element) => {
-    let celsiusValue;
-    celsiusValue = element - 273.15;
-    arrayCelsius.push(celsiusValue);
-  });
-
-  console.log(arrayCelsius);
+    .then((data) => console.log(data));
 }
