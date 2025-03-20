@@ -20,6 +20,7 @@ body {
   border-radius: 2rem;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
   position: relative;
+  height: 472px;
   /* max-width: 263px; */
   /* max-width: 263px; */
 }
@@ -152,7 +153,7 @@ body {
 .humidity-card__status {
   font-weight: 500;
 }
-.humidity-card__percent {
+.humidity-card__percentage {
   margin: 0;
 }
 .humidity-card__title {
@@ -177,8 +178,8 @@ body {
   width: fit-content;
 }
 
-.wind-card__unit{
-font-size: small;
+.wind-card__unit {
+  font-size: small;
 }
 
 .wind-card__title {
