@@ -5,6 +5,7 @@ body {
   align-items: center;
   justify-content: space-around;
   background-color: #f2ece9;
+  /* background-color: red; */
 }
 
 .weather-card__title {
@@ -20,6 +21,7 @@ body {
   border-radius: 2rem;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
   position: relative;
+  /* width: 303px; */
   height: 472px;
   /* max-width: 263px; */
   /* max-width: 263px; */
@@ -88,6 +90,7 @@ body {
   font-size: large;
   max-width: 15rem;
   overflow: auto;
+  text-align: center;
   scrollbar-width: thin;
   padding-bottom: 5px;
   scrollbar-color: grey transparent;
