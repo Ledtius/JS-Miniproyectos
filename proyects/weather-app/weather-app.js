@@ -71,10 +71,10 @@ function callAPIWeather(lat, lon) {
           data.name,
           data.sys.country,
           data.weather[0].icon,
-          Math.floor(data.main.temp),
+          Math.round(data.main.temp),
           descriptionFirstUppercase,
-          Math.floor(data.main.humidity),
-          Math.floor(data.wind.speed)
+          Math.round(data.main.humidity),
+          Math.round(data.wind.speed)
         );
       }
     });
