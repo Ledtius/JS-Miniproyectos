@@ -2,6 +2,8 @@ const apiKey = "";
 
 const $weatherCard = document.querySelector(".weather-card");
 
+const $information = document.querySelector(".weather-card__information");
+
 const $input = document.querySelector(".weather-card__input");
 
 const $btn = document.querySelector(".weather-card__button");
@@ -17,7 +19,7 @@ $btn.addEventListener("click", () => {
 
 function callAPILatLon(inputValue) {
   fetch(
-    `http://api.openweathermap.org/geo/1.0/direct?q=${inputValue}&limit=1&appid=${apiKey}`
+    `https://api.openweathermap.org/geo/1.0/direct?q=${inputValue}&limit=1&appid=${apiKey}`
   )
     .then((response) => {
       if (!response.ok) {
@@ -56,11 +58,29 @@ function callAPIWeather(lat, lon) {
         console.log("Valor vacio");
       } else {
         console.log(data);
+        console.log(data[0]);
+        console.log();
+        $information.innerHTML = "";
+
+        const descriptionFirstUppercase = data.weather[0].description.replace(
+          data.weather[0].description[0],
+          data.weather[0].description[0].toUpperCase()
+        );
+
+        createElement(
+          data.name,
+          data.sys.country,
+          data.weather[0].icon,
+          Math.floor(data.main.temp),
+          descriptionFirstUppercase,
+          Math.floor(data.main.humidity),
+          Math.floor(data.wind.speed)
+        );
       }
     });
 }
 
-/* data[0].name, data.[0].sys.country data[0].main.temp, data[0].main.humidity, data[0].wind.speed, data[0].weather[0].description, data[0].weather[0].icon*/
+/* data[0].name, data.[0].sys.country, data[0].weather[0].icon, data[0].main.temp, data[0].weather[0].description, data[0].main.humidity, data[0].wind.speed */
 
 function createElement(
   city,
@@ -71,12 +91,6 @@ function createElement(
   humidity,
   windSpeed
 ) {
-  const $bar = document.createElement("div");
-
-  $information.className = "weather-card__information";
-
-  $weatherCard.append($information);
-
   const $location = document.createElement("div");
 
   $location.className = "weather-card__location";
@@ -125,7 +139,7 @@ function createElement(
 
   const $temp = document.createElement("p");
 
-  $temp.className = "weather-card__status-text";
+  $temp.className = "weather-card__temperature";
 
   $temp.textContent = `${temp}`;
 
@@ -175,9 +189,19 @@ function createElement(
 
   const $humidityPercentage = document.createElement("p");
 
-  $humidityPercentage.className = "humidity-card__status-percentage"
+  $humidityPercentage.className = "humidity-card__percentage";
 
-  $humidityPercentage.textContent = `${humidity}`
+  $humidityPercentage.textContent = `${humidity}%`;
+
+  $humidityStatus.append($humidityPercentage);
+
+  const $humidityTitle = document.createElement("small");
+
+  $humidityTitle.className = "humidity-card__title";
+
+  $humidityTitle.innerText = "Humedad";
+
+  $humidityStatus.append($humidityTitle);
 
   $humidityWind.append($humidity);
 
@@ -189,5 +213,38 @@ function createElement(
 
   $wind.className = "weather-card__wind-card";
 
+  $wind.innerHTML = `  <svg
+                class="wind-card__icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+              >
+                <path
+                  d="M288 32c0 17.7 14.3 32 32 32l32 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128c-17.7 0-32 14.3-32 32s14.3 32 32 32l320 0c53 0 96-43 96-96s-43-96-96-96L320 0c-17.7 0-32 14.3-32 32zm64 352c0 17.7 14.3 32 32 32l32 0c53 0 96-43 96-96s-43-96-96-96L32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-32 0c-17.7 0-32 14.3-32 32zM128 512l32 0c53 0 96-43 96-96s-43-96-96-96L32 320c-17.7 0-32 14.3-32 32s14.3 32 32 32l128 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-32 0c-17.7 0-32 14.3-32 32s14.3 32 32 32z"
+                />
+              </svg>`;
+
   $humidityWind.append($wind);
+
+  const $windStatus = document.createElement("div");
+
+  $windStatus.className = "wind-card__status";
+
+  $wind.append($windStatus);
+
+  const $windValue = document.createElement("p");
+
+  $windValue.className = "wind-card__value";
+
+  $windValue.innerText = `${windSpeed}Km/h`;
+
+  $windStatus.append($windValue);
+
+  const $windTitle = document.createElement("small");
+
+  $windTitle.className = "wind-card__title";
+  $windTitle.textContent = "Vel. viento";
+
+  $windStatus.append($windTitle);
+
+  // $weatherCard.append($information);
 }
