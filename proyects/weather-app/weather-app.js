@@ -14,7 +14,7 @@ $weatherCard.addEventListener("submit", (e) => {
 
 $btn.addEventListener("click", () => {
   callAPILatLon($input.value.trim());
-  $input.value = "";
+  // $input.value = "";
 });
 
 function callAPILatLon(inputValue) {
@@ -61,7 +61,7 @@ function callAPIWeather(lat, lon) {
         console.log(data[0]);
         console.log();
         $information.innerHTML = "";
-
+        
         const descriptionFirstUppercase = data.weather[0].description.replace(
           data.weather[0].description[0],
           data.weather[0].description[0].toUpperCase()
@@ -91,29 +91,29 @@ function createElement(
   humidity,
   windSpeed
 ) {
-  const $location = document.createElement("div");
+  // const $location = document.createElement("div");
 
-  $location.className = "weather-card__location";
+  // $location.className = "weather-card__location";
 
-  $information.append($location);
+  // $information.append($location);
 
-  const $place = document.createElement("p");
+  // const $place = document.createElement("p");
 
-  $place.className = "weather-card__place";
+  // $place.className = "weather-card__place";
 
-  $place.textContent = city;
+  // $place.textContent = city;
 
-  $location.append($place);
+  // $location.append($place);
 
-  const $flag = document.createElement("img");
+  // const $flag = document.createElement("img");
 
-  $flag.className = "weather-card__flag";
+  // $flag.className = "weather-card__flag";
 
-  $flag.setAttribute("src", `https://flagsapi.com/${country}/shiny/64.png`);
+  // $flag.setAttribute("src", `https://flagsapi.com/${country}/shiny/64.png`);
 
-  $flag.setAttribute("alt", `Bandera de ${country}`);
+  // $flag.setAttribute("alt", `Bandera de ${country}`);
 
-  $location.append($flag);
+  // $location.append($flag);
 
   const $status = document.createElement("div");
 
