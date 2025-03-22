@@ -61,16 +61,18 @@ function callAPIWeather(lat, lon) {
         console.log(data[0]);
         console.log();
         $information.innerHTML = "";
-        
+
         const descriptionFirstUppercase = data.weather[0].description.replace(
           data.weather[0].description[0],
           data.weather[0].description[0].toUpperCase()
         );
+        console.log(data.weather[0].main);
 
         createElement(
           data.name,
           data.sys.country,
           data.weather[0].icon,
+          data.weather[0].main,
           Math.round(data.main.temp),
           descriptionFirstUppercase,
           Math.round(data.main.humidity),
@@ -86,6 +88,7 @@ function createElement(
   city,
   country,
   icon,
+  iconMain,
   temp,
   description,
   humidity,
@@ -125,8 +128,10 @@ function createElement(
 
   $icon.className = "weather-card__status-icon";
 
-  $icon.setAttribute("src", `https://openweathermap.org/img/wn/${icon}@4x.png`);
+  // $icon.setAttribute("src", `https://openweathermap.org/img/wn/${icon}@4x.png`);
+  $icon.setAttribute("src", `asents/${iconMain.toLowerCase()}.png`);
 
+  console.log(`asents/${iconMain.toLowerCase()}.png`);
   $icon.setAttribute("alt", `${description}`);
 
   $status.append($icon);

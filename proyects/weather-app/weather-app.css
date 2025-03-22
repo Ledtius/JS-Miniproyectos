@@ -115,8 +115,9 @@ body {
 .weather-card__status-icon {
   /* width: 24rem; */
   z-index: 1;
-  margin-bottom: 10rem;
-
+  margin-bottom: 15rem;
+  margin-top: 3rem;
+  width: 16rem;
 }
 
 .weather-card__status-text {
