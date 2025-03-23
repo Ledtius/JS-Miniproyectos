@@ -74,6 +74,9 @@ function callAPIWeather(lat, lon) {
           data.sys.country,
           data.weather[0].icon,
           data.weather[0].main,
+          data.dt,
+          data.sys.sunrise,
+          data.sys.sunset,
           Math.round(data.main.temp),
           descriptionFirstUppercase,
           Math.round(data.main.humidity),
@@ -91,7 +94,10 @@ function createElement(
   city,
   country,
   icon,
-  iconMain,
+  mainWeather,
+  dt,
+  sunrise,
+  sunset,
   temp,
   description,
   humidity,
@@ -123,134 +129,218 @@ function createElement(
 
   const $status = document.createElement("div");
 
-  $status.className = "weather-card__status";
+  setTimeout(() => {
+    $status.className = "weather-card__status";
 
-  $information.append($status);
+    $information.append($status);
 
-  const $icon = document.createElement("img");
+    const $icon = document.createElement("img");
 
-  $icon.className = "weather-card__status-icon";
+    $icon.className = "weather-card__status-icon";
 
-  $icon.setAttribute("src", `https://openweathermap.org/img/wn/${icon}@4x.png`);
+    $icon.setAttribute(
+      "src",
+      `https://openweathermap.org/img/wn/${icon}@4x.png`
+    );
 
-  $icon.setAttribute("alt", `${description}`);
+    $icon.setAttribute("alt", `${description}`);
 
-  $status.append($icon);
+    $status.append($icon);
 
-  const $statusText = document.createElement("div");
+    const $statusText = document.createElement("div");
 
-  $statusText.className = "weather-card__status-text";
+    $statusText.className = "weather-card__status-text";
 
-  $status.append($statusText);
+    $status.append($statusText);
 
-  const $temp = document.createElement("p");
+    const $temp = document.createElement("p");
 
-  $temp.className = "weather-card__temperature";
+    $temp.className = "weather-card__temperature";
 
-  $temp.textContent = `${temp}`;
+    $temp.textContent = `${temp}`;
 
-  $statusText.append($temp);
+    $statusText.append($temp);
 
-  const $degreeSymbol = document.createElement("small");
+    const $degreeSymbol = document.createElement("small");
 
-  $degreeSymbol.className = "weather-card__degree-symbol";
+    $degreeSymbol.className = "weather-card__degree-symbol";
 
-  $degreeSymbol.textContent = "°C";
+    $degreeSymbol.textContent = "°C";
 
-  $temp.append($degreeSymbol);
+    $temp.append($degreeSymbol);
 
-  const $description = document.createElement("p");
+    const $description = document.createElement("p");
 
-  $description.className = "weather-card__status-description";
+    $description.className = "weather-card__status-description";
 
-  $description.textContent = `${description}`;
+    $description.textContent = `${description}`;
 
-  $statusText.append($description);
+    $statusText.append($description);
 
-  const $humidityWind = document.createElement("div");
+    const $humidityWind = document.createElement("div");
 
-  $humidityWind.className = "weather-card__humidity-wind";
+    $humidityWind.className = "weather-card__humidity-wind";
 
-  $information.append($humidityWind);
+    $information.append($humidityWind);
 
-  const $humidity = document.createElement("div");
+    const $humidity = document.createElement("div");
 
-  $humidity.className = "weather-card__humidity-card";
+    $humidity.className = "weather-card__humidity-card";
 
-  $humidity.innerHTML = `  <svg
-                class="humidity-card__icon"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 576 512"
-              >
-                <path
-                  d="M269.5 69.9c11.1-7.9 25.9-7.9 37 0C329 85.4 356.5 96 384 96c26.9 0 55.4-10.8 77.4-26.1c0 0 0 0 0 0c11.9-8.5 28.1-7.8 39.2 1.7c14.4 11.9 32.5 21 50.6 25.2c17.2 4 27.9 21.2 23.9 38.4s-21.2 27.9-38.4 23.9c-24.5-5.7-44.9-16.5-58.2-25C449.5 149.7 417 160 384 160c-31.9 0-60.6-9.9-80.4-18.9c-5.8-2.7-11.1-5.3-15.6-7.7c-4.5 2.4-9.7 5.1-15.6 7.7c-19.8 9-48.5 18.9-80.4 18.9c-33 0-65.5-10.3-94.5-25.8c-13.4 8.4-33.7 19.3-58.2 25c-17.2 4-34.4-6.7-38.4-23.9s6.7-34.4 23.9-38.4C42.8 92.6 61 83.5 75.3 71.6c11.1-9.5 27.3-10.1 39.2-1.7c0 0 0 0 0 0C136.7 85.2 165.1 96 192 96c27.5 0 55-10.6 77.5-26.1zm37 288C329 373.4 356.5 384 384 384c26.9 0 55.4-10.8 77.4-26.1c0 0 0 0 0 0c11.9-8.5 28.1-7.8 39.2 1.7c14.4 11.9 32.5 21 50.6 25.2c17.2 4 27.9 21.2 23.9 38.4s-21.2 27.9-38.4 23.9c-24.5-5.7-44.9-16.5-58.2-25C449.5 437.7 417 448 384 448c-31.9 0-60.6-9.9-80.4-18.9c-5.8-2.7-11.1-5.3-15.6-7.7c-4.5 2.4-9.7 5.1-15.6 7.7c-19.8 9-48.5 18.9-80.4 18.9c-33 0-65.5-10.3-94.5-25.8c-13.4 8.4-33.7 19.3-58.2 25c-17.2 4-34.4-6.7-38.4-23.9s6.7-34.4 23.9-38.4c18.1-4.2 36.2-13.3 50.6-25.2c11.1-9.4 27.3-10.1 39.2-1.7c0 0 0 0 0 0C136.7 373.2 165.1 384 192 384c27.5 0 55-10.6 77.5-26.1c11.1-7.9 25.9-7.9 37 0zm0-144C329 229.4 356.5 240 384 240c26.9 0 55.4-10.8 77.4-26.1c0 0 0 0 0 0c11.9-8.5 28.1-7.8 39.2 1.7c14.4 11.9 32.5 21 50.6 25.2c17.2 4 27.9 21.2 23.9 38.4s-21.2 27.9-38.4 23.9c-24.5-5.7-44.9-16.5-58.2-25C449.5 293.7 417 304 384 304c-31.9 0-60.6-9.9-80.4-18.9c-5.8-2.7-11.1-5.3-15.6-7.7c-4.5 2.4-9.7 5.1-15.6 7.7c-19.8 9-48.5 18.9-80.4 18.9c-33 0-65.5-10.3-94.5-25.8c-13.4 8.4-33.7 19.3-58.2 25c-17.2 4-34.4-6.7-38.4-23.9s6.7-34.4 23.9-38.4c18.1-4.2 36.2-13.3 50.6-25.2c11.1-9.5 27.3-10.1 39.2-1.7c0 0 0 0 0 0C136.7 229.2 165.1 240 192 240c27.5 0 55-10.6 77.5-26.1c11.1-7.9 25.9-7.9 37 0z"
-                />
-              </svg>`;
+    $humidity.innerHTML = `  <svg
+                  class="humidity-card__icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 576 512"
+                >
+                  <path
+                    d="M269.5 69.9c11.1-7.9 25.9-7.9 37 0C329 85.4 356.5 96 384 96c26.9 0 55.4-10.8 77.4-26.1c0 0 0 0 0 0c11.9-8.5 28.1-7.8 39.2 1.7c14.4 11.9 32.5 21 50.6 25.2c17.2 4 27.9 21.2 23.9 38.4s-21.2 27.9-38.4 23.9c-24.5-5.7-44.9-16.5-58.2-25C449.5 149.7 417 160 384 160c-31.9 0-60.6-9.9-80.4-18.9c-5.8-2.7-11.1-5.3-15.6-7.7c-4.5 2.4-9.7 5.1-15.6 7.7c-19.8 9-48.5 18.9-80.4 18.9c-33 0-65.5-10.3-94.5-25.8c-13.4 8.4-33.7 19.3-58.2 25c-17.2 4-34.4-6.7-38.4-23.9s6.7-34.4 23.9-38.4C42.8 92.6 61 83.5 75.3 71.6c11.1-9.5 27.3-10.1 39.2-1.7c0 0 0 0 0 0C136.7 85.2 165.1 96 192 96c27.5 0 55-10.6 77.5-26.1zm37 288C329 373.4 356.5 384 384 384c26.9 0 55.4-10.8 77.4-26.1c0 0 0 0 0 0c11.9-8.5 28.1-7.8 39.2 1.7c14.4 11.9 32.5 21 50.6 25.2c17.2 4 27.9 21.2 23.9 38.4s-21.2 27.9-38.4 23.9c-24.5-5.7-44.9-16.5-58.2-25C449.5 437.7 417 448 384 448c-31.9 0-60.6-9.9-80.4-18.9c-5.8-2.7-11.1-5.3-15.6-7.7c-4.5 2.4-9.7 5.1-15.6 7.7c-19.8 9-48.5 18.9-80.4 18.9c-33 0-65.5-10.3-94.5-25.8c-13.4 8.4-33.7 19.3-58.2 25c-17.2 4-34.4-6.7-38.4-23.9s6.7-34.4 23.9-38.4c18.1-4.2 36.2-13.3 50.6-25.2c11.1-9.4 27.3-10.1 39.2-1.7c0 0 0 0 0 0C136.7 373.2 165.1 384 192 384c27.5 0 55-10.6 77.5-26.1c11.1-7.9 25.9-7.9 37 0zm0-144C329 229.4 356.5 240 384 240c26.9 0 55.4-10.8 77.4-26.1c0 0 0 0 0 0c11.9-8.5 28.1-7.8 39.2 1.7c14.4 11.9 32.5 21 50.6 25.2c17.2 4 27.9 21.2 23.9 38.4s-21.2 27.9-38.4 23.9c-24.5-5.7-44.9-16.5-58.2-25C449.5 293.7 417 304 384 304c-31.9 0-60.6-9.9-80.4-18.9c-5.8-2.7-11.1-5.3-15.6-7.7c-4.5 2.4-9.7 5.1-15.6 7.7c-19.8 9-48.5 18.9-80.4 18.9c-33 0-65.5-10.3-94.5-25.8c-13.4 8.4-33.7 19.3-58.2 25c-17.2 4-34.4-6.7-38.4-23.9s6.7-34.4 23.9-38.4c18.1-4.2 36.2-13.3 50.6-25.2c11.1-9.5 27.3-10.1 39.2-1.7c0 0 0 0 0 0C136.7 229.2 165.1 240 192 240c27.5 0 55-10.6 77.5-26.1c11.1-7.9 25.9-7.9 37 0z"
+                  />
+                </svg>`;
 
-  const $humidityStatus = document.createElement("div");
+    const $humidityStatus = document.createElement("div");
 
-  $humidityStatus.className = "humidity-card__status";
+    $humidityStatus.className = "humidity-card__status";
 
-  $humidity.append($humidityStatus);
+    $humidity.append($humidityStatus);
 
-  const $humidityPercentage = document.createElement("p");
+    const $humidityPercentage = document.createElement("p");
 
-  $humidityPercentage.className = "humidity-card__percentage";
+    $humidityPercentage.className = "humidity-card__percentage";
 
-  $humidityPercentage.textContent = `${humidity}%`;
+    $humidityPercentage.textContent = `${humidity}%`;
 
-  $humidityStatus.append($humidityPercentage);
+    $humidityStatus.append($humidityPercentage);
 
-  const $humidityTitle = document.createElement("small");
+    const $humidityTitle = document.createElement("small");
 
-  $humidityTitle.className = "humidity-card__title";
+    $humidityTitle.className = "humidity-card__title";
 
-  $humidityTitle.innerText = "Humedad";
+    $humidityTitle.innerText = "Humedad";
 
-  $humidityStatus.append($humidityTitle);
+    $humidityStatus.append($humidityTitle);
 
-  $humidityWind.append($humidity);
+    $humidityWind.append($humidity);
 
-  // const $humiditySvg = document.createElement("svg");
+    // const $humiditySvg = document.createElement("svg");
 
-  // $humiditySvg.className = ""
+    // $humiditySvg.className = ""
 
-  const $wind = document.createElement("div");
+    const $wind = document.createElement("div");
 
-  $wind.className = "weather-card__wind-card";
+    $wind.className = "weather-card__wind-card";
 
-  $wind.innerHTML = `  <svg
-                class="wind-card__icon"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 512 512"
-              >
-                <path
-                  d="M288 32c0 17.7 14.3 32 32 32l32 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128c-17.7 0-32 14.3-32 32s14.3 32 32 32l320 0c53 0 96-43 96-96s-43-96-96-96L320 0c-17.7 0-32 14.3-32 32zm64 352c0 17.7 14.3 32 32 32l32 0c53 0 96-43 96-96s-43-96-96-96L32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-32 0c-17.7 0-32 14.3-32 32zM128 512l32 0c53 0 96-43 96-96s-43-96-96-96L32 320c-17.7 0-32 14.3-32 32s14.3 32 32 32l128 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-32 0c-17.7 0-32 14.3-32 32s14.3 32 32 32z"
-                />
-              </svg>`;
+    $wind.innerHTML = `  <svg
+                  class="wind-card__icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 512 512"
+                >
+                  <path
+                    d="M288 32c0 17.7 14.3 32 32 32l32 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128c-17.7 0-32 14.3-32 32s14.3 32 32 32l320 0c53 0 96-43 96-96s-43-96-96-96L320 0c-17.7 0-32 14.3-32 32zm64 352c0 17.7 14.3 32 32 32l32 0c53 0 96-43 96-96s-43-96-96-96L32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-32 0c-17.7 0-32 14.3-32 32zM128 512l32 0c53 0 96-43 96-96s-43-96-96-96L32 320c-17.7 0-32 14.3-32 32s14.3 32 32 32l128 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-32 0c-17.7 0-32 14.3-32 32s14.3 32 32 32z"
+                  />
+                </svg>`;
 
-  $humidityWind.append($wind);
+    $humidityWind.append($wind);
 
-  const $windStatus = document.createElement("div");
+    const $windStatus = document.createElement("div");
 
-  $windStatus.className = "wind-card__status";
+    $windStatus.className = "wind-card__status";
 
-  $wind.append($windStatus);
+    $wind.append($windStatus);
 
-  const $windValue = document.createElement("p");
+    const $windValue = document.createElement("p");
 
-  $windValue.className = "wind-card__value";
+    $windValue.className = "wind-card__value";
 
-  $windValue.innerText = `${windSpeed}Km/h`;
+    $windValue.innerText = `${windSpeed}Km/h`;
 
-  $windStatus.append($windValue);
+    $windStatus.append($windValue);
 
-  const $windTitle = document.createElement("small");
+    const $windTitle = document.createElement("small");
 
-  $windTitle.className = "wind-card__title";
-  $windTitle.textContent = "Vel. viento";
+    $windTitle.className = "wind-card__title";
+    $windTitle.textContent = "Vel. viento";
 
-  $windStatus.append($windTitle);
+    $windStatus.append($windTitle);
+
+    changeColorBody(mainWeather, dt, sunrise, sunset);
+  }, 500);
 
   // $weatherCard.append($information);
+}
+
+function changeColorBody(mainWeather, dt, sunrise, sunset) {
+  const $body = document.querySelector("body");
+
+  const $title = document.querySelector(".weather-card__title");
+
+  const $footer = document.querySelector("footer");
+
+  console.log(
+    `dt: ${dt - 1742000000}\nsunrise: ${sunrise - 1742000000}\nsunset: ${
+      sunset - 1742000000
+    }`
+  );
+
+  if (mainWeather === "Thunder Storm") {
+    $body.style = "background-color: #3E4C5E";
+
+    $title.style = "color: #FFFFFF";
+    $footer.style = "color: #FFFFFF";
+  }
+  if (mainWeather === "Drizzle") {
+    $body.style = "background-color: #AAB7C4";
+
+    $title.style = "color: #000000";
+    $footer.style = "color: #000000";
+  }
+  if (mainWeather === "Rain") {
+    $body.style = "background-color: #637081";
+
+    $title.style = "color: #000000";
+    $footer.style = "color: #000000";
+  }
+  if (mainWeather === "Snow") {
+    $body.style = "background-color: #E3E6E9";
+
+    $title.style = "color: #000000";
+    $footer.style = "color: #000000";
+  }
+  if (
+    mainWeather === "Mist" ||
+    mainWeather === "Haze" ||
+    mainWeather === "Dust" ||
+    mainWeather === "Fog" ||
+    mainWeather === "Sand" ||
+    mainWeather === "Dust" ||
+    mainWeather === "Ash" ||
+    mainWeather === "Squall" ||
+    mainWeather === "Tomato"
+  ) {
+    $body.style = "background-color: #848484";
+
+    $title.style = "color: #000000";
+    $footer.style = "color: #000000";
+  }
+  if (mainWeather === "Clear") {
+    if (dt >= sunrise && dt < sunset) {
+      $body.style = "background-color: #87CEEB";
+
+      $title.style = "color: #000000";
+      $footer.style = "color: #000000";
+    }
+
+    if (dt < sunrise || dt >= sunset) {
+      $body.style = "background-color: #1B1C31";
+
+      $title.style = "color: #FFFFFF";
+      $footer.style = "color: #FFFFFF";
+    }
+  }
+
+  if (mainWeather === "Clouds") {
+    $body.style = "background-color: #AAB8C2";
+
+    $title.style = "color: #000000";
+    $footer.style = "color: #000000";
+  }
 }
