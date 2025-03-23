@@ -4,7 +4,7 @@ body {
   /* padding: 2rem; */
   align-items: center;
   justify-content: space-between;
-  /* background-color: #f2ece9; */
+  background-color: #e3eaf2;
   min-width: 320px;
   /* color: white; */
   /* background-color: red; */
@@ -20,16 +20,21 @@ body {
   flex-direction: column;
   align-items: center;
   /* gap: 1rem; */
-  background-color: #ded3ce;
+  /* background-color: #F9F6F2; */
   padding: 2rem;
+  /* border: 1px solid #D1C7BD; */
   border-radius: 2rem;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(1rem);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   position: relative;
   /* width: 303px; */
   height: 432px;
   /* max-width: 263px; */
   /* max-width: 263px; */
 }
+
 .weather-card__search-bar {
   display: flex;
   align-items: center;
@@ -63,7 +68,7 @@ body {
   transition: transform 0.2s ease;
 }
 .weather-card__icon {
-  fill: black;
+  fill: #666666;
   width: 2rem;
 }
 
@@ -73,21 +78,39 @@ body {
 
 .weather-card__information {
   display: flex;
+  align-items: center;
+  position: relative;
   /* gap: rem; */
   align-items: center;
   flex-direction: column;
   z-index: 2;
+}
+
+.weather-card__loader {
+  display: none;
+  position: absolute;
+  top: 9rem;
+}
+.weather__card__loader-text {
+  font-size: 3rem;
+  /* background-color: white;
+  padding: 2rem; */
+  filter: drop-shadow(4px 4px 10px rgba(0, 0, 0, 0.479));
+  border-radius: 2rem;
+  font-weight: 500;
   animation-name: change-size;
-  animation-duration: 0.5s;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
   animation-timing-function: linear;
 }
 
 @keyframes change-size {
-  from {
+  0%,
+  100% {
     opacity: 0;
     transform: scale(0.5);
   }
-  to {
+  50% {
     opacity: 1;
     transform: scale(1);
   }
@@ -158,6 +181,8 @@ body {
   flex-direction: column;
   z-index: 2;
   position: absolute;
+  filter: drop-shadow(4px 4px 10px rgba(0, 0, 0, 0.479));
+
   top: 16rem;
 }
 .weather-card__temperature {
@@ -174,6 +199,7 @@ body {
 }
 .weather-card__humidity-wind {
   display: flex;
+  color: #666666;
   align-items: center;
   width: 100%;
   gap: 2rem;
@@ -189,6 +215,8 @@ body {
 }
 .humidity-card__icon {
   width: 4rem;
+  /* fill: #0077b6; */
+  filter: drop-shadow(4px 4px 10px rgba(0, 0, 0, 0.3));
 }
 .humidity-card__status {
   font-weight: 500;
@@ -209,6 +237,8 @@ body {
 }
 .wind-card__icon {
   width: 3rem;
+  /* fill: #b0b0b0; */
+  filter: drop-shadow(4px 4px 10px rgba(0, 0, 0, 0.3));
 }
 .wind-card__status {
   font-weight: 500;
