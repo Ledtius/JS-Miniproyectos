@@ -128,16 +128,8 @@ function createElement(
 
   $icon.className = "weather-card__status-icon";
 
-  if (iconMain === "Thunder Storm") {
-    iconMain = "thunder_storm";
-    // console.log(iconMain);
-  }
-  // $icon.setAttribute("src", `https://openweathermap.org/img/wn/${icon}@4x.png`);
-  $icon.setAttribute("src", `asents/${iconMain.toLowerCase()}.svg`);
+  $icon.setAttribute("src", `https://openweathermap.org/img/wn/${icon}@4x.png`);
 
-  console.log(iconMain.toLowerCase());
-
-  console.log(`asents/${iconMain.toLowerCase()}.svg`);
   $icon.setAttribute("alt", `${description}`);
 
   $status.append($icon);
