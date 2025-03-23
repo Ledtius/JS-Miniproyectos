@@ -4,9 +4,9 @@ body {
   /* padding: 2rem; */
   align-items: center;
   justify-content: space-between;
-  background-color: #f2ece9;
+  /* background-color: #f2ece9; */
   min-width: 320px;
-
+  background-color: #232931;
   /* background-color: red; */
 }
 
@@ -115,10 +115,25 @@ body {
 .weather-card__status-icon {
   /* width: 24rem; */
   z-index: 1;
-  margin-bottom: 15rem;
-  margin-top: 3rem;
-  width: 12rem;
+  margin-bottom: 10rem;
+  /* width: 1rem; */
+  filter: drop-shadow(4px 4px 10px rgba(0, 0, 0, 0.479));
+  position: relative;
 }
+
+/* .weather-card__status::before {
+  content: "";
+  position: absolute;
+  top:4rem;
+  left: 0rem;
+  width: 20rem;
+  height: 12rem; 
+  background-color: transparent;
+  border: 2px solid transparent;
+  box-shadow: 4px 4px 19px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  display: block; 
+} */
 
 .weather-card__status-text {
   width: fit-content;
