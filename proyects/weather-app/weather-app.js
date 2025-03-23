@@ -14,7 +14,6 @@ $weatherCard.addEventListener("submit", (e) => {
 
 $btn.addEventListener("click", () => {
   callAPILatLon($input.value.trim());
-  // $input.value = "";
 });
 
 $input.value = "Barrancabermeja";
@@ -242,6 +241,18 @@ function changeColorBody(mainWeather, dt, sunrise, sunset) {
 
   const $title = document.querySelector(".weather-card__title");
 
+  const $weatherTemperature = document.querySelector(
+    ".weather-card__temperature"
+  );
+  const $weatherDescription = document.querySelector(
+    ".weather-card__status-description"
+  );
+  const $weatherHumidityWind = document.querySelector(
+    ".weather-card__humidity-wind"
+  );
+  const $weatherHumidityIcon = document.querySelector(".humidity-card__icon");
+  const $weatherWindIcon = document.querySelector(".wind-card__icon");
+
   const $footer = document.querySelector("footer");
 
   console.log(
@@ -250,29 +261,55 @@ function changeColorBody(mainWeather, dt, sunrise, sunset) {
     }`
   );
 
+  // mainWeather = "Clouds";
+
   if (mainWeather === "Thunder Storm") {
-    $body.style = "background-color: #3E4C5E";
+    $body.style = "background-color: #1C1F2B";
+
+    $title.style = "color: #FFC107";
+    $footer.style = "color: #FFC107";
+
+    $weatherTemperature.style = "color: #FFFFFF";
+    $weatherDescription.style = "color: #FFFFFF";
+    $weatherHumidityWind.style = "color:rgba(255, 193, 7, 0.82)";
+    $weatherHumidityIcon.style = "fill: #FFC107";
+    $weatherWindIcon.style = "fill: #FFC107";
+  }
+  if (mainWeather === "Drizzle") {
+    $body.style = "background-color: #5E7E96";
+
+    $title.style = "color: #F2F2F2";
+    $footer.style = "color: #F2F2F2";
+
+    $weatherTemperature.style = "color: #FFFFFF";
+    $weatherDescription.style = "color: #FFFFFF";
+    $weatherHumidityWind.style = "color:rgba(242, 242, 242, 0.82)";
+    $weatherHumidityIcon.style = "fill: #F2F2F2";
+    $weatherWindIcon.style = "fill: #F2F2F2";
+  }
+  if (mainWeather === "Rain") {
+    $body.style = "background-color: #324b67";
 
     $title.style = "color: #FFFFFF";
     $footer.style = "color: #FFFFFF";
-  }
-  if (mainWeather === "Drizzle") {
-    $body.style = "background-color: #AAB7C4";
 
-    $title.style = "color: #000000";
-    $footer.style = "color: #000000";
-  }
-  if (mainWeather === "Rain") {
-    $body.style = "background-color: #637081";
-
-    $title.style = "color: #000000";
-    $footer.style = "color: #000000";
+    $weatherTemperature.style = "color: #FFFFFF";
+    $weatherDescription.style = "color: #FFFFFF";
+    $weatherHumidityWind.style = "color:rgba(242, 242, 242, 0.82)";
+    $weatherHumidityIcon.style = "fill: #A3CFF8";
+    $weatherWindIcon.style = "fill: #A3CFF8";
   }
   if (mainWeather === "Snow") {
-    $body.style = "background-color: #E3E6E9";
+    $body.style = "background-color: #DDE4EA";
 
-    $title.style = "color: #000000";
-    $footer.style = "color: #000000";
+    $title.style = "color: #434343";
+    $footer.style = "color: #434343";
+
+    $weatherTemperature.style = "color:  #434343";
+    $weatherDescription.style = "color: #434343";
+    $weatherHumidityWind.style = "color:rgba(67, 67, 67, 0.82)";
+    $weatherHumidityIcon.style = "fill: #434343";
+    $weatherWindIcon.style = "fill: #434343";
   }
   if (
     mainWeather === "Mist" ||
@@ -285,31 +322,52 @@ function changeColorBody(mainWeather, dt, sunrise, sunset) {
     mainWeather === "Squall" ||
     mainWeather === "Tomato"
   ) {
-    $body.style = "background-color: #848484";
+    $body.style = "background-color: #444a50";
 
-    $title.style = "color: #000000";
-    $footer.style = "color: #000000";
+    $title.style = "color: #F8F9FA";
+    $footer.style = "color: #F8F9FA";
+
+    $weatherTemperature.style = "color:  #F8F9FA";
+    $weatherDescription.style = "color: #F8F9FA";
+    $weatherHumidityWind.style = "color:rgba(248, 249, 250, 0.82)";
+    $weatherHumidityIcon.style = "fill: #F8F9FA";
+    $weatherWindIcon.style = "fill: #F8F9FA";
   }
   if (mainWeather === "Clear") {
     if (dt >= sunrise && dt < sunset) {
-      $body.style = "background-color: #87CEEB";
+      $body.style = "background-color: #72BCE8";
 
-      $title.style = "color: #000000";
-      $footer.style = "color: #000000";
+      $weatherTemperature.style = "color:  #0D0D0D";
+      $weatherDescription.style = "color: #0D0D0D";
+      $weatherHumidityWind.style = "color:rgba(13, 13, 13, 0.82)";
+      $weatherHumidityIcon.style = "fill: #0D0D0D";
+      $weatherWindIcon.style = "fill: #0D0D0D";
     }
 
     if (dt < sunrise || dt >= sunset) {
-      $body.style = "background-color: #1B1C31";
+      $body.style = "background-color: #14173D";
 
       $title.style = "color: #FFFFFF";
       $footer.style = "color: #FFFFFF";
+
+      $weatherTemperature.style = "color:  #FFFFFF";
+      $weatherDescription.style = "color: #FFFFFF";
+      $weatherHumidityWind.style = "color:rgba(255, 255, 255, 0.82)";
+      $weatherHumidityIcon.style = "fill: #FFFFFF";
+      $weatherWindIcon.style = "fill: #FFFFFF";
     }
   }
 
   if (mainWeather === "Clouds") {
-    $body.style = "background-color: #AAB8C2";
+    $body.style = "background-color: #BFC7D6";
 
-    $title.style = "color: #000000";
-    $footer.style = "color: #000000";
+    $title.style = "color: #282828";
+    $footer.style = "color: #282828";
+
+    $weatherTemperature.style = "color:  #282828";
+    $weatherDescription.style = "color: #282828";
+    $weatherHumidityWind.style = "color:rgba(40, 40, 40, 0.82)";
+    $weatherHumidityIcon.style = "fill: #282828";
+    $weatherWindIcon.style = "fill: #282828";
   }
 }
