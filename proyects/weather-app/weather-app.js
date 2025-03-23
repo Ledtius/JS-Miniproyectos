@@ -244,14 +244,20 @@ function changeColorBody(mainWeather, dt, sunrise, sunset) {
   const $weatherTemperature = document.querySelector(
     ".weather-card__temperature"
   );
+
   const $weatherDescription = document.querySelector(
     ".weather-card__status-description"
   );
+
   const $weatherHumidityWind = document.querySelector(
     ".weather-card__humidity-wind"
   );
+
   const $weatherHumidityIcon = document.querySelector(".humidity-card__icon");
+
   const $weatherWindIcon = document.querySelector(".wind-card__icon");
+
+  const $loader = document.querySelector(".weather-card__loader");
 
   const $footer = document.querySelector("footer");
 
@@ -261,7 +267,7 @@ function changeColorBody(mainWeather, dt, sunrise, sunset) {
     }`
   );
 
-  // mainWeather = "Clouds";
+  // mainWeather = "Fog";
 
   if (mainWeather === "Thunder Storm") {
     $body.style = "background-color: #1C1F2B";
@@ -286,6 +292,7 @@ function changeColorBody(mainWeather, dt, sunrise, sunset) {
     $weatherHumidityWind.style = "color:rgba(242, 242, 242, 0.82)";
     $weatherHumidityIcon.style = "fill: #F2F2F2";
     $weatherWindIcon.style = "fill: #F2F2F2";
+    $loader.style = "color: #F2F2F2";
   }
   if (mainWeather === "Rain") {
     $body.style = "background-color: #324b67";
@@ -298,6 +305,7 @@ function changeColorBody(mainWeather, dt, sunrise, sunset) {
     $weatherHumidityWind.style = "color:rgba(242, 242, 242, 0.82)";
     $weatherHumidityIcon.style = "fill: #A3CFF8";
     $weatherWindIcon.style = "fill: #A3CFF8";
+    $loader.style = "color: #FFFFFF";
   }
   if (mainWeather === "Snow") {
     $body.style = "background-color: #DDE4EA";
@@ -310,6 +318,7 @@ function changeColorBody(mainWeather, dt, sunrise, sunset) {
     $weatherHumidityWind.style = "color:rgba(67, 67, 67, 0.82)";
     $weatherHumidityIcon.style = "fill: #434343";
     $weatherWindIcon.style = "fill: #434343";
+    $loader.style = "color: #434343";
   }
   if (
     mainWeather === "Mist" ||
@@ -332,6 +341,7 @@ function changeColorBody(mainWeather, dt, sunrise, sunset) {
     $weatherHumidityWind.style = "color:rgba(248, 249, 250, 0.82)";
     $weatherHumidityIcon.style = "fill: #F8F9FA";
     $weatherWindIcon.style = "fill: #F8F9FA";
+    $loader.style = "color: #F8F8FA";
   }
   if (mainWeather === "Clear") {
     if (dt >= sunrise && dt < sunset) {
@@ -342,6 +352,7 @@ function changeColorBody(mainWeather, dt, sunrise, sunset) {
       $weatherHumidityWind.style = "color:rgba(13, 13, 13, 0.82)";
       $weatherHumidityIcon.style = "fill: #0D0D0D";
       $weatherWindIcon.style = "fill: #0D0D0D";
+      $loader.style = "color: #0D0D0D";
     }
 
     if (dt < sunrise || dt >= sunset) {
@@ -355,6 +366,7 @@ function changeColorBody(mainWeather, dt, sunrise, sunset) {
       $weatherHumidityWind.style = "color:rgba(255, 255, 255, 0.82)";
       $weatherHumidityIcon.style = "fill: #FFFFFF";
       $weatherWindIcon.style = "fill: #FFFFFF";
+      $loader.style = "color: #FFFFFF";
     }
   }
 
@@ -369,5 +381,6 @@ function changeColorBody(mainWeather, dt, sunrise, sunset) {
     $weatherHumidityWind.style = "color:rgba(40, 40, 40, 0.82)";
     $weatherHumidityIcon.style = "fill: #282828";
     $weatherWindIcon.style = "fill: #282828";
+    $loader.style = "color: #282828";
   }
 }
