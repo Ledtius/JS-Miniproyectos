@@ -17,13 +17,14 @@ $btn.addEventListener("click", () => {
   // $input.value = "";
 });
 
+$input.value = "Barrancabermeja";
+
 function callAPILatLon(inputValue) {
   fetch(
     `https://api.openweathermap.org/geo/1.0/direct?q=${inputValue}&limit=1&appid=${apiKey}`
   )
     .then((response) => {
       if (!response.ok) {
-        /* Esto pasa porque no ingresaste un valor */
         console.log("Error en la respuesta ");
       } else {
         return response.json();
@@ -81,6 +82,8 @@ function callAPIWeather(lat, lon) {
       }
     });
 }
+
+callAPIWeather(7.0673313, -73.8525627);
 
 /* data[0].name, data.[0].sys.country, data[0].weather[0].icon, data[0].main.temp, data[0].weather[0].description, data[0].main.humidity, data[0].wind.speed */
 
