@@ -269,7 +269,7 @@ function changeColorBody(mainWeather, dt, sunrise, sunset) {
 
   // mainWeather = "Fog";
 
-  if (mainWeather === "Thunder Storm") {
+  if (mainWeather === "Thunderstorm") {
     $body.style = "background-color: #1C1F2B";
 
     $title.style = "color: #FFC107";
