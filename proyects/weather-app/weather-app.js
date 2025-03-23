@@ -88,8 +88,6 @@ function callAPIWeather(lat, lon) {
 
 callAPIWeather(7.0673313, -73.8525627);
 
-/* data[0].name, data.[0].sys.country, data[0].weather[0].icon, data[0].main.temp, data[0].weather[0].description, data[0].main.humidity, data[0].wind.speed */
-
 function createElement(
   city,
   country,
@@ -103,91 +101,63 @@ function createElement(
   humidity,
   windSpeed
 ) {
-  // const $location = document.createElement("div");
-
-  // $location.className = "weather-card__location";
-
-  // $information.append($location);
-
-  // const $place = document.createElement("p");
-
-  // $place.className = "weather-card__place";
-
-  // $place.textContent = city;
-
-  // $location.append($place);
-
-  // const $flag = document.createElement("img");
-
-  // $flag.className = "weather-card__flag";
-
-  // $flag.setAttribute("src", `https://flagsapi.com/${country}/shiny/64.png`);
-
-  // $flag.setAttribute("alt", `Bandera de ${country}`);
-
-  // $location.append($flag);
-
   const $status = document.createElement("div");
 
-  setTimeout(() => {
-    $status.className = "weather-card__status";
+  $status.className = "weather-card__status";
 
-    $information.append($status);
+  $information.append($status);
 
-    const $icon = document.createElement("img");
+  const $icon = document.createElement("img");
 
-    $icon.className = "weather-card__status-icon";
+  $icon.className = "weather-card__status-icon";
 
-    $icon.setAttribute(
-      "src",
-      `https://openweathermap.org/img/wn/${icon}@4x.png`
-    );
+  $icon.setAttribute("src", `https://openweathermap.org/img/wn/${icon}@4x.png`);
 
-    $icon.setAttribute("alt", `${description}`);
+  $icon.setAttribute("alt", `${description}`);
 
-    $status.append($icon);
+  $status.append($icon);
 
-    const $statusText = document.createElement("div");
+  const $statusText = document.createElement("div");
 
-    $statusText.className = "weather-card__status-text";
+  $statusText.className = "weather-card__status-text";
 
-    $status.append($statusText);
+  $status.append($statusText);
 
-    const $temp = document.createElement("p");
+  const $temp = document.createElement("p");
 
-    $temp.className = "weather-card__temperature";
+  $temp.className = "weather-card__temperature";
 
-    $temp.textContent = `${temp}`;
+  $temp.textContent = `${temp}`;
 
-    $statusText.append($temp);
+  $statusText.append($temp);
 
-    const $degreeSymbol = document.createElement("small");
+  const $degreeSymbol = document.createElement("small");
 
-    $degreeSymbol.className = "weather-card__degree-symbol";
+  $degreeSymbol.className = "weather-card__degree-symbol";
 
-    $degreeSymbol.textContent = "°C";
+  $degreeSymbol.textContent = "°C";
 
-    $temp.append($degreeSymbol);
+  $temp.append($degreeSymbol);
 
-    const $description = document.createElement("p");
+  const $description = document.createElement("p");
 
-    $description.className = "weather-card__status-description";
+  $description.className = "weather-card__status-description";
 
-    $description.textContent = `${description}`;
+  $description.textContent = `${description}`;
 
-    $statusText.append($description);
+  $statusText.append($description);
 
-    const $humidityWind = document.createElement("div");
+  const $humidityWind = document.createElement("div");
 
-    $humidityWind.className = "weather-card__humidity-wind";
+  $humidityWind.className = "weather-card__humidity-wind";
 
-    $information.append($humidityWind);
+  $information.append($humidityWind);
 
-    const $humidity = document.createElement("div");
+  const $humidity = document.createElement("div");
 
-    $humidity.className = "weather-card__humidity-card";
+  $humidity.className = "weather-card__humidity-card";
 
-    $humidity.innerHTML = `  <svg
+  $humidity.innerHTML = `  <svg
                   class="humidity-card__icon"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 576 512"
@@ -197,39 +167,39 @@ function createElement(
                   />
                 </svg>`;
 
-    const $humidityStatus = document.createElement("div");
+  const $humidityStatus = document.createElement("div");
 
-    $humidityStatus.className = "humidity-card__status";
+  $humidityStatus.className = "humidity-card__status";
 
-    $humidity.append($humidityStatus);
+  $humidity.append($humidityStatus);
 
-    const $humidityPercentage = document.createElement("p");
+  const $humidityPercentage = document.createElement("p");
 
-    $humidityPercentage.className = "humidity-card__percentage";
+  $humidityPercentage.className = "humidity-card__percentage";
 
-    $humidityPercentage.textContent = `${humidity}%`;
+  $humidityPercentage.textContent = `${humidity}%`;
 
-    $humidityStatus.append($humidityPercentage);
+  $humidityStatus.append($humidityPercentage);
 
-    const $humidityTitle = document.createElement("small");
+  const $humidityTitle = document.createElement("small");
 
-    $humidityTitle.className = "humidity-card__title";
+  $humidityTitle.className = "humidity-card__title";
 
-    $humidityTitle.innerText = "Humedad";
+  $humidityTitle.innerText = "Humedad";
 
-    $humidityStatus.append($humidityTitle);
+  $humidityStatus.append($humidityTitle);
 
-    $humidityWind.append($humidity);
+  $humidityWind.append($humidity);
 
-    // const $humiditySvg = document.createElement("svg");
+  // const $humiditySvg = document.createElement("svg");
 
-    // $humiditySvg.className = ""
+  // $humiditySvg.className = ""
 
-    const $wind = document.createElement("div");
+  const $wind = document.createElement("div");
 
-    $wind.className = "weather-card__wind-card";
+  $wind.className = "weather-card__wind-card";
 
-    $wind.innerHTML = `  <svg
+  $wind.innerHTML = `  <svg
                   class="wind-card__icon"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 512 512"
@@ -239,31 +209,30 @@ function createElement(
                   />
                 </svg>`;
 
-    $humidityWind.append($wind);
+  $humidityWind.append($wind);
 
-    const $windStatus = document.createElement("div");
+  const $windStatus = document.createElement("div");
 
-    $windStatus.className = "wind-card__status";
+  $windStatus.className = "wind-card__status";
 
-    $wind.append($windStatus);
+  $wind.append($windStatus);
 
-    const $windValue = document.createElement("p");
+  const $windValue = document.createElement("p");
 
-    $windValue.className = "wind-card__value";
+  $windValue.className = "wind-card__value";
 
-    $windValue.innerText = `${windSpeed}Km/h`;
+  $windValue.innerText = `${windSpeed}Km/h`;
 
-    $windStatus.append($windValue);
+  $windStatus.append($windValue);
 
-    const $windTitle = document.createElement("small");
+  const $windTitle = document.createElement("small");
 
-    $windTitle.className = "wind-card__title";
-    $windTitle.textContent = "Vel. viento";
+  $windTitle.className = "wind-card__title";
+  $windTitle.textContent = "Vel. viento";
 
-    $windStatus.append($windTitle);
+  $windStatus.append($windTitle);
 
-    changeColorBody(mainWeather, dt, sunrise, sunset);
-  }, 500);
+  changeColorBody(mainWeather, dt, sunrise, sunset);
 
   // $weatherCard.append($information);
 }
