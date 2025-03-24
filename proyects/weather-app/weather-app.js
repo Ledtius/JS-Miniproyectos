@@ -10,6 +10,12 @@ const $notFoundIcon = document.querySelector(".weather-card__not-found-icon");
 
 const $notFoundText = document.querySelector(".weather-card__not-found-text");
 
+const $error = document.querySelector(".weather-card__error-content");
+
+const $errorIcon = document.querySelector(".weather-card__error-icon");
+
+const $errorText = document.querySelector(".weather-card__error-text");
+
 const $input = document.querySelector(".weather-card__input");
 
 const $btn = document.querySelector(".weather-card__button");
@@ -36,10 +42,12 @@ function callAPILatLon(inputValue) {
     .then((response) => {
       if (!response.ok) {
         $loader.style.display = "none";
+
         console.log("Error en la respuesta ");
       } else {
         $loader.style.display = "none";
         $information.style.display = "block";
+        $error.style.display = "none";
 
         return response.json();
       }
@@ -47,23 +55,29 @@ function callAPILatLon(inputValue) {
 
     .then((data) => {
       if (data.length === 0) {
-        setInterval(() => {
-          console.log("Ejecutar cada 1 seg");
-          $information.style.display = "none";
-        }, 1000);
-        setInterval(() => {
-          console.log("Ejecutar cada 1 seg");
-          $notFound.style.display = "block";
-        }, 2000);
+        $information.style.display = "none";
+
+        $notFound.style.display = "block";
+        $error.style.display = "none";
+
         console.log("Ciudad no encontrada");
       } else {
         $notFound.style.display = "none";
+        $error.style.display = "none";
 
         callAPIWeather(data[0].lat, data[0].lon);
       }
     })
 
-    .catch((error) => console.error(error.message));
+    .catch((error) => {
+      $information.style.display = "none";
+      $loader.style.display = "none";
+
+      $error.style.display = "block";
+
+      console.error(error.message);
+      $errorText.innerText = `Error: ${error}`;
+    });
 }
 /* assent */
 function callAPIWeather(lat, lon) {
@@ -305,6 +319,10 @@ function changeColorBody(mainWeather, dt, sunrise, sunset) {
     $weatherHumidityWind.style = "color:rgba(255, 193, 7, 0.82)";
     $weatherHumidityIcon.style = "fill: #FFC107";
     $weatherWindIcon.style = "fill: #FFC107";
+    $notFoundIcon.setAttribute("stroke", " #FFC107");
+    $notFoundText.style.color = " #FFC107";
+    $errorIcon.setAttribute("stroke", " #FFC107");
+    $errorText.style.color = " #FFC107";
   }
   if (mainWeather === "Drizzle") {
     $body.style = "background-color: #5E7E96";
@@ -318,6 +336,10 @@ function changeColorBody(mainWeather, dt, sunrise, sunset) {
     $weatherHumidityIcon.style = "fill: #F2F2F2";
     $weatherWindIcon.style = "fill: #F2F2F2";
     $loader.style = "color: #F2F2F2";
+    $notFoundIcon.setAttribute("stroke", " #F2F2F2");
+    $notFoundText.style.color = " #F2F2F2";
+    $errorIcon.setAttribute("stroke", " #F2F2F2");
+    $errorText.style.color = " #F2F2F2";
   }
   if (mainWeather === "Rain") {
     $body.style = "background-color: #324b67";
@@ -331,6 +353,10 @@ function changeColorBody(mainWeather, dt, sunrise, sunset) {
     $weatherHumidityIcon.style = "fill: #A3CFF8";
     $weatherWindIcon.style = "fill: #A3CFF8";
     $loader.style = "color: #FFFFFF";
+    $notFoundIcon.setAttribute("stroke", " #FFFFFF");
+    $notFoundText.style.color = " #FFFFFF";
+    $errorIcon.setAttribute("stroke", " #FFFFFF");
+    $errorText.style.color = " #FFFFFF";
   }
   if (mainWeather === "Snow") {
     $body.style = "background-color: #DDE4EA";
@@ -344,6 +370,10 @@ function changeColorBody(mainWeather, dt, sunrise, sunset) {
     $weatherHumidityIcon.style = "fill: #434343";
     $weatherWindIcon.style = "fill: #434343";
     $loader.style = "color: #434343";
+    $notFoundIcon.setAttribute("stroke", " #434343");
+    $notFoundText.style.color = " #434343";
+    $errorIcon.setAttribute("stroke", " #434343");
+    $errorText.style.color = " #434343";
   }
   if (
     mainWeather === "Mist" ||
@@ -366,7 +396,11 @@ function changeColorBody(mainWeather, dt, sunrise, sunset) {
     $weatherHumidityWind.style = "color:rgba(248, 249, 250, 0.82)";
     $weatherHumidityIcon.style = "fill: #F8F9FA";
     $weatherWindIcon.style = "fill: #F8F9FA";
-    $loader.style = "color: #F8F8FA";
+    $loader.style = "color: #F8F9FA";
+    $notFoundIcon.setAttribute("stroke", " #F8F9FA");
+    $notFoundText.style.color = " #F8F9FA";
+    $errorIcon.setAttribute("stroke", " #F8F9FA");
+    $errorText.style.color = " #F8F9FA";
   }
   if (mainWeather === "Clear") {
     if (dt >= sunrise && dt < sunset) {
@@ -378,6 +412,10 @@ function changeColorBody(mainWeather, dt, sunrise, sunset) {
       $weatherHumidityIcon.style = "fill: #0D0D0D";
       $weatherWindIcon.style = "fill: #0D0D0D";
       $loader.style = "color: #0D0D0D";
+      $notFoundIcon.setAttribute("stroke", " #0D0D0D");
+      $notFoundText.style.color = " #0D0D0D";
+      $errorIcon.setAttribute("stroke", " #0D0D0D");
+      $errorText.style.color = " #0D0D0D";
     }
 
     if (dt < sunrise || dt >= sunset) {
@@ -392,6 +430,11 @@ function changeColorBody(mainWeather, dt, sunrise, sunset) {
       $weatherHumidityIcon.style = "fill: #FFFFFF";
       $weatherWindIcon.style = "fill: #FFFFFF";
       $loader.style = "color: #FFFFFF";
+
+      $notFoundIcon.setAttribute("stroke", " #FFFFFF");
+      $notFoundText.style.color = " #FFFFFF";
+      $errorIcon.setAttribute("stroke", " #FFFFFF");
+      $errorText.style.color = " #FFFFFF";
     }
   }
 
@@ -409,6 +452,8 @@ function changeColorBody(mainWeather, dt, sunrise, sunset) {
     $weatherWindIcon.style = "fill: #282828";
     $loader.style = "color: #282828";
     $notFoundIcon.setAttribute("stroke", " #282828");
-    $notFoundText.style.color = "#282828";
+    $notFoundText.style.color = " #282828";
+    $errorIcon.setAttribute("stroke", " #282828");
+    $errorText.style.color = " #282828";
   }
 }
