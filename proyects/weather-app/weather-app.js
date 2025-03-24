@@ -8,6 +8,8 @@ const $input = document.querySelector(".weather-card__input");
 
 const $btn = document.querySelector(".weather-card__button");
 
+const $loader = document.querySelector(".weather-card__loader");
+
 $weatherCard.addEventListener("submit", (e) => {
   e.preventDefault();
 });
@@ -19,18 +21,26 @@ $btn.addEventListener("click", () => {
 $input.value = "Barrancabermeja";
 
 function callAPILatLon(inputValue) {
+  $loader.style.display = "block";
+  $information.style.display = "none";
+
   fetch(
     `https://api.openweathermap.org/geo/1.0/direct?q=${inputValue}&limit=1&appid=${apiKey}`
   )
     .then((response) => {
       if (!response.ok) {
+        $loader.style.display = "none";
         console.log("Error en la respuesta ");
       } else {
+        $loader.style.display = "none";
+        $information.style.display = "block";
+
         return response.json();
       }
     })
 
     .then((data) => {
+      
       if (data.length === 0) {
         console.log("Ciudad no encontrada");
       } else {
@@ -239,6 +249,8 @@ function createElement(
 function changeColorBody(mainWeather, dt, sunrise, sunset) {
   const $body = document.querySelector("body");
 
+  const $main = document.querySelector("main");
+
   const $title = document.querySelector(".weather-card__title");
 
   const $weatherTemperature = document.querySelector(
@@ -256,8 +268,6 @@ function changeColorBody(mainWeather, dt, sunrise, sunset) {
   const $weatherHumidityIcon = document.querySelector(".humidity-card__icon");
 
   const $weatherWindIcon = document.querySelector(".wind-card__icon");
-
-  const $loader = document.querySelector(".weather-card__loader");
 
   const $footer = document.querySelector("footer");
 
@@ -374,6 +384,7 @@ function changeColorBody(mainWeather, dt, sunrise, sunset) {
     $body.style = "background-color: #BFC7D6";
 
     $title.style = "color: #282828";
+
     $footer.style = "color: #282828";
 
     $weatherTemperature.style = "color:  #282828";
