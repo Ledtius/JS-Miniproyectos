@@ -4,6 +4,12 @@ const $weatherCard = document.querySelector(".weather-card");
 
 const $information = document.querySelector(".weather-card__information");
 
+const $notFound = document.querySelector(".weather-card__not-found-content");
+
+const $notFoundIcon = document.querySelector(".weather-card__not-found-icon");
+
+const $notFoundText = document.querySelector(".weather-card__not-found-text");
+
 const $input = document.querySelector(".weather-card__input");
 
 const $btn = document.querySelector(".weather-card__button");
@@ -40,17 +46,26 @@ function callAPILatLon(inputValue) {
     })
 
     .then((data) => {
-      
       if (data.length === 0) {
+        setInterval(() => {
+          console.log("Ejecutar cada 1 seg");
+          $information.style.display = "none";
+        }, 1000);
+        setInterval(() => {
+          console.log("Ejecutar cada 1 seg");
+          $notFound.style.display = "block";
+        }, 2000);
         console.log("Ciudad no encontrada");
       } else {
+        $notFound.style.display = "none";
+
         callAPIWeather(data[0].lat, data[0].lon);
       }
     })
 
     .catch((error) => console.error(error.message));
 }
-
+/* assent */
 function callAPIWeather(lat, lon) {
   console.log(lat, lon);
   fetch(
@@ -393,5 +408,7 @@ function changeColorBody(mainWeather, dt, sunrise, sunset) {
     $weatherHumidityIcon.style = "fill: #282828";
     $weatherWindIcon.style = "fill: #282828";
     $loader.style = "color: #282828";
+    $notFoundIcon.setAttribute("stroke", " #282828");
+    $notFoundText.style.color = "#282828";
   }
 }
