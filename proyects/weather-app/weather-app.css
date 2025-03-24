@@ -4,10 +4,30 @@ body {
   /* padding: 2rem; */
   align-items: center;
   justify-content: space-between;
-  background-color: #e3eaf2;
   min-width: 320px;
   /* color: white; */
   /* background-color: red; */
+  /* background-color: #e3eaf2; */
+  /* animation: appear-bg 1.2s linear; */
+  /* animation: appear-bg 2s linear; */
+  transition: background-color 1s ease-in-out;
+}
+
+.body-transition {
+  display: flex;
+  flex-direction: column;
+  /* padding: 2rem; */
+  align-items: center;
+  justify-content: space-between;
+  min-width: 320px;
+  background-color: #e3eaf2;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
 * {
@@ -33,10 +53,11 @@ body {
   backdrop-filter: blur(1rem);
   border: 1px solid rgba(255, 255, 255, 0.3);
   position: relative;
-  /* width: 303px; */
+  width: 305px;
   height: 432px;
   /* max-width: 263px; */
   /* max-width: 263px; */
+  /* animation: appear-scale-element 1.5s linear; */
 }
 
 .weather-card__search-bar {
@@ -48,6 +69,7 @@ body {
 }
 .weather-card__input {
   /* min-width: 25rem; */
+  width: 263px;
   height: 5rem;
   border-radius: 2rem;
   outline: none;
@@ -77,6 +99,7 @@ body {
 .weather-card__icon {
   fill: #444;
   width: 2rem;
+  height: 2rem;
   transition: fill 0.2s ease;
 }
 
@@ -95,8 +118,8 @@ body {
   align-items: center;
   flex-direction: column;
   z-index: 2;
+  /* animation: change-size 2s infinite; */
 }
-
 .weather-card__loader {
   display: none;
   position: absolute;
@@ -112,7 +135,7 @@ body {
   border-radius: 2rem;
   font-weight: 800;
   animation-name: change-size;
-  animation-duration: 1.5s;
+  animation-duration: 2s;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
 }
@@ -129,31 +152,60 @@ body {
   }
 }
 
-.weather-card__location {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  justify-content: space-between;
-  position: absolute;
-  bottom: 33rem;
-  z-index: 2;
-  /* margin-bottom: 2rem; */
+@keyframes appear-scale-element {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
-.weather-card__place {
-  margin: 0;
-  font-weight: 500;
-  font-size: large;
-  max-width: 15rem;
-  overflow: auto;
-  text-align: center;
-  scrollbar-width: thin;
-  padding-bottom: 5px;
-  scrollbar-color: grey transparent;
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
-.weather-card__flag {
-  width: 4rem;
-  padding-bottom: 5px;
+
+@keyframes move-right {
+  0% {
+    opacity: 0.5;
+
+    transform: translateX(-6px);
+  }
+  50% {
+    opacity: 0.7;
+
+    transform: translateX(-4px);
+  }
+  70% {
+    opacity: 1;
+
+    transform: translateX(1px);
+  }
 }
+
+@keyframes move-top {
+  0% {
+    opacity: 0.5;
+    transform: translateY(3px);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateY(-3px);
+  }
+  70% {
+    opacity: 1;
+    transform: translateY(2px);
+  }
+}
+
 .weather-card__status {
   display: flex;
   align-items: center;
@@ -170,6 +222,9 @@ body {
   /* width: 1rem; */
   filter: drop-shadow(4px 4px 10px rgba(0, 0, 0, 0.479));
   position: relative;
+  animation: appear-scale-element 0.5s linear;
+
+  /* transition: height, 2s ease; */
 }
 
 /* .weather-card__status::before {
@@ -195,11 +250,12 @@ body {
   z-index: 2;
   position: absolute;
   filter: drop-shadow(4px 4px 10px rgba(0, 0, 0, 0.479));
-
   top: 16rem;
+  animation: appear 0.8s;
 }
 .weather-card__temperature {
   font-size: 6rem;
+  width: 119.234px;
   font-weight: 700;
   margin: 0;
 }
@@ -209,9 +265,14 @@ body {
 .weather-card__status-description {
   margin: 0;
   font-weight: 700;
+  animation: appear 1s;
 }
 .weather-card__humidity-wind {
   display: flex;
+  /* position: absolute;
+  bottom: 3rem;
+  left:4rem; */
+  width: 237.281px;
   color: #666666;
   align-items: center;
   width: 100%;
@@ -228,8 +289,11 @@ body {
 }
 .humidity-card__icon {
   width: 4rem;
+
   /* fill: #0077b6; */
   filter: drop-shadow(4px 4px 10px rgba(0, 0, 0, 0.3));
+
+  animation: move-top 1s;
 }
 .humidity-card__status {
   font-weight: 700;
@@ -244,6 +308,7 @@ body {
   width: fit-content;
   display: flex;
   gap: 1rem;
+
   /* background-color: white;
   padding: 2rem; */
   border-radius: 2rem;
@@ -252,6 +317,8 @@ body {
   width: 3rem;
   /* fill: #b0b0b0; */
   filter: drop-shadow(4px 4px 10px rgba(0, 0, 0, 0.3));
+
+  animation: move-right 1s;
 }
 .wind-card__status {
   font-weight: 700;
@@ -269,8 +336,15 @@ body {
   margin: 0;
 }
 
+/* @keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+} */
+
 footer {
   text-align: center;
   padding: 2rem;
   font-weight: 500;
+  /* background-color: #e3eaf2; */
 }
