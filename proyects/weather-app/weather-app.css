@@ -222,7 +222,7 @@ main {
   /* width: 1rem; */
   filter: drop-shadow(4px 4px 10px rgba(0, 0, 0, 0.479));
   position: relative;
-  animation: appear-scale-element 0.5s linear;
+  animation: appear-scale-element 1s linear;
 
   /* transition: height, 2s ease; */
 }
@@ -251,7 +251,7 @@ main {
   position: absolute;
   filter: drop-shadow(4px 4px 10px rgba(0, 0, 0, 0.479));
   top: 16rem;
-  animation: appear 0.8s;
+  animation: appear 1s;
 }
 .weather-card__temperature {
   font-size: 6rem;
@@ -269,9 +269,9 @@ main {
 }
 .weather-card__humidity-wind {
   display: flex;
-  /* position: absolute;
+  position: absolute;
   bottom: 3rem;
-  left:4rem; */
+  left:4rem;
   width: 237.281px;
   color: #666666;
   align-items: center;
