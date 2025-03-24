@@ -1,4 +1,6 @@
-const apiKey = "";
+const apiKey = import.meta.env.VITE_API_KEY;
+
+// const apiKey = "";
 
 const $weatherCard = document.querySelector(".weather-card");
 
