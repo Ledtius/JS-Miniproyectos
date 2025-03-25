@@ -1,5 +1,24 @@
 # JS Miniproyectos
 
-Miniproyectos hechos en JavaScript con la finalidad de familiarizarme con dicho lenguaje de programación
+JS Miniproyectos es una colección de pequeños proyectos en JavaScript diseñados para mejorar mis habilidades como desarrollador frondend
 
-![Mockup de los miniproyectos](/proyects/image/Mockup-landing.webp)
+Puedes encontrar proyectos como una calculadora, Lista de tareas (To-Do List) y una aplicación del clima.
+
+![Mockup de los miniproyectos](/proyects/image/mockups/mockup-landing-page.webp)
+
+## Tecnologías
+
+- JavaScript
+- HTML
+- CSS
+
+## Proyectos incluidos
+
+- Calculadora
+- To-Do List
+- Weather App
+
+## Autor
+
+- GitHub: [@Ledtius](https://github.com/Ledtius)
+- Portafolio [CJDevia](https://cjdevia.netlify.app/)
