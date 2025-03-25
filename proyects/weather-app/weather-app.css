@@ -242,7 +242,7 @@ main {
 } */
 
 .weather-card__status-text {
-  width: fit-content;
+  /* width: fit-content; */
   display: flex;
   text-align: center;
   align-items: center;
@@ -251,15 +251,21 @@ main {
   position: absolute;
   filter: drop-shadow(4px 4px 10px rgba(0, 0, 0, 0.479));
   top: 16rem;
+  max-width: 20rem;
+  
   animation: appear 1s;
 }
 .weather-card__temperature {
+  max-width: 20rem;
+
+  /* width: 119.219px; */
   font-size: 6rem;
-  width: 119.234px;
+  /* width: 119.234px; */
   font-weight: 700;
   margin: 0;
 }
 .weather-card__degree-symbol {
+  max-width: 55px ;
   /* font-weight: 500; */
 }
 .weather-card__status-description {
