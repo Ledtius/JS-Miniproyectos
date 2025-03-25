@@ -9,8 +9,8 @@ Puedes encontrar proyectos como una calculadora, Lista de tareas (To-Do List) y 
 ## Tecnologías
 
 - JavaScript
-- HTML
-- CSS
+- HTML5
+- CSS3
 
 ## Proyectos incluidos
 
