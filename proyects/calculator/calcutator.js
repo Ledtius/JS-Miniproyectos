@@ -166,6 +166,10 @@ function printHistoryElement() {
 
   arrayOperation.forEach((element, index) => {
     createHistoryElement(element.operation, element.result, index);
+
+    if (arrayOperation.length == index) {
+      element.style.animation = "appear-scale-element 1s";
+    }
   });
 }
 
