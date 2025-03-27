@@ -4,6 +4,8 @@ const $display = document.querySelector(".calculator__result-text");
 
 const $history = document.querySelector(".history__box");
 
+const $equals = document.querySelector(".calculator__btn--equals");
+
 let stringOperation = "";
 
 let arrayOperation = getLocalStorage() || [];
@@ -166,10 +168,21 @@ function printHistoryElement() {
 
   arrayOperation.forEach((element, index) => {
     createHistoryElement(element.operation, element.result, index);
+    const $element = document.querySelector(`#element${index}`);
+    console.log(index);
+    $element.style.animation = "";
+    $equals.addEventListener("click", () => {
+      console.log(index);
+      if (arrayOperation.length - 1 == index) {
+        console.log("array" + (arrayOperation.length - 1));
 
-    if (arrayOperation.length == index) {
-      element.style.animation = "appear-scale-element 1s";
-    }
+        console.log($element);
+        console.log("index" + index);
+        $element.style.animation = "appear-scale-element 1s";
+      }
+    });
+
+    // console.log($element);
   });
 }
 
