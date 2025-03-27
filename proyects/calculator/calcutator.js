@@ -29,6 +29,8 @@ $calculator.addEventListener("click", (e) => {
   const equals = e.target.classList.contains("calculator__btn--equals");
 
   if (entries) {
+    $display.style.animation = "none";
+
     if (stringOperation === "ERROR" || stringOperation === "0")
       stringOperation = "";
 
@@ -36,11 +38,17 @@ $calculator.addEventListener("click", (e) => {
   }
 
   if (clear) {
+    console.log("");
     stringOperation = stringOperation.slice(0, -1);
   }
 
   if (allClear) {
+    $display.style.animation = "disappear-scale-element 0.4s";
+
     stringOperation = "0";
+    setTimeout(() => {
+      $display.style.animation = "appear-scale-element 0.5s";
+    }, 400);
   }
 
   if (equals) {
@@ -55,14 +63,26 @@ $calculator.addEventListener("click", (e) => {
 
       stringOperation = eval(stringOperation);
 
-      operationObject.result = stringOperation;
+      $display.style.animation = "disappear-scale-element 0.4s";
 
-      arrayOperation.push(operationObject);
+      setTimeout(() => {
+        operationObject.result = stringOperation;
 
-      saveLocalStorage(arrayOperation);
-      printHistoryElement();
+        arrayOperation.push(operationObject);
+
+        saveLocalStorage(arrayOperation);
+        printHistoryElement();
+
+        $display.style.animation = "appear-scale-element 0.5s";
+      }, 400);
     } catch {
-      stringOperation = "ERROR";
+      $display.style.animation = "disappear-scale-element 0.4s";
+
+      setTimeout(() => {
+        stringOperation = "ERROR";
+
+        $display.style.animation = "appear-scale-element 0.5s";
+      }, 400);
 
       // operationObject.result = operationObject;
 
@@ -152,6 +172,9 @@ function createHistoryElement(operation, result, index) {
 
   $history.append($element);
 
+  $history.style.transition = "min-height 1s ease";
+  // $element.style.transform = "scale(1)";
+
   deleteHistoryElement($deleteBtn, $element, $btnsMessage);
 
   copyHistoryElement($copyBtn, $element, $btnsMessage);
@@ -168,19 +191,6 @@ function printHistoryElement() {
 
   arrayOperation.forEach((element, index) => {
     createHistoryElement(element.operation, element.result, index);
-    const $element = document.querySelector(`#element${index}`);
-    console.log(index);
-    $element.style.animation = "";
-    $equals.addEventListener("click", () => {
-      console.log(index);
-      if (arrayOperation.length - 1 == index) {
-        console.log("array" + (arrayOperation.length - 1));
-
-        console.log($element);
-        console.log("index" + index);
-        $element.style.animation = "appear-scale-element 1s";
-      }
-    });
 
     // console.log($element);
   });
@@ -196,6 +206,9 @@ function deleteHistoryElement($deleteBtn, $element, $btnMessage) {
     $btnMessage.style = "color: #e63946";
     $btnMessage.innerText = "Desecho";
 
+    $element.style.animation = "disappear-scale-element 1s";
+
+    console.log($history);
     setTimeout(() => {
       $btnMessage.innerText = "";
       arrayOperation = arrayOperation.filter((_, index2) => index2 !== index);
@@ -204,7 +217,7 @@ function deleteHistoryElement($deleteBtn, $element, $btnMessage) {
       saveLocalStorage(arrayOperation);
 
       printHistoryElement();
-    }, 400);
+    }, 600);
 
     // $element.id.remove();
   });
@@ -215,6 +228,8 @@ function copyHistoryElement($copyBtn, $element, $btnMessage) {
     const textOperation = $element.textContent.trim();
 
     console.log(textOperation);
+    // $element.style.transition = "transform 1s ease";
+    // $element.style.transform = "scale(1.1)";
 
     $btnMessage.style = "color: #4caf50";
     $btnMessage.innerText = "Copiado!";
