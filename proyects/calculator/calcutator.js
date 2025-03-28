@@ -30,7 +30,7 @@ $calculator.addEventListener("click", (e) => {
 
   if (entries) {
     $display.style.animation = "none";
-
+    $history.classList.remove("history__box--added");
     if (stringOperation === "ERROR" || stringOperation === "0")
       stringOperation = "";
 
@@ -43,16 +43,17 @@ $calculator.addEventListener("click", (e) => {
   }
 
   if (allClear) {
-    $display.style.animation = "disappear-scale-element 0.4s";
+    $display.style.animation = "disappear-scale-element 0.3s ease";
 
     stringOperation = "0";
     setTimeout(() => {
-      $display.style.animation = "appear-scale-element 0.5s";
-    }, 400);
+      $display.style.animation = "appear-scale-element 0.3s ease";
+    }, 300);
   }
 
   if (equals) {
     try {
+      $display.style.animation = "disappear-scale-element 0.3s ease";
       operationObject.operation = stringOperation;
 
       stringOperation = stringOperation.replace("÷", "/");
@@ -63,32 +64,22 @@ $calculator.addEventListener("click", (e) => {
 
       stringOperation = eval(stringOperation);
 
-      $display.style.animation = "disappear-scale-element 0.4s";
+      operationObject.result = stringOperation;
 
-      setTimeout(() => {
-        operationObject.result = stringOperation;
+      arrayOperation.push(operationObject);
 
-        arrayOperation.push(operationObject);
+      saveLocalStorage(arrayOperation);
+      printHistoryElement();
 
-        saveLocalStorage(arrayOperation);
-        printHistoryElement();
+      $display.style.animation = "appear-scale-element 0.3s ease";
 
-        $display.style.animation = "appear-scale-element 0.5s";
-      }, 400);
+      $history.style.transition = "max-height 1s ease";
+      $history.classList.add("history__box--added");
     } catch {
-      $display.style.animation = "disappear-scale-element 0.4s";
+      $display.style.animation = "disappear-scale-element 0.3s ease";
+      stringOperation = "ERROR";
 
-      setTimeout(() => {
-        stringOperation = "ERROR";
-
-        $display.style.animation = "appear-scale-element 0.5s";
-      }, 400);
-
-      // operationObject.result = operationObject;
-
-      // arrayOperation.push(operationObject);
-
-      // saveLocalStorage(arrayOperation);
+      $display.style.animation = "appear-scale-element 0.3s ease";
     }
   }
 
@@ -172,7 +163,8 @@ function createHistoryElement(operation, result, index) {
 
   $history.append($element);
 
-  $history.style.transition = "min-height 1s ease";
+  $history.style.transition = "none";
+
   // $element.style.transform = "scale(1)";
 
   deleteHistoryElement($deleteBtn, $element, $btnsMessage);
@@ -202,6 +194,7 @@ function deleteHistoryElement($deleteBtn, $element, $btnMessage) {
 
     let index = Number($element.id.match(/-?\d+/g).join(""));
 
+    $history.classList.remove("history__box--added");
     console.log(typeof index);
     // $btnMessage.style = "color: #e63946";
     // $btnMessage.innerText = "Desecho";
