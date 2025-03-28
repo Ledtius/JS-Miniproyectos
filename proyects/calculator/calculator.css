@@ -83,16 +83,23 @@ footer {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  min-height: 137.219px;
+  max-height: 137.219px;
   width: 287px;
   /* padding: 2rem; */
   /* width: 100%; */
   background-color: #0d1b2a;
   /* width: 248px; */
   padding: 2rem;
+  /* height: auto; */
+  /* max-height: 40rem; */
+  overflow: hidden;
   border-radius: 1rem;
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4);
-  text-overflow: clip;
+  transition: max-height 1s ease !important;
+}
+
+.history__box:hover {
+  max-height: 80rem;
 }
 
 .history__element {
@@ -108,6 +115,7 @@ footer {
   text-overflow: clip;
   background-color: #1b263b;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  animation: appear-scale-element 1s ease-in;
 }
 
 @keyframes appear-scale-element {
