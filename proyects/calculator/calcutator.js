@@ -30,7 +30,7 @@ $calculator.addEventListener("click", (e) => {
 
   if (entries) {
     $display.style.animation = "none";
-    $history.classList.remove("history__box--added");
+
     if (stringOperation === "ERROR" || stringOperation === "0")
       stringOperation = "";
 
@@ -72,9 +72,6 @@ $calculator.addEventListener("click", (e) => {
       printHistoryElement();
 
       $display.style.animation = "appear-scale-element 0.3s ease";
-
-      $history.style.transition = "max-height 1s ease";
-      $history.classList.add("history__box--added");
     } catch {
       $display.style.animation = "disappear-scale-element 0.3s ease";
       stringOperation = "ERROR";
@@ -163,8 +160,6 @@ function createHistoryElement(operation, result, index) {
 
   $history.append($element);
 
-  $history.style.transition = "none";
-
   // $element.style.transform = "scale(1)";
 
   deleteHistoryElement($deleteBtn, $element, $btnsMessage);
@@ -184,7 +179,12 @@ function printHistoryElement() {
   arrayOperation.forEach((element, index) => {
     createHistoryElement(element.operation, element.result, index);
 
-    // console.log($element);
+    const $element = document.querySelector(`#element${index}`);
+
+    console.log(arrayOperation.length, index);
+    if (Number(arrayOperation.length - 1) === index) {
+      $element.style.animation = "appear-scale-element 1s ease";
+    }
   });
 }
 
@@ -194,7 +194,6 @@ function deleteHistoryElement($deleteBtn, $element, $btnMessage) {
 
     let index = Number($element.id.match(/-?\d+/g).join(""));
 
-    $history.classList.remove("history__box--added");
     console.log(typeof index);
     // $btnMessage.style = "color: #e63946";
     // $btnMessage.innerText = "Desecho";
@@ -221,7 +220,8 @@ function copyHistoryElement($copyBtn, $element, $btnMessage) {
     const textOperation = $element.textContent.trim();
 
     console.log(textOperation);
-    // $element.style.transition = "transform 1s ease";
+    $element.style.animation = "copy 1s ease";
+
     // $element.style.transform = "scale(1.1)";
 
     $btnMessage.style = "color: #4caf50";
@@ -229,7 +229,8 @@ function copyHistoryElement($copyBtn, $element, $btnMessage) {
 
     setTimeout(() => {
       $btnMessage.innerText = "";
-    }, 400);
+      $element.style.animation = "none";
+    }, 1000);
 
     navigator.clipboard.writeText(textOperation);
   });
