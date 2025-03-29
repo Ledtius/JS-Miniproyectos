@@ -33,6 +33,8 @@ let extractInputValue = () => {
 };
 
 function printElement() {
+  $todoListList.style.animation = "none";
+  $todoListList.style.animation = "appear-scale-element 2s ease";
   $todoListList.innerHTML = "";
 
   arrayTasks = callLocalStorage();
@@ -43,7 +45,23 @@ function printElement() {
 
   arrayTasks.forEach((task, id) => {
     DOMElement(task.name, id, task.state);
+
+    const $check = document.querySelector(`#task${id}`);
+
+    console.log(arrayTasks.length);
+    console.log(id);
+    if (Number(arrayTasks.length - 1) === id) {
+      const $element = $check.parentElement.parentElement;
+
+      console.log($element);
+
+      $element.style.animation = "appear-scale-element 1s ease-in-out";
+    }
+    setTimeout(() => {
+      $element.style.animation = "none";
+    }, 100);
   });
+
   deleteTask();
 
   editTask();
@@ -55,7 +73,9 @@ function DOMElement(taskName, id, taskState) {
   const $element = document.createElement("div");
 
   $element.className = "todo-list__element";
+  $element.id = `element${id}`;
 
+  $element.style.animation = "none";
   const $checkTask = document.createElement("div");
 
   $checkTask.className = "todo-list__check-task";
@@ -79,6 +99,8 @@ function DOMElement(taskName, id, taskState) {
 
   if (taskState) {
     $label.style.setProperty("text-decoration", "line-through");
+
+    $element.style.setProperty("opacity", "0.5");
 
     $element.style.setProperty("opacity", "0.5");
   } else {
@@ -176,15 +198,23 @@ function deleteTask() {
   $tasks.forEach((task, index) => {
     let deleteBtns = task.lastChild.lastChild;
 
+    console.log($tasks.length);
+
     deleteBtns.addEventListener("click", () => {
+      task.style.animation = "disappear-scale-element 2s ease";
       arrayTasks = callLocalStorage();
+      arrayTasks = arrayTasks.filter((_, index2) => index2 !== index);
+      console.log($tasks);
 
+      if (Number($tasks.length - 1) === index) {
+        const $element = document.querySelector(`#element${index}`);
+        console.log(index);
+        console.log($element);
+      }
+      saveLocalStorage();
       setTimeout(() => {
-        arrayTasks = arrayTasks.filter((_, index2) => index2 !== index);
-
-        saveLocalStorage();
         printElement();
-      }, 200);
+      }, 1000);
     });
   });
 }
