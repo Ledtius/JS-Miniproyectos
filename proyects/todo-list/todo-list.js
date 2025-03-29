@@ -4,6 +4,8 @@ const $todoListInput = document.querySelector(".todo-list__input");
 
 const $todoListList = document.querySelector(".todo-list__list");
 
+const $bar = document.querySelector(".todo-list__bar");
+
 let arrayTasks = JSON.parse(localStorage.getItem("arrayTasks")) || [];
 
 printElement();
@@ -34,7 +36,7 @@ let extractInputValue = () => {
 
 function printElement() {
   $todoListList.style.animation = "none";
-  $todoListList.style.animation = "appear-scale-element 2s ease";
+  $todoListList.style.animation = "appear-scale-element 1s ease";
   $todoListList.innerHTML = "";
 
   arrayTasks = callLocalStorage();
@@ -54,13 +56,10 @@ function printElement() {
       const $element = $check.parentElement.parentElement;
 
       console.log($element);
-
-      $element.style.animation = "appear-scale-element 1s ease-in-out";
     }
-    setTimeout(() => {
-      $element.style.animation = "none";
-    }, 100);
   });
+
+  $bar.style.animation = "none";
 
   deleteTask();
 
@@ -100,10 +99,11 @@ function DOMElement(taskName, id, taskState) {
   if (taskState) {
     $label.style.setProperty("text-decoration", "line-through");
 
+    $element.style.animation = "opacity-low 1s ease";
     $element.style.setProperty("opacity", "0.5");
-
-    $element.style.setProperty("opacity", "0.5");
+    $element.style.animation = "vibration 0.5s ease";
   } else {
+    // $element.style.animation = "none";
     $label.style = "text-decoration:dashed";
   }
 
@@ -201,7 +201,7 @@ function deleteTask() {
     console.log($tasks.length);
 
     deleteBtns.addEventListener("click", () => {
-      task.style.animation = "disappear-scale-element 2s ease";
+      task.style.animation = "disappear-scale-element 0.6s ease";
       arrayTasks = callLocalStorage();
       arrayTasks = arrayTasks.filter((_, index2) => index2 !== index);
       console.log($tasks);
@@ -214,7 +214,7 @@ function deleteTask() {
       saveLocalStorage();
       setTimeout(() => {
         printElement();
-      }, 1000);
+      }, 500);
     });
   });
 }
@@ -233,9 +233,11 @@ function editTask() {
 
       editValueBar();
       // task.style = "display:none";
+
+      $todoListList.style.animation = "disappear 0.7s ease-out";
       setTimeout(() => {
         $todoListList.style = "display:none";
-      }, 200);
+      }, 600);
 
       $todoListInput.value = task.textContent;
 
@@ -267,8 +269,6 @@ function editTask() {
 }
 
 function createEditBtnBar() {
-  const $bar = document.querySelector(".todo-list__bar");
-
   const $editBtnBar = document.createElement("button");
 
   $editBtnBar.className = "todo-list__edit-button";
@@ -276,7 +276,7 @@ function createEditBtnBar() {
   $editBtnBar.textContent = "Editar";
 
   $bar.append($editBtnBar);
-
+  $bar.style.animation = "disappear-scale-element 0.6s ease";
   return $editBtnBar;
 }
 
@@ -284,9 +284,13 @@ function editValueBar() {
   $todoListButton.style = "display:none";
 
   $todoListInput.placeholder = "Editando tarea...";
+  $bar.style.animation = "appear 0.5s ease";
+
+  // $element.style.animation = "appear-scale-element 1s ease-in-out";
 }
 
 function normalBar($editBtnBar) {
+  $bar.style.animation = "appear 0.6s ease";
   $editBtnBar.style = "display: none";
 
   $todoListButton.style = "display:flex";
