@@ -30,6 +30,7 @@ body {
 .todo-list__title {
   margin: 0;
   color: #63e6be;
+  animation: vibration 1s ease;
 }
 .todo-list__bar {
   display: flex;
@@ -191,6 +192,50 @@ input {
     opacity: 1;
   }
 }
+@keyframes disappear {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes opacity-low {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+@keyframes opacity-high {
+  0% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes vibration {
+  0%,
+  100% {
+    transform: scale(1);
+    transform: rotate(0deg);
+  }
+  25% {
+    /* transform: scale(1.2); */
+    transform: rotate(2deg);
+    /* transform: rotateX(20deg); */
+  }
+  50% {
+    /* transform: scale(1.2); */
+    transform: rotate(-2deg);
+    /* transform: rotateX(20deg); */
+  }
+}
+
 .todo-list__check-task {
   /* padding: 1rem; */
   display: flex;
