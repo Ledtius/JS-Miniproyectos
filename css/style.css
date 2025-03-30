@@ -6,6 +6,19 @@ body {
 
   background-color: #f5f7fa;
 }
+
+@keyframes appear-scale-element {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 .main-content {
   display: flex;
   flex-direction: column;
@@ -31,11 +44,34 @@ body {
 .main__icon {
   width: 5rem;
   height: 5rem;
+  animation: vibration 2s ease-in-out;
 }
 .main__title {
+  animation: appear 1s ease;
+
   text-align: center;
   width: min-content;
   color: #0d1b2a;
+}
+
+@keyframes vibration {
+  0%,
+  100% {
+  }
+  25% {
+    transform: scale(1.2);
+    /* transform: rotateX(20deg); */
+  }
+  50% {
+  }
+}
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .cards {
@@ -61,6 +97,16 @@ body {
   border-radius: 2rem;
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
   max-width: 300px;
+}
+
+.card:nth-child(1) {
+  animation: appear-scale-element 1s ease;
+}
+.card:nth-child(2) {
+  animation: appear-scale-element 2s ease;
+}
+.card:nth-child(3) {
+  animation: appear-scale-element 3s ease;
 }
 .card__btn--view {
   color: #ffffff;
