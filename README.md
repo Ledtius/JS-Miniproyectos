@@ -4,7 +4,7 @@ JS Miniproyectos es una colección de pequeños proyectos en JavaScript diseñad
 
 Puedes encontrar proyectos como una calculadora, Lista de tareas (To-Do List) y una aplicación del clima.
 
-![Mockup de los miniproyectos](/proyects/image/mockups/mockup-landing-page.webp)
+![Mockup de los miniproyectos](/proyects/image/mockups/mockup-landing-page.png)
 
 ## Tecnologías
 
