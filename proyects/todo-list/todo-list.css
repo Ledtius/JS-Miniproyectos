@@ -26,7 +26,6 @@ body {
   flex-direction: column;
   gap: 2.8rem;
   animation: appear-scale-element 1s ease;
-
 }
 
 .todo-list__title {
@@ -163,6 +162,19 @@ input {
   padding: 2rem;
 }
 
+@keyframes scale-element {
+  0% {
+    transform: scale(0);
+  }
+
+  50% {
+    transform: scale(1.4);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 @keyframes appear-scale-element {
   0% {
     opacity: 0;
@@ -211,8 +223,17 @@ input {
     opacity: 0.5;
   }
 }
-@keyframes opacity-high {
+@keyframes flicker {
   0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  60% {
+    opacity: 1;
+  }
+  80% {
     opacity: 0.5;
   }
   100% {
@@ -228,12 +249,12 @@ input {
   }
   25% {
     /* transform: scale(1.2); */
-    transform: rotate(2deg);
+    transform: rotate(4deg);
     /* transform: rotateX(20deg); */
   }
   50% {
     /* transform: scale(1.2); */
-    transform: rotate(-2deg);
+    transform: rotate(-4deg);
     /* transform: rotateX(20deg); */
   }
 }
@@ -304,6 +325,7 @@ label::before {
   opacity: 1;
   /* transform: scale(1.09); */
   background-size: cover;
+  /* animation: appear-scale-element 0.5s ease; */
 }
 
 .todo-list__task {
