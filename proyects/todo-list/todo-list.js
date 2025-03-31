@@ -10,8 +10,6 @@ let arrayTasks = JSON.parse(localStorage.getItem("arrayTasks")) || [];
 
 printElement();
 
-console.log(arrayTasks);
-
 $todoListButton.addEventListener("click", (e) => {
   e.preventDefault();
   extractInputValue();
@@ -43,19 +41,13 @@ function printElement() {
 
   // if (!arrayTasks) return;
 
-  console.log(arrayTasks);
-
   arrayTasks.forEach((task, id) => {
     DOMElement(task.name, id, task.state);
 
     const $check = document.querySelector(`#task${id}`);
 
-    console.log(arrayTasks.length);
-    console.log(id);
     if (Number(arrayTasks.length - 1) === id) {
       const $element = $check.parentElement.parentElement;
-
-      console.log($element);
     }
   });
 
@@ -70,7 +62,7 @@ function DOMElement(taskName, id, taskState) {
   $element.className = "todo-list__element";
   $element.id = `element${id}`;
 
-  $element.style.animation = "none";
+  // $element.style.animation = "none";
   const $checkTask = document.createElement("div");
 
   $checkTask.className = "todo-list__check-task";
@@ -87,17 +79,16 @@ function DOMElement(taskName, id, taskState) {
   $checkTask.appendChild($input);
 
   const $label = document.createElement("label");
-
+  $label.id = `label${id}`;
   $label.className = "todo-list__task";
   $label.htmlFor = `task${id}`;
   $label.textContent = taskName;
 
   if (taskState) {
     $label.style.setProperty("text-decoration", "line-through");
-
-    $element.style.animation = "opacity-low 1s ease";
-    $element.style.setProperty("opacity", "0.5");
-    $element.style.animation = "vibration 0.5s ease";
+    $element.style.animation = "none";
+    // $element.style.animation = "opacity-low 1s ease";
+    // $element.style.setProperty("opacity", "0.5");
   } else {
     // $element.style.animation = "none";
     $label.style = "text-decoration:dashed";
@@ -179,7 +170,7 @@ function DOMElement(taskName, id, taskState) {
   // deleteTask($element);
   deleteTask($element, $deleteOption, id);
   editTask($editOption, taskName, id);
-  checkTask($input, id);
+  checkTask($input, $label, id, $element);
 }
 
 let saveLocalStorage = () => {
@@ -195,9 +186,6 @@ function callLocalStorage() {
 }
 
 function deleteTask($element, $deleteOption, id) {
-  console.log($element.id);
-  console.log($deleteOption);
-
   // let index = Number($element.id.match(/-?\d+/g).join(""));
 
   $deleteOption.addEventListener("click", () => {
@@ -205,7 +193,6 @@ function deleteTask($element, $deleteOption, id) {
     arrayTasks = callLocalStorage();
     // arrayTasks = arrayTasks.filter((_, index2) => index2 !== index);
     arrayTasks = arrayTasks.filter((_, index2) => index2 !== id);
-    console.log($element);
 
     saveLocalStorage();
     setTimeout(() => {
@@ -217,7 +204,6 @@ function deleteTask($element, $deleteOption, id) {
 function editTask($editOption, taskName, id) {
   $editOption.addEventListener("click", () => {
     arrayTasks = callLocalStorage();
-    console.log(arrayTasks[id].name);
 
     const $editBtnBar = createEditBtnBar();
 
@@ -237,8 +223,6 @@ function editTask($editOption, taskName, id) {
       if ($todoListInput.value.trim() === "") {
         return;
       }
-      console.log(id);
-      console.log(arrayTasks.name);
       arrayTasks[id].name = $todoListInput.value.trim();
 
       $todoListInput.value = "";
@@ -286,17 +270,40 @@ function normalBar($editBtnBar) {
   $todoListInput.placeholder = "Digita tus tareas del dia";
 }
 
-function checkTask($input, id) {
-  $input.addEventListener("change", () => {
-    console.log($input.checked);
-
+function checkTask($input, $label, id, $element) {
+  $input.addEventListener("change", (e) => {
+    console.log($label);
+    e.stopPropagation();
     arrayTasks = callLocalStorage();
-    console.log(id);
 
     arrayTasks[id].state = $input.checked;
 
+    // $element.forEach((element) => {
+    //   console.log(element);
+    // });
+
+    console.log($label);
     saveLocalStorage();
     printElement();
-    console.log("a");
+    const $element2 = document.querySelector(`#element${id}`);
+    const $label2 = document.querySelector(`#label${id}`);
+    console.log($element2);
+    console.log($label2);
+
+    if ($input.checked) {
+      $element2.style.animation = "none";
+      $label2.style.animation = "none";
+      setTimeout(() => {
+        $label2.style.animation = "scale-element 0.5s ease";
+        $element2.style.animation = "vibration 0.5s ease";
+      }, 100);
+    } else {
+      $element2.style.animation = "none";
+      $label2.style.animation = "none";
+      setTimeout(() => {
+        // $label2.style.animation = "scale-element 3s ease";
+        $element2.style.animation = "flicker 1s ease";
+      }, 100);
+    }
   });
 }
