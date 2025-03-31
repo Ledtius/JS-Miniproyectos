@@ -61,11 +61,7 @@ function printElement() {
 
   $bar.style.animation = "none";
 
-  deleteTask();
-
-  editTask();
-
-  checkTask();
+  // editTask();
 }
 
 function DOMElement(taskName, id, taskState) {
@@ -179,6 +175,11 @@ function DOMElement(taskName, id, taskState) {
   $editDelete.appendChild($deleteOption);
 
   $todoListList.append($element);
+
+  // deleteTask($element);
+  deleteTask($element, $deleteOption, id);
+  editTask($editOption, taskName, id);
+  checkTask($input, id);
 }
 
 let saveLocalStorage = () => {
@@ -193,78 +194,65 @@ function callLocalStorage() {
   return arrayTasks || [];
 }
 
-function deleteTask() {
-  const $tasks = document.querySelectorAll(".todo-list__element");
-  $tasks.forEach((task, index) => {
-    let deleteBtns = task.lastChild.lastChild;
+function deleteTask($element, $deleteOption, id) {
+  console.log($element.id);
+  console.log($deleteOption);
 
-    console.log($tasks.length);
+  // let index = Number($element.id.match(/-?\d+/g).join(""));
 
-    deleteBtns.addEventListener("click", () => {
-      task.style.animation = "disappear-scale-element 0.6s ease";
-      arrayTasks = callLocalStorage();
-      arrayTasks = arrayTasks.filter((_, index2) => index2 !== index);
-      console.log($tasks);
+  $deleteOption.addEventListener("click", () => {
+    $element.style.animation = "disappear-scale-element 0.6s ease";
+    arrayTasks = callLocalStorage();
+    // arrayTasks = arrayTasks.filter((_, index2) => index2 !== index);
+    arrayTasks = arrayTasks.filter((_, index2) => index2 !== id);
+    console.log($element);
 
-      if (Number($tasks.length - 1) === index) {
-        const $element = document.querySelector(`#element${index}`);
-        console.log(index);
-        console.log($element);
-      }
-      saveLocalStorage();
-      setTimeout(() => {
-        printElement();
-      }, 500);
-    });
+    saveLocalStorage();
+    setTimeout(() => {
+      printElement();
+    }, 500);
   });
 }
 
-function editTask() {
-  const $tasks = document.querySelectorAll(".todo-list__element");
-  $tasks.forEach((task, index) => {
-    const editBtnBar = task.lastChild.firstChild;
+function editTask($editOption, taskName, id) {
+  $editOption.addEventListener("click", () => {
+    arrayTasks = callLocalStorage();
+    console.log(arrayTasks[id].name);
 
-    editBtnBar.addEventListener("click", () => {
-      console.log(editBtnBar);
+    const $editBtnBar = createEditBtnBar();
 
-      arrayTasks = callLocalStorage();
+    editValueBar();
 
-      const $editBtnBar = createEditBtnBar();
+    $todoListList.style.animation = "disappear 0.7s ease-out";
 
-      editValueBar();
-      // task.style = "display:none";
+    setTimeout(() => {
+      $todoListList.style = "display:none";
+    }, 600);
 
-      $todoListList.style.animation = "disappear 0.7s ease-out";
-      setTimeout(() => {
-        $todoListList.style = "display:none";
-      }, 600);
+    $todoListInput.value = taskName;
 
-      $todoListInput.value = task.textContent;
+    $editBtnBar.addEventListener("click", (e) => {
+      e.preventDefault();
 
-      $editBtnBar.addEventListener("click", (e) => {
-        e.preventDefault();
+      if ($todoListInput.value.trim() === "") {
+        return;
+      }
+      console.log(id);
+      console.log(arrayTasks.name);
+      arrayTasks[id].name = $todoListInput.value.trim();
 
-        if ($todoListInput.value.trim() === "") {
-          return;
-        }
+      $todoListInput.value = "";
 
-        arrayTasks[index].name = $todoListInput.value.trim();
+      // task.style = "display:flex";
+      $todoListList.style = "display:flex";
 
-        $todoListInput.value = "";
+      normalBar($editBtnBar);
 
-        // task.style = "display:flex";
-        $todoListList.style = "display:flex";
-
-        normalBar($editBtnBar);
-
-        saveLocalStorage();
-        printElement();
-      });
-
-      // task.name = $todoListInput.value.trim();
+      saveLocalStorage();
+      printElement();
     });
 
-    console.log(editBtnBar);
+    // task.name = $todoListInput.value.trim();
   });
 }
 
@@ -298,23 +286,17 @@ function normalBar($editBtnBar) {
   $todoListInput.placeholder = "Digita tus tareas del dia";
 }
 
-function checkTask() {
-  const $tasks = document.querySelectorAll(".todo-list__element");
+function checkTask($input, id) {
+  $input.addEventListener("change", () => {
+    console.log($input.checked);
 
-  $tasks.forEach((task, index) => {
-    const taskCheckBox = task.firstChild.firstChild;
+    arrayTasks = callLocalStorage();
+    console.log(id);
 
-    taskCheckBox.addEventListener("change", () => {
-      console.log(taskCheckBox.checked);
+    arrayTasks[id].state = $input.checked;
 
-      arrayTasks = callLocalStorage();
-      console.log(index);
-
-      arrayTasks[index].state = taskCheckBox.checked;
-
-      saveLocalStorage();
-      printElement();
-      console.log("a");
-    });
+    saveLocalStorage();
+    printElement();
+    console.log("a");
   });
 }
