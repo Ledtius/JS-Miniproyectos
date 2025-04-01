@@ -55,10 +55,11 @@ $calculator.addEventListener("click", (e) => {
     try {
       $display.style.animation = "disappear-scale-element 0.3s ease";
       operationObject.operation = stringOperation;
+      while (stringOperation.includes("÷") || stringOperation.includes("×")) {
+        stringOperation = stringOperation.replace("÷", "/");
 
-      stringOperation = stringOperation.replace("÷", "/");
-
-      stringOperation = stringOperation.replace("×", "*");
+        stringOperation = stringOperation.replace("×", "*");
+      }
 
       if (stringOperation === "") return;
 
