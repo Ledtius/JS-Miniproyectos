@@ -53,6 +53,13 @@ $calculator.addEventListener("click", (e) => {
 
   if (clear) {
     console.log("");
+    if (
+      stringOperation === "ERROR" ||
+      stringOperation === "0" ||
+      stringOperation === Infinity
+    )
+      stringOperation = "";
+
     stringOperation = stringOperation.slice(0, -1);
   }
 
@@ -94,10 +101,18 @@ $calculator.addEventListener("click", (e) => {
       stringOperation = "ERROR";
 
       $display.style.animation = "appear-scale-element 0.3s ease";
+
+      $calculator.style.animation = "none";
+
+      setTimeout(() => {
+        $calculator.style.animation = "vibration 0.2s ease";
+      }, 100);
     }
   }
 
-  $display.innerText = stringOperation;
+
+    $display.innerText = stringOperation;
+
 });
 
 function saveLocalStorage(arrayOperation) {
