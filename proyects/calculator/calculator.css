@@ -265,6 +265,7 @@ footer {
   background-color: #1b263b;
   color: #ffffff;
   overflow-x: auto;
+  white-space: nowrap;
 
   z-index: 2;
   animation: appear 1s ease;
