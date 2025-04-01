@@ -57,7 +57,7 @@ input {
   /* max-width: 188px; */
   /* z-index: 1; */
   transition: all 0.5 ease;
-  box-shadow: 0 4px 4px rgb(177, 177, 177);
+  box-shadow: 0 4px 1px rgb(177, 177, 177);
 
   /* font-weight: 600; */
 }
@@ -71,7 +71,7 @@ input {
 .todo-list__input:focus {
   border-color: #63e6be;
   /* box-shadow: 0 0 5px #63e6be; */
-  box-shadow: 0 5px 4px rgb(177, 177, 177);
+  box-shadow: 0 5px 1px rgb(177, 177, 177);
 
   outline: none;
 }
@@ -84,7 +84,7 @@ input {
   font-weight: 800;
   position: absolute;
   right: -1rem;
-  box-shadow: 0 5px 4px rgb(177, 177, 177);
+  box-shadow: 0 5px 1px rgb(177, 177, 177);
 
   /* z-index: 2; */
 
@@ -161,7 +161,7 @@ input {
   border-radius: 2rem;
   border: 1px solid #63e6bf96;
   /* box-shadow: 0px 1px 5px #fcfcfc96; */
-  box-shadow: 0 9px 4px rgba(177, 177, 177, 0.89);
+  box-shadow: 0 9px 1px rgba(177, 177, 177, 0.89);
 
   /* height: 20rem; */
   height: fit-content;
@@ -188,13 +188,13 @@ input {
 
 @keyframes done-task {
   0% {
-    box-shadow: 0 9px 4px rgba(177, 177, 177, 0.89);
+    box-shadow: 0 9px 1px rgba(177, 177, 177, 0.89);
   }
   50% {
-    box-shadow: 0 9px 4px #47a6ffd0;
+    box-shadow: 0 9px 1px #47a6ffd0;
   }
   100% {
-    box-shadow: 0 9px 4px rgba(9, 255, 222, 0.89);
+    box-shadow: 0 9px 1px rgba(9, 255, 222, 0.89);
   }
 }
 @keyframes appear-scale-element {
@@ -437,7 +437,7 @@ footer {
     font-weight: 800;
     position: absolute;
     right: -1rem;
-    box-shadow: 0 5px 4px rgb(177, 177, 177);
+    box-shadow: 0 5px 1px rgb(177, 177, 177);
 
     /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.582); */
     transition: all 0.5s ease;
