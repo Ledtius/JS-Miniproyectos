@@ -17,7 +17,8 @@ body {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  width: fit-content;
+  /* width: fit-content; */
+  min-width: 326px;
   background-color: #000036;
 }
 
@@ -50,8 +51,8 @@ input {
 
 .todo-list__input {
   padding: 1.6rem;
-
-  padding-right: 6.6rem;
+  min-width: 326px;
+  padding-right: 6.9rem;
   border-radius: 2rem;
   border: 1px solid grey;
   /* max-width: 188px; */
@@ -359,7 +360,7 @@ label::before {
   /* z-index: 2; */
   text-align: left;
   /* text-wrap: wrap; */
-  max-width: 120px;
+  max-width: 220px;
   overflow: auto;
   max-height: 42px;
   /* text-decoration: line-through;
