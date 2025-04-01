@@ -170,6 +170,7 @@ input {
   align-items: center;
   justify-content: space-between;
   padding: 2rem;
+  /* animation: done-task 3s infinite alternate ease-in-out; */
 }
 
 @keyframes scale-element {
@@ -185,6 +186,17 @@ input {
   }
 }
 
+@keyframes done-task {
+  0% {
+    box-shadow: 0 9px 4px rgba(177, 177, 177, 0.89);
+  }
+  50% {
+    box-shadow: 0 9px 4px #47a6ffd0;
+  }
+  100% {
+    box-shadow: 0 9px 4px rgba(9, 255, 222, 0.89);
+  }
+}
 @keyframes appear-scale-element {
   0% {
     opacity: 0;
