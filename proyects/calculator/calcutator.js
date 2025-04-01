@@ -41,7 +41,11 @@ $calculator.addEventListener("click", (e) => {
   if (entries) {
     $display.style.animation = "none";
 
-    if (stringOperation === "ERROR" || stringOperation === "0")
+    if (
+      stringOperation === "ERROR" ||
+      stringOperation === "0" ||
+      stringOperation === Infinity
+    )
       stringOperation = "";
 
     stringOperation += textValueBtn;
@@ -75,11 +79,13 @@ $calculator.addEventListener("click", (e) => {
 
       stringOperation = eval(stringOperation);
 
+      console.log(stringOperation);
       operationObject.result = stringOperation;
 
       arrayOperation.push(operationObject);
 
       saveLocalStorage(arrayOperation);
+
       printHistoryElement();
 
       $display.style.animation = "appear-scale-element 0.3s ease";
@@ -188,6 +194,8 @@ function printHistoryElement() {
   console.log(arrayOperation);
 
   arrayOperation.forEach((element, index) => {
+    if (element.result === null) return;
+
     createHistoryElement(element.operation, element.result, index);
 
     const $element = document.querySelector(`#element${index}`);
