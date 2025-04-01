@@ -2,15 +2,25 @@ const $calculator = document.querySelector(".calculator");
 
 const $display = document.querySelector(".calculator__result-text");
 
+const $displayGeneral = document.querySelector(".calculator__result");
+
 const $history = document.querySelector(".history__box");
 
 const $equals = document.querySelector(".calculator__btn--equals");
+
+function scrollToRight() {
+  setTimeout(() => {
+    $displayGeneral.scrollLeft =
+      $displayGeneral.scrollWidth - $displayGeneral.clientWidth;
+  }, 10);
+}
 
 let stringOperation = "";
 
 let arrayOperation = getLocalStorage() || [];
 
 $calculator.addEventListener("click", (e) => {
+  scrollToRight();
   let operationObject = {
     result: "",
     operation: "",
