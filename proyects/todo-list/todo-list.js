@@ -176,6 +176,11 @@ function DOMElement(taskName, id, taskState) {
   deleteTask($element, $deleteOption, id);
   editTask($editOption, taskName, id);
   checkTask($input, $label, id, $element);
+  scrollToBottom($label);
+}
+
+function scrollToBottom($label) {
+  $label.scrollTop = ($label.scrollHeight - $label.clientHeight) / 2;
 }
 
 let saveLocalStorage = () => {
