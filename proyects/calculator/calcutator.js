@@ -60,7 +60,9 @@ $calculator.addEventListener("click", (e) => {
     )
       stringOperation = "";
 
-    stringOperation = stringOperation.slice(0, -1);
+      setTimeout(() => {
+        stringOperation = stringOperation.slice(0, -1);
+      }, 10);
   }
 
   if (allClear) {
@@ -110,9 +112,7 @@ $calculator.addEventListener("click", (e) => {
     }
   }
 
-
-    $display.innerText = stringOperation;
-
+  $display.innerText = stringOperation;
 });
 
 function saveLocalStorage(arrayOperation) {
