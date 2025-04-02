@@ -95,7 +95,7 @@ function DOMElement(taskName, id, taskState) {
     // $element.style.animation = "opacity-low 1s ease";
     // $element.style.setProperty("opacity", "0.5");
   } else {
-    // $element.style.animation = "none";
+    $element.style.animation = "none";
     $label.style = "text-decoration:dashed";
   }
 
@@ -305,7 +305,8 @@ function checkTask($input, $label, id, $element) {
       $label2.style.animation = "none";
       setTimeout(() => {
         $label2.style.animation = "scale-element 0.5s ease";
-        $element2.style.animation = "vibration 0.5s ease";
+        $element2.style.animation =
+          "vibration 0.5s ease, done-task 3s infinite alternate ease-in-out";
       }, 100);
     } else {
       $element2.style.animation = "none";
