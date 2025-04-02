@@ -90,7 +90,7 @@ function DOMElement(taskName, id, taskState) {
 
     setTimeout(() => {
       $element.style.animation = "done-task 3s infinite alternate ease-in-out";
-    }, 1000);
+    }, 10);
 
     // $element.style.animation = "opacity-low 1s ease";
     // $element.style.setProperty("opacity", "0.5");

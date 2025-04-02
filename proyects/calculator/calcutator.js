@@ -60,9 +60,7 @@ $calculator.addEventListener("click", (e) => {
     )
       stringOperation = "";
 
-      setTimeout(() => {
-        stringOperation = stringOperation.slice(0, -1);
-      }, 10);
+    stringOperation = stringOperation.slice(0, -1);
   }
 
   if (allClear) {
