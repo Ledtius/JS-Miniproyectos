@@ -81,6 +81,7 @@ footer {
   justify-content: center;
   gap: 10rem;
   width: 100%;
+  flex-wrap: wrap;
 }
 .card-content__player {
   width: fit-content;
@@ -88,6 +89,7 @@ footer {
 .card-content__title-pts {
 }
 .card-content__title {
+  margin-top: 4rem;
 }
 .card-content__pts {
   display: flex;
@@ -96,7 +98,7 @@ footer {
   gap: 1rem;
 }
 .card-content__pts-title {
-    font-weight: 600;
+  font-weight: 600;
 }
 .card-content__pts-value {
 }
