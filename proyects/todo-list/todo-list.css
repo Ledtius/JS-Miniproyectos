@@ -19,7 +19,7 @@ body {
   gap: 2rem;
   /* width: fit-content; */
   min-width: 326px;
-  background-color: #000036;
+  /* background-color: #000036; */
 }
 
 .todo-list__general {

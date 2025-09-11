@@ -108,6 +108,9 @@ body {
 .card:nth-child(3) {
   animation: appear-scale-element 3s ease;
 }
+.card:nth-child(4) {
+  animation: appear-scale-element 4s ease;
+}
 .card__btn--view {
   color: #ffffff;
   background-color: #1b263b;
@@ -152,9 +155,10 @@ body {
 .card__description {
   text-align: justify;
 
-  max-height: 63px;
+  max-height: 70px;
 
   color: #3d5a80;
+  overflow-y: auto;
 
   scrollbar-width: thin;
   scrollbar-color: grey transparent;
