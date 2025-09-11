@@ -1,0 +1,87 @@
+body {
+  background-color: #0b6623;
+  color: #fff;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+footer {
+  text-align: center;
+  font-weight: 500;
+  padding: 2rem;
+  color: white;
+}
+
+.title {
+  margin: 4rem;
+  color: #fff;
+}
+
+.menu {
+  background-color: #fff;
+  border-radius: 1rem;
+  display: flex;
+  /* justify-content: space-between; */
+  gap: 1rem;
+  width: fit-content;
+  align-items: center;
+  padding: 1.6rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 320px) {
+  .menu {
+    flex-direction: column;
+  }
+}
+
+.btn {
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn:active {
+  transform: scale(1.06);
+}
+
+.btn--new {
+  background-color: #d82828;
+  box-shadow: 0 4px 6px rgba(192, 57, 43, 0.4);
+}
+.btn--new:hover {
+  box-shadow: 0 6px 10px rgba(192, 57, 43, 0.6);
+}
+
+.btn--draw {
+  background-color: #27ae60;
+  box-shadow: 0 4px 6px rgba(39, 174, 96, 0.4);
+}
+.btn--draw:hover {
+  box-shadow: 0 6px 10px rgba(39, 174, 96, 0.6);
+}
+
+.btn--stop {
+  color: black;
+  background-color: #f39c12;
+  box-shadow: 0 4px 6px rgba(243, 156, 18, 0.4);
+}
+.btn--stop:hover {
+  box-shadow: 0 6px 10px rgba(243, 156, 18, 0.6);
+}
+
+.card-content__pts {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.6rem;
+}

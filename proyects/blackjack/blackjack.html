@@ -28,7 +28,39 @@
     <title>Lista de tareas | JS Miniproyectos</title>
   </head>
   <body>
-    <main class="blackjack"></main>
+    <main>
+      <h1 class="title">Blackjack</h1>
+      <div class="menu">
+        <button class="btn btn--new">Nuevo Juego</button>
+        <button class="btn btn--draw">Pedir Carta</button>
+        <button class="btn btn--stop">Detener</button>
+      </div>
+
+      <section class="card-content">
+        <div class="card-content__player">
+          <div class="card-content__title-pts">
+            <h2 class="card-content__title">Jugador 1</h2>
+
+            <div class="card-content-pts">
+              <h3 class="card-content__pts-title">Total puntos:</h3>
+              <span class="card-content__pts-value">12</span>
+            </div>
+          </div>
+          <div class="card-content__cards"></div>
+        </div>
+        <div class="card-content__player">
+          <div class="card-content__title-pts">
+            <h2 class="card-content__title">Computadora</h2>
+
+            <div class="card-content-pts">
+              <h3 class="card-content__pts-title">Total puntos:</h3>
+              <span class="card-content__pts-value">12</span>
+            </div>
+          </div>
+          <div class="card-content__cards"></div>
+        </div>
+      </section>
+    </main>
     <footer>
       <small> © 2025 - Calet Devia - Todos los Derechos Reservados </small>
     </footer>
