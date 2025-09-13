@@ -16,11 +16,21 @@ const createDeck = () => {
     }
   }
 
-  console.table(deck);
   deck = _.shuffle(deck);
-  
-
   console.log(deck);
+  return deck;
 };
 
 createDeck();
+
+const askCard = () => {
+  if (deck.length === 0) {
+    throw "No cards in the desk";
+  }
+
+  const card = deck.shift();
+
+  console.log(card);
+};
+
+askCard();
