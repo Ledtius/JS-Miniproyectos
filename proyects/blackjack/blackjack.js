@@ -30,7 +30,13 @@ const askCard = () => {
 
   const card = deck.shift();
 
-  console.log(card);
+  return card;
 };
 
-askCard();
+const cardValue = (card) => {
+  let value = card.substring(0, card.length - 1);
+
+  return isNaN(value) ? (value === "A" ? 11 : 10) : Number(value);
+};
+
+console.log(cardValue(askCard()));
