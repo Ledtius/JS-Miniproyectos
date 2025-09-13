@@ -1,39 +1,41 @@
 let deck = [];
 
 const createDeck = () => {
-  const letters = ["C", "D", "H", "S"];
-  const letters2 = ["J", "K", "Q"];
-  let count = 0;
-  let count2 = 0;
+  const types = ["C", "D", "H", "S"];
+  const specials = ["A", "J", "K", "Q"];
 
-  for (let index = 2; index <= 11; index++) {
-    if (index <= 10) deck.push(`${index}${letters[count]}`);
-    else {
-      count++;
-      if (count !== letters.length) index = 1;
+  /* Equivalent */
+  // let count = 0;
+  // let count2 = 0;
+
+  // for (let index = 2; index <= 11; index++) {
+  //   if (index <= 10) deck.push(`${index}${types[count]}`);
+  //   else {
+  //     count++;
+  //     if (count !== types.length) index = 1;
+  //   }
+  // }
+
+  // for (let index = 0; index <= types.length; index++) {
+  //   if (index <= types.length - 1)
+  //     deck.push(`${specials[count2]}${types[index]}`);
+  //   else {
+  //     count2++;
+  //     if (count2 !== specials.length) index = -1;
+  //   }
+  // }
+
+  for (let index = 2; index <= 10; index++) {
+    for (const type of types) {
+      deck.push(index + type);
     }
   }
 
-  for (let index = 0; index <= letters.length; index++) {
-    if (index <= letters.length - 1)
-      deck.push(`${letters2[count2]}${letters[index]}`);
-    else {
-      count2++;
-      console.log(index);
-      if (count2 !== letters2.length) index = -1;
+  for (const special of specials) {
+    for (const type of types) {
+      deck.push(special + type);
     }
-    console.log(index);
   }
-
-  /* ssss */
-  /* 
-      deck.push(`${index}S`);
-    deck.push(`${index}C`);
-    deck.push(`${index}D`);
-    deck.push(`${index}H`);
-
-
-*/
 
   console.table(deck);
 };
