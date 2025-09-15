@@ -8,6 +8,10 @@ const $askCardBtn = document.querySelector(".btn--draw");
 
 const $stopBtn = document.querySelector(".btn--stop");
 
+const $pointsPlayer = document.querySelectorAll(".card-content__pts-value")[0];
+
+const $pointsPc = document.querySelectorAll(".card-content__pts-value")[1];
+
 let deck = [];
 
 const createDeck = () => {
@@ -54,7 +58,17 @@ console.log(cardValue(askCard()));
 $askCardBtn.addEventListener("click", (e) => {
   const $card = document.createElement("img");
   $card.className = "card-content__card";
-  console.log(askCard());
-  $card.src = `assets/cards/${askCard()}.png`;
+  const card = askCard();
+  console.log(card);
+  $card.src = `assets/cards/${card}.png`;
   $deskPlayer.append($card);
+
+  pointsOperation($pointsPlayer, cardValue(card));
 });
+
+let lastPoint = 0;
+
+function pointsOperation($points, points) {
+  lastPoint += points;
+  $points.innerText = lastPoint;
+}
