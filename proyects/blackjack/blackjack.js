@@ -1,3 +1,13 @@
+const $deskPlayer = document.querySelectorAll(".card-content__cards")[0];
+
+const $deskPc = document.querySelectorAll(".card-content__cards")[1];
+
+const $newGameBtn = document.querySelector(".btn--new");
+
+const $askCardBtn = document.querySelector(".btn--draw");
+
+const $stopBtn = document.querySelector(".btn--stop");
+
 let deck = [];
 
 const createDeck = () => {
@@ -40,3 +50,11 @@ const cardValue = (card) => {
 };
 
 console.log(cardValue(askCard()));
+
+$askCardBtn.addEventListener("click", (e) => {
+  const $card = document.createElement("img");
+  $card.className = "card-content__card";
+  console.log(askCard());
+  $card.src = `assets/cards/${askCard()}.png`;
+  $deskPlayer.append($card);
+});
