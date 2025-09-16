@@ -104,7 +104,7 @@ footer {
 .card-content__pts-content-info {
 }
 
-.card-content__pts-content-messague {
+.card-content__pts-content-message {
   min-height: 41.6px;
 }
 
@@ -113,7 +113,7 @@ footer {
 }
 .card-content__pts-value {
 }
-.card-content__messague {
+.card-content__message {
   font-weight: 600;
   background-color: white;
   color: red;
