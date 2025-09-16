@@ -12,7 +12,14 @@ const $pointsPlayer = document.querySelectorAll(".card-content__pts-value")[0];
 
 const $pointsPc = document.querySelectorAll(".card-content__pts-value")[1];
 
+const $pointsContent = document.querySelector(".card-content__pts");
+
+const $pointsTitle = document.querySelector(".card-content__pts-title");
+
+const $pointsValue = document.querySelector(".card-content__pts-value");
+
 let deck = [];
+let lastPoint = 0;
 
 const createDeck = () => {
   const types = ["C", "D", "H", "S"];
@@ -55,7 +62,7 @@ const cardValue = (card) => {
 
 console.log(cardValue(askCard()));
 
-$askCardBtn.addEventListener("click", (e) => {
+const handleAskCard = () => {
   const $card = document.createElement("img");
   $card.className = "card-content__card";
   const card = askCard();
@@ -64,11 +71,28 @@ $askCardBtn.addEventListener("click", (e) => {
   $deskPlayer.append($card);
 
   pointsOperation($pointsPlayer, cardValue(card));
-});
+};
 
-let lastPoint = 0;
+$askCardBtn.addEventListener("click", handleAskCard);
 
 function pointsOperation($points, points) {
   lastPoint += points;
+
+  const $spanMessage = document.createElement("span");
+  $spanMessage.className = "card-content__messague";
+  $spanMessage.innerText = "!Has perdido¡";
+
+  if (lastPoint > 21) {
+    $pointsTitle.remove();
+    $pointsValue.remove();
+
+    $askCardBtn.removeEventListener("click", handleAskCard);
+
+    $pointsContent.append($spanMessage);
+
+    $points.innerText = "sss";
+    // $deskPlayer.append($spanMessage)
+  }
+
   $points.innerText = lastPoint;
 }
