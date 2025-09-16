@@ -99,6 +99,7 @@ footer {
   align-items: center;
   justify-content: start;
   gap: 3rem;
+  max-height: 93.2px;
 }
 
 .card-content__pts-content-info {
