@@ -12,11 +12,9 @@ const $pointsPlayer = document.querySelectorAll(".card-content__pts-value")[0];
 
 const $pointsPc = document.querySelectorAll(".card-content__pts-value")[1];
 
-const $pointsContent = document.querySelector(".card-content__pts");
-
-const $pointsTitle = document.querySelector(".card-content__pts-title");
-
-const $pointsValue = document.querySelector(".card-content__pts-value");
+const $pointsContentMessage = document.querySelector(
+  ".card-content__pts-content-message"
+);
 
 let deck = [];
 let lastPoint = 0;
@@ -79,19 +77,18 @@ function pointsOperation($points, points) {
   lastPoint += points;
 
   const $spanMessage = document.createElement("span");
-  $spanMessage.className = "card-content__messague";
-  $spanMessage.innerText = "!Has perdido¡";
+  $spanMessage.className = "card-content__message";
+  $spanMessage.innerText = "¡Has perdido¡";
 
   if (lastPoint > 21) {
-    $pointsTitle.remove();
-    $pointsValue.remove();
-
     $askCardBtn.removeEventListener("click", handleAskCard);
 
-    $pointsContent.append($spanMessage);
-
-    $points.innerText = "sss";
-    // $deskPlayer.append($spanMessage)
+    $pointsContentMessage.append($spanMessage);
+  } else if (lastPoint === 21) {
+    $askCardBtn.removeEventListener("click", handleAskCard);
+    $spanMessage.style.color = "#27ae60";
+    $spanMessage.innerText = "¡Has ganado!";
+    $pointsContentMessage.append($spanMessage);
   }
 
   $points.innerText = lastPoint;
