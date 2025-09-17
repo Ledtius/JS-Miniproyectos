@@ -15,6 +15,9 @@ const $pointsPc = document.querySelectorAll(".card-content__pts-value")[1];
 const $pointsContentMessage = document.querySelector(
   ".card-content__pts-content-message"
 );
+const $pointsContentMessageAll = document.querySelectorAll(
+  ".card-content__pts-content-message"
+);
 
 let deck = [];
 let lastPointValuePlayer = 0;
@@ -100,7 +103,19 @@ const handleStopAskCard = () => {
   createPcDesk();
 
   console.log({ lastPointValuePc, lastPointValuePlayer });
+  if (lastPointValuePc > 21) {
+    createMessage("¡Has ganado¡", "#27ae60", 0);
+    createMessage("¡Has perdido¡", "red", 1);
+  }
 };
+
+function createMessage(text, color, index) {
+  const $spanMessage = document.createElement("span");
+  $spanMessage.className = "card-content__message";
+  $spanMessage.style.color = color;
+  $spanMessage.innerText = text;
+  $pointsContentMessageAll[index].append($spanMessage);
+}
 
 function createPcDesk() {
   while (lastPointValuePc < 21) {
