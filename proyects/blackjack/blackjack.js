@@ -1,6 +1,6 @@
-const $deskPlayer = document.querySelectorAll(".card-content__cards")[0];
+const $deckPlayer = document.querySelectorAll(".card-content__cards")[0];
 
-const $deskPc = document.querySelectorAll(".card-content__cards")[1];
+const $deckPc = document.querySelectorAll(".card-content__cards")[1];
 
 const $newGameBtn = document.querySelector(".btn--new");
 
@@ -48,7 +48,7 @@ createDeck();
 
 const askCard = () => {
   if (deck.length === 0) {
-    throw "No cards in the desk";
+    throw "No cards in the deck";
   }
 
   const card = deck.shift();
@@ -78,7 +78,7 @@ const createCard = () => {
 const handleAskCardPlayer = () => {
   const { $card, card, pointValue } = createCard();
 
-  $deskPlayer.append($card);
+  $deckPlayer.append($card);
 
   // pointsOperation($pointsPlayer, cardValue(card));
 
@@ -91,7 +91,8 @@ const handleAskCardPlayer = () => {
 
   if (lastPointValuePlayer >= 21) {
     $askCardBtn.removeEventListener("click", handleAskCardPlayer);
-    createPcDesk();
+    createPcDeck();
+
     if (lastPointValuePlayer === 21 && lastPointValuePc !== 21) {
       createMessage("¡Has ganado¡", "#27ae60", 0);
       createMessage("¡Has perdido¡", "red", 1);
@@ -113,7 +114,7 @@ const handleAskCardPlayer = () => {
 const handleStopAskCardPlayer = () => {
   $askCardBtn.removeEventListener("click", handleAskCardPlayer);
 
-  createPcDesk();
+  createPcDeck();
 
   console.log({ lastPointValuePc, lastPointValuePlayer });
 
@@ -134,10 +135,45 @@ function createMessage(text, color, index) {
   $pointsContentMessageAll[index].append($spanMessage);
 }
 
-function createPcDesk() {
+function newGame() {
+  lastPointValuePlayer = 0;
+  lastPointValuePc = 0;
+
+  $pointsPlayer.innerText = lastPointValuePlayer;
+  $pointsPc.innerText = lastPointValuePc;
+
+  if ($pointsContentMessageAll[0].children.length > 0) {
+    $pointsContentMessageAll[0].children[0].remove();
+    $pointsContentMessageAll[1].children[0].remove();
+  }
+
+  const $arrayCardsPc = $deckPc.children;
+  const $arrayCardsPlayer = $deckPlayer.children;
+
+  const oldLentPc = $arrayCardsPc.length;
+  const oldLentPlayer = $arrayCardsPlayer.length;
+
+  for (let i = 0; i < oldLentPc; i++) {
+    $arrayCardsPc[0].remove();
+  }
+
+  for (let i = 0; i < oldLentPlayer; i++) {
+    $arrayCardsPlayer[0].remove();
+  }
+
+  deck = [];
+
+  deck = createDeck();
+
+  $askCardBtn.addEventListener("click", handleAskCardPlayer);
+}
+
+$newGameBtn.addEventListener("click", newGame);
+
+function createPcDeck() {
   while (lastPointValuePc < 21) {
     const { $card, card, pointValue } = createCard();
-    $deskPc.append($card);
+    $deckPc.append($card);
 
     console.log(card, pointValue);
 
