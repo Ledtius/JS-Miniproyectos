@@ -106,7 +106,14 @@ footer {
 }
 
 .card-content__pts-content-message {
-  min-height: 41.6px;
+  /* min-height: 80.6px; */
+  height: 81.6px;
+  width: 119.675px;
+  border: 1px solid transparent;
+  /* height: fit-content; */
+  /* background-color: red; */
+  display: flex;
+  justify-content: center;
 }
 
 .card-content__pts-title {
@@ -120,6 +127,7 @@ footer {
   color: red;
   padding: 1rem;
   border-radius: 2rem;
+  height: 41.6px;
   /* animation: appear; */
 
   animation-name: appear;
@@ -144,7 +152,7 @@ footer {
   justify-content: center;
   flex-wrap: wrap;
   padding-top: 2rem;
-  width: fit-content;
+  width: 448px;
   max-width: 40rem;
   min-height: 229.225px;
   min-width: 300px;
@@ -164,5 +172,9 @@ footer {
 @media (max-width: 300px) {
   .menu {
     flex-direction: column;
+  }
+
+  .card-content__cards {
+    width: fit-content;
   }
 }
