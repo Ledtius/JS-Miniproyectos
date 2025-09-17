@@ -17,7 +17,8 @@ const $pointsContentMessage = document.querySelector(
 );
 
 let deck = [];
-let lastPoint = 0;
+let lastPointValuePlayer = 0;
+let lastPointValuePc = 0;
 
 const createDeck = () => {
   const types = ["C", "D", "H", "S"];
@@ -58,38 +59,95 @@ const cardValue = (card) => {
   return isNaN(value) ? (value === "A" ? 11 : 10) : Number(value);
 };
 
-console.log(cardValue(askCard()));
-
-const handleAskCard = () => {
+const createCard = () => {
   const $card = document.createElement("img");
   $card.className = "card-content__card";
+
   const card = askCard();
-  console.log(card);
+
   $card.src = `assets/cards/${card}.png`;
+
+  const pointValue = cardValue(card);
+
+  return { $card, card, pointValue };
+};
+
+const handleAskCard = () => {
+  const { $card, card, pointValue } = createCard();
+
   $deskPlayer.append($card);
 
-  pointsOperation($pointsPlayer, cardValue(card));
+  // pointsOperation($pointsPlayer, cardValue(card));
+
+  console.log(card, pointValue);
+  // console.table([].push(lastPointValuePlayer, card));
+
+  lastPointValuePlayer += pointValue;
+
+  $pointsPlayer.innerText = lastPointValuePlayer;
+
+  if (lastPointValuePlayer >= 21) {
+    $askCardBtn.removeEventListener("click", handleAskCard);
+
+    if (lastPointValuePlayer > 21) {
+      createPcDesk();
+    }
+  }
 };
+
+const handleStopAskCard = () => {
+  $askCardBtn.removeEventListener("click", handleAskCard);
+  createPcDesk();
+
+  console.log({ lastPointValuePc, lastPointValuePlayer });
+};
+
+function createPcDesk() {
+  while (lastPointValuePc < 21) {
+    const { $card, card, pointValue } = createCard();
+    $deskPc.append($card);
+
+    console.log(card, pointValue);
+
+    lastPointValuePc += pointValue;
+
+    $pointsPc.innerText = lastPointValuePc;
+  }
+
+  console.log(lastPointValuePc);
+}
 
 $askCardBtn.addEventListener("click", handleAskCard);
 
-function pointsOperation($points, points) {
-  lastPoint += points;
+$stopBtn.addEventListener("click", handleStopAskCard);
+
+function pointsOperation($points, pointValue) {
+  lastPointValuePlayer += pointValue;
 
   const $spanMessage = document.createElement("span");
   $spanMessage.className = "card-content__message";
-  $spanMessage.innerText = "¡Has perdido¡";
+  $spanMessage.innerText = "¡Has perdido!";
 
-  if (lastPoint > 21) {
+  if (lastPointValuePlayer > 21) {
     $askCardBtn.removeEventListener("click", handleAskCard);
 
     $pointsContentMessage.append($spanMessage);
-  } else if (lastPoint === 21) {
+  } else if (lastPointValuePlayer === 21) {
     $askCardBtn.removeEventListener("click", handleAskCard);
     $spanMessage.style.color = "#27ae60";
     $spanMessage.innerText = "¡Has ganado!";
     $pointsContentMessage.append($spanMessage);
   }
 
-  $points.innerText = lastPoint;
+  $points.innerText = lastPointValuePlayer;
+}
+
+$newGameBtn.addEventListener("click", handleNewGame);
+
+function handleNewGame() {
+  if ($pointsContentMessage.children.length > 0) {
+    $pointsContentMessage.children[0].remove();
+  }
+  lastPointValuePlayer = 0;
+  $pointsPlayer.innerText = lastPointValuePlayer;
 }
