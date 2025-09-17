@@ -111,21 +111,24 @@ const handleAskCardPlayer = () => {
   }
 };
 
-const handleStopAskCardPlayer = () => {
+function handleStopAskCardPlayer() {
   $askCardBtn.removeEventListener("click", handleAskCardPlayer);
+
 
   createPcDeck();
 
   console.log({ lastPointValuePc, lastPointValuePlayer });
 
-  if (lastPointValuePc > 21) {
-    createMessage("¡Has ganado¡", "#27ae60", 0);
-    createMessage("¡Has perdido¡", "red", 1);
-  } else if (lastPointValuePc === 21 && lastPointValuePlayer !== 21) {
-    createMessage("¡Has ganado¡", "#27ae60", 1);
-    createMessage("¡Has perdido¡", "red", 0);
+  if ($pointsContentMessageAll[0].children.length === 0) {
+    if (lastPointValuePc > 21) {
+      createMessage("¡Has ganado¡", "#27ae60", 0);
+      createMessage("¡Has perdido¡", "red", 1);
+    } else if (lastPointValuePc === 21 && lastPointValuePlayer !== 21) {
+      createMessage("¡Has ganado¡", "#27ae60", 1);
+      createMessage("¡Has perdido¡", "red", 0);
+    }
   }
-};
+}
 
 function createMessage(text, color, index) {
   const $spanMessage = document.createElement("span");
