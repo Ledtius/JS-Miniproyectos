@@ -75,7 +75,7 @@ const createCard = () => {
   return { $card, card, pointValue };
 };
 
-const handleAskCard = () => {
+const handleAskCardPlayer = () => {
   const { $card, card, pointValue } = createCard();
 
   $deskPlayer.append($card);
@@ -90,22 +90,39 @@ const handleAskCard = () => {
   $pointsPlayer.innerText = lastPointValuePlayer;
 
   if (lastPointValuePlayer >= 21) {
-    $askCardBtn.removeEventListener("click", handleAskCard);
-
-    if (lastPointValuePlayer > 21) {
-      createPcDesk();
+    $askCardBtn.removeEventListener("click", handleAskCardPlayer);
+    createPcDesk();
+    if (lastPointValuePlayer === 21 && lastPointValuePc !== 21) {
+      createMessage("¡Has ganado¡", "#27ae60", 0);
+      createMessage("¡Has perdido¡", "red", 1);
+    } else if (lastPointValuePlayer !== 21 && lastPointValuePc === 21) {
+      createMessage("¡Has perdido¡", "red", 0);
+      createMessage("¡Has ganado¡", "#27ae60", 1);
+    } else if (lastPointValuePlayer !== 21 && lastPointValuePc !== 21) {
+      createMessage("¡Has perdido¡", "red", 0);
+      createMessage("¡Has perdido¡", "red", 1);
     }
+  }
+
+  if (lastPointValuePc === 21 && lastPointValuePlayer === 21) {
+    createMessage("¡Empate¡", "orange", 0);
+    createMessage("¡Empate¡", "orange", 1);
   }
 };
 
-const handleStopAskCard = () => {
-  $askCardBtn.removeEventListener("click", handleAskCard);
+const handleStopAskCardPlayer = () => {
+  $askCardBtn.removeEventListener("click", handleAskCardPlayer);
+
   createPcDesk();
 
   console.log({ lastPointValuePc, lastPointValuePlayer });
+
   if (lastPointValuePc > 21) {
     createMessage("¡Has ganado¡", "#27ae60", 0);
     createMessage("¡Has perdido¡", "red", 1);
+  } else if (lastPointValuePc === 21 && lastPointValuePlayer !== 21) {
+    createMessage("¡Has ganado¡", "#27ae60", 1);
+    createMessage("¡Has perdido¡", "red", 0);
   }
 };
 
@@ -128,13 +145,11 @@ function createPcDesk() {
 
     $pointsPc.innerText = lastPointValuePc;
   }
-
-  console.log(lastPointValuePc);
 }
 
-$askCardBtn.addEventListener("click", handleAskCard);
+$askCardBtn.addEventListener("click", handleAskCardPlayer);
 
-$stopBtn.addEventListener("click", handleStopAskCard);
+$stopBtn.addEventListener("click", handleStopAskCardPlayer);
 
 function pointsOperation($points, pointValue) {
   lastPointValuePlayer += pointValue;
@@ -144,11 +159,11 @@ function pointsOperation($points, pointValue) {
   $spanMessage.innerText = "¡Has perdido!";
 
   if (lastPointValuePlayer > 21) {
-    $askCardBtn.removeEventListener("click", handleAskCard);
+    $askCardBtn.removeEventListener("click", handleAskCardPlayer);
 
     $pointsContentMessage.append($spanMessage);
   } else if (lastPointValuePlayer === 21) {
-    $askCardBtn.removeEventListener("click", handleAskCard);
+    $askCardBtn.removeEventListener("click", handleAskCardPlayer);
     $spanMessage.style.color = "#27ae60";
     $spanMessage.innerText = "¡Has ganado!";
     $pointsContentMessage.append($spanMessage);
