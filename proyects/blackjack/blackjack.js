@@ -1,206 +1,217 @@
-const $deckPlayer = document.querySelectorAll(".card-content__cards")[0];
+(() => {
+  const $deckPlayer = document.querySelectorAll(".card-content__cards")[0];
 
-const $deckPc = document.querySelectorAll(".card-content__cards")[1];
+  const $deckPc = document.querySelectorAll(".card-content__cards")[1];
 
-const $newGameBtn = document.querySelector(".btn--new");
+  const $newGameBtn = document.querySelector(".btn--new");
 
-const $askCardBtn = document.querySelector(".btn--draw");
+  const $askCardBtn = document.querySelector(".btn--draw");
 
-const $stopBtn = document.querySelector(".btn--stop");
+  const $stopBtn = document.querySelector(".btn--stop");
 
-const $pointsPlayer = document.querySelectorAll(".card-content__pts-value")[0];
+  const $pointsPlayer = document.querySelectorAll(
+    ".card-content__pts-value"
+  )[0];
 
-const $pointsPc = document.querySelectorAll(".card-content__pts-value")[1];
+  const $pointsPc = document.querySelectorAll(".card-content__pts-value")[1];
 
-const $pointsContentMessage = document.querySelector(
-  ".card-content__pts-content-message"
-);
-const $pointsContentMessageAll = document.querySelectorAll(
-  ".card-content__pts-content-message"
-);
+  const $pointsContentMessage = document.querySelector(
+    ".card-content__pts-content-message"
+  );
+  const $pointsContentMessageAll = document.querySelectorAll(
+    ".card-content__pts-content-message"
+  );
 
-let deck = [];
-let lastPointValuePlayer = 0;
-let lastPointValuePc = 0;
+  let deck = [];
+  let lastPointValuePlayer = 0;
+  let lastPointValuePc = 0;
 
-const createDeck = () => {
-  const types = ["C", "D", "H", "S"];
-  const specials = ["A", "J", "K", "Q"];
+  const createDeck = () => {
+    const types = ["C", "D", "H", "S"];
+    const specials = ["A", "J", "K", "Q"];
 
-  for (let index = 2; index <= 10; index++) {
-    for (const type of types) {
-      deck.push(index + type);
+    for (let index = 2; index <= 10; index++) {
+      for (const type of types) {
+        deck.push(index + type);
+      }
     }
-  }
 
-  for (const special of specials) {
-    for (const type of types) {
-      deck.push(special + type);
+    for (const special of specials) {
+      for (const type of types) {
+        deck.push(special + type);
+      }
     }
-  }
 
-  deck = _.shuffle(deck);
-  console.log(deck);
-  return deck;
-};
+    deck = _.shuffle(deck);
+    console.log(deck);
+    return deck;
+  };
 
-createDeck();
+  createDeck();
 
-const askCard = () => {
-  if (deck.length === 0) {
-    throw "No cards in the deck";
-  }
-
-  const card = deck.shift();
-
-  return card;
-};
-
-const cardValue = (card) => {
-  let value = card.substring(0, card.length - 1);
-
-  return isNaN(value) ? (value === "A" ? 11 : 10) : Number(value);
-};
-
-const createCard = () => {
-  const $card = document.createElement("img");
-  $card.className = "card-content__card";
-
-  const card = askCard();
-
-  $card.src = `assets/cards/${card}.png`;
-
-  const pointValue = cardValue(card);
-
-  return { $card, card, pointValue };
-};
-
-const handleAskCardPlayer = () => {
-  const { $card, card, pointValue } = createCard();
-
-  $deckPlayer.append($card);
-
-  // pointsOperation($pointsPlayer, cardValue(card));
-
-  console.log(card, pointValue);
-  // console.table([].push(lastPointValuePlayer, card));
-
-  lastPointValuePlayer += pointValue;
-
-  $pointsPlayer.innerText = lastPointValuePlayer;
-
-  if (lastPointValuePlayer >= 21) {
-    $askCardBtn.removeEventListener("click", handleAskCardPlayer);
-    createPcDeck();
-
-    if (lastPointValuePlayer === 21 && lastPointValuePc !== 21) {
-      createMessage("¡Has ganado¡", "#27ae60", 0);
-      createMessage("¡Has perdido¡", "red", 1);
-    } else if (lastPointValuePlayer !== 21 && lastPointValuePc === 21) {
-      createMessage("¡Has perdido¡", "red", 0);
-      createMessage("¡Has ganado¡", "#27ae60", 1);
-    } else if (lastPointValuePlayer !== 21 && lastPointValuePc !== 21) {
-      createMessage("¡Has perdido¡", "red", 0);
-      createMessage("¡Has perdido¡", "red", 1);
+  const askCard = () => {
+    if (deck.length === 0) {
+      throw "No cards in the deck";
     }
-  }
 
-  if (lastPointValuePc === 21 && lastPointValuePlayer === 21) {
-    createMessage("¡Empate¡", "orange", 0);
-    createMessage("¡Empate¡", "orange", 1);
-  }
-};
+    const card = deck.shift();
 
-function handleStopAskCardPlayer() {
-  $askCardBtn.removeEventListener("click", handleAskCardPlayer);
+    return card;
+  };
 
-  createPcDeck();
+  const cardValue = (card) => {
+    let value = card.substring(0, card.length - 1);
 
-  console.log({ lastPointValuePc, lastPointValuePlayer });
+    return isNaN(value) ? (value === "A" ? 11 : 10) : Number(value);
+  };
 
-  if ($pointsContentMessageAll[0].children.length === 0) {
-    if (lastPointValuePc > 21) {
-      createMessage("¡Has ganado¡", "#27ae60", 0);
-      createMessage("¡Has perdido¡", "red", 1);
-    } else if (lastPointValuePc === 21 && lastPointValuePlayer !== 21) {
-      createMessage("¡Has ganado¡", "#27ae60", 1);
-      createMessage("¡Has perdido¡", "red", 0);
-    } else if (
-      lastPointValuePc < 21 &&
-      lastPointValuePc > lastPointValuePlayer
-    ) {
-      createMessage("¡Has ganado¡", "#27ae60", 1);
-      createMessage("¡Has perdido¡", "red", 0);
-    }
-  }
-}
+  const createCard = () => {
+    const $card = document.createElement("img");
+    $card.className = "card-content__card";
 
-function createMessage(text, color, index) {
-  const $spanMessage = document.createElement("span");
-  $spanMessage.className = "card-content__message";
-  $spanMessage.style.color = color;
-  $spanMessage.innerText = text;
-  $pointsContentMessageAll[index].append($spanMessage);
-}
+    const card = askCard();
 
-function newGame() {
-  lastPointValuePlayer = 0;
-  lastPointValuePc = 0;
+    $card.src = `assets/cards/${card}.png`;
 
-  $pointsPlayer.innerText = lastPointValuePlayer;
-  $pointsPc.innerText = lastPointValuePc;
+    const pointValue = cardValue(card);
 
-  if ($pointsContentMessageAll[0].children.length > 0) {
-    $pointsContentMessageAll[0].children[0].remove();
-    $pointsContentMessageAll[1].children[0].remove();
-  }
+    return { $card, card, pointValue };
+  };
 
-  const $arrayCardsPc = $deckPc.children;
-  const $arrayCardsPlayer = $deckPlayer.children;
-
-  const oldLentPc = $arrayCardsPc.length;
-  const oldLentPlayer = $arrayCardsPlayer.length;
-
-  for (let i = 0; i < oldLentPc; i++) {
-    $arrayCardsPc[0].remove();
-  }
-
-  for (let i = 0; i < oldLentPlayer; i++) {
-    $arrayCardsPlayer[0].remove();
-  }
-
-  deck = [];
-
-  deck = createDeck();
-
-  $askCardBtn.addEventListener("click", handleAskCardPlayer);
-}
-
-$newGameBtn.addEventListener("click", newGame);
-
-function createPcDeck() {
-  while (lastPointValuePc <= lastPointValuePlayer && lastPointValuePc <= 21) {
+  const handleAskCardPlayer = () => {
     const { $card, card, pointValue } = createCard();
-    $deckPc.append($card);
+
+    $deckPlayer.append($card);
+
+    // pointsOperation($pointsPlayer, cardValue(card));
 
     console.log(card, pointValue);
+    // console.table([].push(lastPointValuePlayer, card));
 
-    lastPointValuePc += pointValue;
+    lastPointValuePlayer += pointValue;
 
+    $pointsPlayer.innerText = lastPointValuePlayer;
+
+    if (lastPointValuePlayer >= 21) {
+      $askCardBtn.removeEventListener("click", handleAskCardPlayer);
+      createPcDeck();
+
+      if (lastPointValuePlayer === 21 && lastPointValuePc !== 21) {
+        createMessage("¡Has ganado¡", "#27ae60", 0);
+        createMessage("¡Has perdido¡", "red", 1);
+      } else if (lastPointValuePlayer !== 21 && lastPointValuePc === 21) {
+        createMessage("¡Has perdido¡", "red", 0);
+        createMessage("¡Has ganado¡", "#27ae60", 1);
+      } else if (lastPointValuePlayer !== 21 && lastPointValuePc !== 21) {
+        createMessage("¡Has perdido¡", "red", 0);
+        createMessage("¡Has perdido¡", "red", 1);
+      }
+    }
+
+    if (lastPointValuePc === 21 && lastPointValuePlayer === 21) {
+      createMessage("¡Empate¡", "orange", 0);
+      createMessage("¡Empate¡", "orange", 1);
+    }
+  };
+
+  function handleStopAskCardPlayer() {
+    $askCardBtn.removeEventListener("click", handleAskCardPlayer);
+
+    createPcDeck();
+
+    console.log({ lastPointValuePc, lastPointValuePlayer });
+
+    if ($pointsContentMessageAll[0].children.length === 0) {
+      if (lastPointValuePc > 21) {
+        createMessage("¡Has ganado¡", "#27ae60", 0);
+        createMessage("¡Has perdido¡", "red", 1);
+      } else if (lastPointValuePc === 21 && lastPointValuePlayer !== 21) {
+        createMessage("¡Has ganado¡", "#27ae60", 1);
+        createMessage("¡Has perdido¡", "red", 0);
+      } else if (
+        lastPointValuePc < 21 &&
+        lastPointValuePc > lastPointValuePlayer
+      ) {
+        createMessage("¡Has ganado¡", "#27ae60", 1);
+        createMessage("¡Has perdido¡", "red", 0);
+      } else if (
+        lastPointValuePc < 21 &&
+        lastPointValuePlayer < 21 &&
+        lastPointValuePc === lastPointValuePlayer
+      ) {
+        createMessage("¡Empate¡", "orange", 0);
+        createMessage("¡Empate¡", "orange", 1);
+      }
+    }
+  }
+
+  function createMessage(text, color, index) {
+    const $spanMessage = document.createElement("span");
+    $spanMessage.className = "card-content__message";
+    $spanMessage.style.color = color;
+    $spanMessage.innerText = text;
+    $pointsContentMessageAll[index].append($spanMessage);
+  }
+
+  function newGame() {
+    lastPointValuePlayer = 0;
+    lastPointValuePc = 0;
+
+    $pointsPlayer.innerText = lastPointValuePlayer;
     $pointsPc.innerText = lastPointValuePc;
+
+    if ($pointsContentMessageAll[0].children.length > 0) {
+      $pointsContentMessageAll[0].children[0].remove();
+      $pointsContentMessageAll[1].children[0].remove();
+    }
+
+    const $arrayCardsPc = $deckPc.children;
+    const $arrayCardsPlayer = $deckPlayer.children;
+
+    const oldLentPc = $arrayCardsPc.length;
+    const oldLentPlayer = $arrayCardsPlayer.length;
+
+    for (let i = 0; i < oldLentPc; i++) {
+      $arrayCardsPc[0].remove();
+    }
+
+    for (let i = 0; i < oldLentPlayer; i++) {
+      $arrayCardsPlayer[0].remove();
+    }
+
+    deck = [];
+
+    deck = createDeck();
+
+    $askCardBtn.addEventListener("click", handleAskCardPlayer);
   }
-}
 
-$askCardBtn.addEventListener("click", handleAskCardPlayer);
+  $newGameBtn.addEventListener("click", newGame);
 
-$stopBtn.addEventListener("click", handleStopAskCardPlayer);
+  function createPcDeck() {
+    while (lastPointValuePc <= lastPointValuePlayer && lastPointValuePc <= 21) {
+      const { $card, card, pointValue } = createCard();
+      $deckPc.append($card);
 
-$newGameBtn.addEventListener("click", handleNewGame);
+      console.log(card, pointValue);
 
-function handleNewGame() {
-  if ($pointsContentMessage.children.length > 0) {
-    $pointsContentMessage.children[0].remove();
+      lastPointValuePc += pointValue;
+
+      $pointsPc.innerText = lastPointValuePc;
+    }
   }
-  lastPointValuePlayer = 0;
-  $pointsPlayer.innerText = lastPointValuePlayer;
-}
+
+  $askCardBtn.addEventListener("click", handleAskCardPlayer);
+
+  $stopBtn.addEventListener("click", handleStopAskCardPlayer);
+
+  $newGameBtn.addEventListener("click", handleNewGame);
+
+  function handleNewGame() {
+    if ($pointsContentMessage.children.length > 0) {
+      $pointsContentMessage.children[0].remove();
+    }
+    lastPointValuePlayer = 0;
+    $pointsPlayer.innerText = lastPointValuePlayer;
+  }
+})();
