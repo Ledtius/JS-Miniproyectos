@@ -114,7 +114,6 @@ const handleAskCardPlayer = () => {
 function handleStopAskCardPlayer() {
   $askCardBtn.removeEventListener("click", handleAskCardPlayer);
 
-
   createPcDeck();
 
   console.log({ lastPointValuePc, lastPointValuePlayer });
@@ -124,6 +123,12 @@ function handleStopAskCardPlayer() {
       createMessage("¡Has ganado¡", "#27ae60", 0);
       createMessage("¡Has perdido¡", "red", 1);
     } else if (lastPointValuePc === 21 && lastPointValuePlayer !== 21) {
+      createMessage("¡Has ganado¡", "#27ae60", 1);
+      createMessage("¡Has perdido¡", "red", 0);
+    } else if (
+      lastPointValuePc < 21 &&
+      lastPointValuePc > lastPointValuePlayer
+    ) {
       createMessage("¡Has ganado¡", "#27ae60", 1);
       createMessage("¡Has perdido¡", "red", 0);
     }
@@ -174,7 +179,7 @@ function newGame() {
 $newGameBtn.addEventListener("click", newGame);
 
 function createPcDeck() {
-  while (lastPointValuePc < 21) {
+  while (lastPointValuePc <= lastPointValuePlayer && lastPointValuePc <= 21) {
     const { $card, card, pointValue } = createCard();
     $deckPc.append($card);
 
@@ -189,27 +194,6 @@ function createPcDeck() {
 $askCardBtn.addEventListener("click", handleAskCardPlayer);
 
 $stopBtn.addEventListener("click", handleStopAskCardPlayer);
-
-function pointsOperation($points, pointValue) {
-  lastPointValuePlayer += pointValue;
-
-  const $spanMessage = document.createElement("span");
-  $spanMessage.className = "card-content__message";
-  $spanMessage.innerText = "¡Has perdido!";
-
-  if (lastPointValuePlayer > 21) {
-    $askCardBtn.removeEventListener("click", handleAskCardPlayer);
-
-    $pointsContentMessage.append($spanMessage);
-  } else if (lastPointValuePlayer === 21) {
-    $askCardBtn.removeEventListener("click", handleAskCardPlayer);
-    $spanMessage.style.color = "#27ae60";
-    $spanMessage.innerText = "¡Has ganado!";
-    $pointsContentMessage.append($spanMessage);
-  }
-
-  $points.innerText = lastPointValuePlayer;
-}
 
 $newGameBtn.addEventListener("click", handleNewGame);
 
