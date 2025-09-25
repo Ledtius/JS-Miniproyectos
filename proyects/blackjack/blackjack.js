@@ -9,6 +9,10 @@
 
   const $stopBtn = document.querySelector(".btn--stop");
 
+  const $pointsAllPlayers = document.querySelectorAll(
+    ".card-content__pts-value"
+  );
+
   const $pointsPlayer = document.querySelectorAll(
     ".card-content__pts-value"
   )[0];
@@ -23,8 +27,10 @@
   );
 
   let deck = [];
-  let lastPointValuePlayer = 0;
-  let lastPointValuePc = 0;
+  let pointCardPlayer = 0;
+  let pointCardPc = 0;
+
+  let pointPlayers = [];
 
   const createDeck = () => {
     const types = ["C", "D", "H", "S"];
@@ -42,24 +48,31 @@
       }
     }
 
-    deck = _.shuffle(deck);
-    console.log(deck);
-    return deck;
+    return _.shuffle(deck);
   };
 
-  createDeck();
+  const numberOfPlayers = (playerNumber) => {
+    for (let index = 0; index < playerNumber; index++) {
+      pointPlayers.push(0);
+    }
+  };
+
+  const initializedGame = (playerNumber) => {
+    deck = createDeck();
+    numberOfPlayers(playerNumber);
+  };
+
+  initializedGame(2);
 
   const askCard = () => {
     if (deck.length === 0) {
       throw "No cards in the deck";
     }
 
-    const card = deck.shift();
-
-    return card;
+    return deck.shift();
   };
 
-  const cardValue = (card) => {
+  const extractPointCard = (card) => {
     let value = card.substring(0, card.length - 1);
 
     return isNaN(value) ? (value === "A" ? 11 : 10) : Number(value);
@@ -69,49 +82,51 @@
     const $card = document.createElement("img");
     $card.className = "card-content__card";
 
-    const card = askCard();
+    const cardName = askCard();
 
-    $card.src = `assets/cards/${card}.png`;
+    $card.src = `assets/cards/${cardName}.png`;
 
-    const pointValue = cardValue(card);
+    const pointCard = extractPointCard(cardName);
 
-    return { $card, card, pointValue };
+    return { $card, cardName, pointCard };
   };
 
+  const countPoints = (playerTurn, pointCard) => {
+    console.log(pointPlayers[playerTurn]);
+    return (pointPlayers[playerTurn] += pointCard);
+  };
+  let array = [];
+
   const handleAskCardPlayer = () => {
-    const { $card, card, pointValue } = createCard();
+    const { $card, pointCard } = createCard();
 
     $deckPlayer.append($card);
 
-    // pointsOperation($pointsPlayer, cardValue(card));
+    pointCardPlayer = countPoints(0, pointCard);
 
-    console.log(card, pointValue);
-    // console.table([].push(lastPointValuePlayer, card));
+    $pointsPlayer.innerText = pointCardPlayer;
 
-    lastPointValuePlayer += pointValue;
+    // if (pointCardPlayer >= 21) {
+    //   $askCardBtn.removeEventListener("click", handleAskCardPlayer);
+    //   createPcDeck();
 
-    $pointsPlayer.innerText = lastPointValuePlayer;
+    //   if (pointCardPlayer > 21)
+    //     if (pointCardPlayer === 21 && pointCardPc !== 21) {
+    //       createMessage("¡Has ganado¡", "#27ae60", 0);
+    //       createMessage("¡Has perdido¡", "red", 1);
+    //     } else if (pointCardPlayer !== 21 && pointCardPc === 21) {
+    //       createMessage("¡Has perdido¡", "red", 0);
+    //       createMessage("¡Has ganado¡", "#27ae60", 1);
+    //     } else if (pointCardPlayer !== 21 && pointCardPc !== 21) {
+    //       createMessage("¡Has perdido¡", "red", 0);
+    //       createMessage("¡Has perdido¡", "red", 1);
+    //     }
+    // }
 
-    if (lastPointValuePlayer >= 21) {
-      $askCardBtn.removeEventListener("click", handleAskCardPlayer);
-      createPcDeck();
-
-      if (lastPointValuePlayer === 21 && lastPointValuePc !== 21) {
-        createMessage("¡Has ganado¡", "#27ae60", 0);
-        createMessage("¡Has perdido¡", "red", 1);
-      } else if (lastPointValuePlayer !== 21 && lastPointValuePc === 21) {
-        createMessage("¡Has perdido¡", "red", 0);
-        createMessage("¡Has ganado¡", "#27ae60", 1);
-      } else if (lastPointValuePlayer !== 21 && lastPointValuePc !== 21) {
-        createMessage("¡Has perdido¡", "red", 0);
-        createMessage("¡Has perdido¡", "red", 1);
-      }
-    }
-
-    if (lastPointValuePc === 21 && lastPointValuePlayer === 21) {
-      createMessage("¡Empate¡", "orange", 0);
-      createMessage("¡Empate¡", "orange", 1);
-    }
+    // if (pointCardPc === 21 && pointCardPlayer === 21) {
+    //   createMessage("¡Empate¡", "orange", 0);
+    //   createMessage("¡Empate¡", "orange", 1);
+    // }
   };
 
   function handleStopAskCardPlayer() {
@@ -119,30 +134,30 @@
 
     createPcDeck();
 
-    console.log({ lastPointValuePc, lastPointValuePlayer });
+    console.log({ pointCardPc, pointCardPlayer });
 
-    if ($pointsContentMessageAll[0].children.length === 0) {
-      if (lastPointValuePc > 21) {
-        createMessage("¡Has ganado¡", "#27ae60", 0);
-        createMessage("¡Has perdido¡", "red", 1);
-      } else if (lastPointValuePc === 21 && lastPointValuePlayer !== 21) {
-        createMessage("¡Has ganado¡", "#27ae60", 1);
-        createMessage("¡Has perdido¡", "red", 0);
-      } else if (
-        lastPointValuePc < 21 &&
-        lastPointValuePc > lastPointValuePlayer
-      ) {
-        createMessage("¡Has ganado¡", "#27ae60", 1);
-        createMessage("¡Has perdido¡", "red", 0);
-      } else if (
-        lastPointValuePc < 21 &&
-        lastPointValuePlayer < 21 &&
-        lastPointValuePc === lastPointValuePlayer
-      ) {
-        createMessage("¡Empate¡", "orange", 0);
-        createMessage("¡Empate¡", "orange", 1);
-      }
-    }
+    // if ($pointsContentMessageAll[0].children.length === 0) {
+    //   if (pointCardPc > 21) {
+    //     createMessage("¡Has ganado¡", "#27ae60", 0);
+    //     createMessage("¡Has perdido¡", "red", 1);
+    //   } else if (pointCardPc === 21 && pointCardPlayer !== 21) {
+    //     createMessage("¡Has ganado¡", "#27ae60", 1);
+    //     createMessage("¡Has perdido¡", "red", 0);
+    //   } else if (
+    //     pointCardPc < 21 &&
+    //     pointCardPc > pointCardPlayer
+    //   ) {
+    //     createMessage("¡Has ganado¡", "#27ae60", 1);
+    //     createMessage("¡Has perdido¡", "red", 0);
+    //   } else if (
+    //     pointCardPc < 21 &&
+    //     pointCardPlayer < 21 &&
+    //     pointCardPc === pointCardPlayer
+    //   ) {
+    //     createMessage("¡Empate¡", "orange", 0);
+    //     createMessage("¡Empate¡", "orange", 1);
+    //   }
+    // }
   }
 
   function createMessage(text, color, index) {
@@ -154,11 +169,15 @@
   }
 
   function newGame() {
-    lastPointValuePlayer = 0;
-    lastPointValuePc = 0;
+    // pointCardPlayer = 0;
+    // pointCardPc = 0;
 
-    $pointsPlayer.innerText = lastPointValuePlayer;
-    $pointsPc.innerText = lastPointValuePc;
+    pointPlayers = [];
+
+    // initializedGame(2);
+
+    $pointsPlayer.innerText = pointCardPlayer;
+    $pointsPc.innerText = pointCardPc;
 
     if ($pointsContentMessageAll[0].children.length > 0) {
       $pointsContentMessageAll[0].children[0].remove();
@@ -189,16 +208,16 @@
   $newGameBtn.addEventListener("click", newGame);
 
   function createPcDeck() {
-    while (lastPointValuePc <= lastPointValuePlayer && lastPointValuePc <= 21) {
-      const { $card, card, pointValue } = createCard();
+    do {
+      const { $card, card, pointCard } = createCard();
       $deckPc.append($card);
 
-      console.log(card, pointValue);
+      console.log(card, pointCard);
 
-      lastPointValuePc += pointValue;
+      pointCardPc += pointCard;
 
-      $pointsPc.innerText = lastPointValuePc;
-    }
+      $pointsPc.innerText = pointCardPc;
+    } while (pointCardPc <= pointCardPlayer && pointCardPc <= 21);
   }
 
   $askCardBtn.addEventListener("click", handleAskCardPlayer);
@@ -211,7 +230,7 @@
     if ($pointsContentMessage.children.length > 0) {
       $pointsContentMessage.children[0].remove();
     }
-    lastPointValuePlayer = 0;
-    $pointsPlayer.innerText = lastPointValuePlayer;
+    pointCardPlayer = 0;
+    $pointsPlayer.innerText = pointCardPlayer;
   }
 })();
