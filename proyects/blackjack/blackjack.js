@@ -34,6 +34,8 @@
 
   let pointPlayers = [];
 
+  const gameMessages = ["¡Has ganado¡", "¡Has perdido¡", "¡Empate¡"];
+
   const createDeck = () => {
     const types = ["C", "D", "H", "S"];
     const specials = ["A", "J", "K", "Q"];
@@ -95,8 +97,11 @@
     return { $card, cardName, pointCard };
   };
 
-  const countPoints = (playerTurn, pointCard) => {
-    return (pointPlayers[playerTurn] += pointCard);
+  const countPoints = (playerXTurn, pointCard, $pointPlayerX) => {
+    const points = (pointPlayers[playerXTurn] += pointCard);
+
+    $pointPlayerX.innerText = points;
+    return points;
   };
 
   const handleAskCardPlayer = () => {
@@ -104,9 +109,7 @@
 
     $deckPlayer.append($card);
 
-    pointCardPlayer = countPoints(0, pointCard);
-
-    $pointsPlayer.innerText = pointCardPlayer;
+    pointCardPlayer = countPoints(0, pointCard, $pointsPlayer);
 
     // if (pointCardPlayer >= 21) {
     //   $askCardBtn.removeEventListener("click", handleAskCardPlayer);
@@ -132,27 +135,23 @@
 
     if (pointCardPlayer > 21) {
       createPcDeck();
+      $askCardBtn.disabled = true;
+      $stopBtn.disabled = true;
     }
   };
 
   function createPcDeck() {
     do {
-      const { $card, cardName, pointCard } = createCard();
+      const { $card, pointCard } = createCard();
 
-      pointCardPc = countPoints(pointPlayers.length - 1, pointCard);
+      pointCardPc = countPoints(pointPlayers.length - 1, pointCard, $pointsPc);
 
       $deckPc.append($card);
-
-      console.log(cardName, pointCard);
-
-      // pointCardPc += pointCard;
-
-      $pointsPc.innerText = pointCardPc;
-    } while (pointCardPc <= pointCardPlayer && pointCardPc <= 21);
+    } while (pointCardPc <= pointCardPlayer && pointCardPlayer <= 21);
   }
 
   function handleStopAskCardPlayer() {
-    $askCardBtn.removeEventListener("click", handleAskCardPlayer);
+    $askCardBtn.disabled = true;
 
     createPcDeck();
 
@@ -205,7 +204,7 @@
 
     deleteMessage(0);
     deleteMessage(1);
- 
+
     deleteCards($decks, 0);
     deleteCards($decks, 1);
 
@@ -219,12 +218,12 @@
   }
 
   function deleteCards($deckOfPlayers, index) {
-    const $arrayCardsOfPlayer = $deckOfPlayers[index].children;
+    const $arrayCardsOfPlayerX = $deckOfPlayers[index].children;
 
-    const lengthOfDesk = $arrayCardsOfPlayer.length;
+    const lengthOfDesk = $arrayCardsOfPlayerX.length;
 
     for (let i = 0; i < lengthOfDesk; i++) {
-      $arrayCardsOfPlayer[0].remove();
+      $arrayCardsOfPlayerX[0].remove();
     }
   }
 
