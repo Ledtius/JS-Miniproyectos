@@ -1,4 +1,6 @@
 (() => {
+  const $decks = document.querySelectorAll(".card-content__cards");
+
   const $deckPlayer = document.querySelectorAll(".card-content__cards")[0];
 
   const $deckPc = document.querySelectorAll(".card-content__cards")[1];
@@ -60,6 +62,8 @@
   const initializedGame = (playerNumber) => {
     deck = createDeck();
     numberOfPlayers(playerNumber);
+
+    console.log(deck);
   };
 
   initializedGame(2);
@@ -92,10 +96,8 @@
   };
 
   const countPoints = (playerTurn, pointCard) => {
-    console.log(pointPlayers[playerTurn]);
     return (pointPlayers[playerTurn] += pointCard);
   };
-  let array = [];
 
   const handleAskCardPlayer = () => {
     const { $card, pointCard } = createCard();
@@ -127,7 +129,27 @@
     //   createMessage("¡Empate¡", "orange", 0);
     //   createMessage("¡Empate¡", "orange", 1);
     // }
+
+    if (pointCardPlayer > 21) {
+      createPcDeck();
+    }
   };
+
+  function createPcDeck() {
+    do {
+      const { $card, cardName, pointCard } = createCard();
+
+      pointCardPc = countPoints(pointPlayers.length - 1, pointCard);
+
+      $deckPc.append($card);
+
+      console.log(cardName, pointCard);
+
+      // pointCardPc += pointCard;
+
+      $pointsPc.innerText = pointCardPc;
+    } while (pointCardPc <= pointCardPlayer && pointCardPc <= 21);
+  }
 
   function handleStopAskCardPlayer() {
     $askCardBtn.removeEventListener("click", handleAskCardPlayer);
@@ -169,68 +191,56 @@
   }
 
   function newGame() {
-    // pointCardPlayer = 0;
-    // pointCardPc = 0;
+    pointCardPlayer = 0;
+    pointCardPc = 0;
+    deck = [];
 
     pointPlayers = [];
 
-    // initializedGame(2);
+    initializedGame(2);
 
     $pointsPlayer.innerText = pointCardPlayer;
+
     $pointsPc.innerText = pointCardPc;
 
+    deleteMessage(0);
+    deleteMessage(1);
+ 
+    deleteCards($decks, 0);
+    deleteCards($decks, 1);
+
+    $askCardBtn.disabled = false;
+  }
+
+  function deleteMessage(index) {
     if ($pointsContentMessageAll[0].children.length > 0) {
-      $pointsContentMessageAll[0].children[0].remove();
-      $pointsContentMessageAll[1].children[0].remove();
+      $pointsContentMessageAll[index].children[0].remove();
     }
+  }
 
-    const $arrayCardsPc = $deckPc.children;
-    const $arrayCardsPlayer = $deckPlayer.children;
+  function deleteCards($deckOfPlayers, index) {
+    const $arrayCardsOfPlayer = $deckOfPlayers[index].children;
 
-    const oldLentPc = $arrayCardsPc.length;
-    const oldLentPlayer = $arrayCardsPlayer.length;
+    const lengthOfDesk = $arrayCardsOfPlayer.length;
 
-    for (let i = 0; i < oldLentPc; i++) {
-      $arrayCardsPc[0].remove();
+    for (let i = 0; i < lengthOfDesk; i++) {
+      $arrayCardsOfPlayer[0].remove();
     }
-
-    for (let i = 0; i < oldLentPlayer; i++) {
-      $arrayCardsPlayer[0].remove();
-    }
-
-    deck = [];
-
-    deck = createDeck();
-
-    $askCardBtn.addEventListener("click", handleAskCardPlayer);
   }
 
   $newGameBtn.addEventListener("click", newGame);
-
-  function createPcDeck() {
-    do {
-      const { $card, card, pointCard } = createCard();
-      $deckPc.append($card);
-
-      console.log(card, pointCard);
-
-      pointCardPc += pointCard;
-
-      $pointsPc.innerText = pointCardPc;
-    } while (pointCardPc <= pointCardPlayer && pointCardPc <= 21);
-  }
 
   $askCardBtn.addEventListener("click", handleAskCardPlayer);
 
   $stopBtn.addEventListener("click", handleStopAskCardPlayer);
 
-  $newGameBtn.addEventListener("click", handleNewGame);
+  // $newGameBtn.addEventListener("click", handleNewGame);
 
-  function handleNewGame() {
-    if ($pointsContentMessage.children.length > 0) {
-      $pointsContentMessage.children[0].remove();
-    }
-    pointCardPlayer = 0;
-    $pointsPlayer.innerText = pointCardPlayer;
-  }
+  // function handleNewGame() {
+  //   if ($pointsContentMessage.children.length > 0) {
+  //     $pointsContentMessage.children[0].remove();
+  //   }
+  //   pointCardPlayer = 0;
+  //   $pointsPlayer.innerText = pointCardPlayer;
+  // }
 })();
