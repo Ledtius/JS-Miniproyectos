@@ -343,7 +343,7 @@ label::before {
   background-color: #63e6be;
   color: greenyellow;
 
-  background-image: url(asents/check-solid.svg);
+  background-image: url(assets/check-solid.svg);
   background-repeat: no-repeat;
   opacity: 1;
   /* transform: scale(1.09); */
