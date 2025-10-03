@@ -1,3 +1,5 @@
+import _ from "underscore";
+
 window.bjModule = (() => {
   const $decks = document.querySelectorAll(".card-content__cards");
 
@@ -150,6 +152,16 @@ window.bjModule = (() => {
       pointCardPc = countPoints(pointPlayers.length - 1, pointCard, $pointsPc);
 
       $deckPc.append($card);
+      if (pointCardPlayer === 21) {
+        $askCardBtn.disabled = true;
+      }
+
+      if (pointCardPc === 21 && pointCardPlayer === 21) {
+        createMessage(drawMessage, drawColor, 0);
+        createMessage(drawMessage, drawColor, pointPlayers.length - 1);
+        return;
+        console.log("ssssssssssssssssssssss");
+      }
 
       if (pointCardPc === 21 && pointCardPlayer !== 21) {
         createMessage(lostMessage, lostColor, 0);
@@ -161,7 +173,6 @@ window.bjModule = (() => {
         pointCardPc === pointCardPlayer
       ) {
         createMessage(drawMessage, drawColor, 0);
-        console.log("3222♦");
         createMessage(drawMessage, drawColor, pointPlayers.length - 1);
       } else if (pointCardPlayer > 21) {
         createMessage(lostMessage, lostColor, 0);
