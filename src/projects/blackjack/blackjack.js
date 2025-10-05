@@ -31,8 +31,6 @@ window.bjModule = (() => {
   );
 
   let deck = [];
-  let pointCardPlayer = 0;
-  let pointCardPc = 0;
 
   let pointPlayers = [];
 
@@ -123,90 +121,65 @@ window.bjModule = (() => {
   };
 
   const handleAskCardPlayer = () => {
+    let pointCardPlayer;
     const { $card, pointCard } = createCard();
 
     $deckPlayer.append($card);
 
     pointCardPlayer = countPoints(0, pointCard, $pointsPlayer);
 
-    if (pointCardPlayer > 21) {
-      createPcDeck();
-      $askCardBtn.disabled = true;
-      $stopBtn.disabled = true;
-    } else if (pointCardPlayer === 21 && pointCardPc !== 21) {
-      createPcDeck();
-      createMessage(winMessage, winColor, 0);
-      createMessage(lostMessage, lostColor, pointPlayers.length - 1);
-
-      // $askCardBtn.disabled = true;
-      // $stopBtn.disabled = true;
+    if (pointCardPlayer >= 21) {
+      createPcDeck(pointCardPlayer);
     }
-    return;
   };
 
-  function createPcDeck() {
+  function createPcDeck(pointCardPlayer) {
+    let pointCardPc;
     console.log(pointCardPlayer);
+
     do {
       const { $card, pointCard } = createCard();
 
       pointCardPc = countPoints(pointPlayers.length - 1, pointCard, $pointsPc);
 
       $deckPc.append($card);
-      if (pointCardPlayer === 21) {
-        $askCardBtn.disabled = true;
-      }
 
-      if (pointCardPc === 21 && pointCardPlayer === 21) {
-        createMessage(drawMessage, drawColor, 0);
-        createMessage(drawMessage, drawColor, pointPlayers.length - 1);
-        return;
-        console.log("ssssssssssssssssssssss");
-      }
-
-      if (pointCardPc === 21 && pointCardPlayer !== 21) {
-        createMessage(lostMessage, lostColor, 0);
-
-        createMessage(winMessage, winColor, pointPlayers.length - 1);
-      } else if (
-        pointCardPc <= 21 &&
-        pointCardPlayer <= 21 &&
-        pointCardPc === pointCardPlayer
-      ) {
-        createMessage(drawMessage, drawColor, 0);
-        createMessage(drawMessage, drawColor, pointPlayers.length - 1);
-      } else if (pointCardPlayer > 21) {
-        createMessage(lostMessage, lostColor, 0);
-
-        createMessage(winMessage, winColor, pointPlayers.length - 1);
-      } else if (pointCardPc < 21 && pointCardPc > pointCardPlayer) {
-        createMessage(lostMessage, lostColor, 0);
-
-        createMessage(winMessage, winColor, pointPlayers.length - 1);
-      } else if (pointCardPc > 21 && pointCardPlayer < 21) {
-        createMessage(lostMessage, lostColor, pointPlayers.length - 1);
-
-        createMessage(winMessage, winColor, 0);
-      }
+      console.log({ pointCardPc, pointCardPlayer });
     } while (pointCardPc < pointCardPlayer && pointCardPlayer <= 21);
 
+    if (pointCardPlayer > 21) {
+      createMessage(lostMessage, lostColor, 0);
+      createMessage(winMessage, winColor, pointPlayers.length - 1);
+    } else if (pointCardPlayer > pointCardPc) {
+      createMessage(winMessage, winColor, 0);
+      createMessage(lostMessage, lostColor, pointPlayers.length - 1);
+    } else if (pointCardPlayer < pointCardPc && pointCardPc <= 21) {
+      createMessage(lostMessage, lostColor, 0);
+      createMessage(winMessage, winColor, pointPlayers.length - 1);
+    } else if (pointCardPlayer < pointCardPc && pointCardPc > 21) {
+      createMessage(winMessage, winColor, 0);
+      createMessage(lostMessage, lostColor, pointPlayers.length - 1);
+    } else if (pointCardPlayer === pointCardPc) {
+      createMessage(drawMessage, drawColor, pointPlayers.length - 1);
+      createMessage(drawMessage, drawColor, 0);
+    } else if (pointCardPlayer === 21 && pointCardPc !== 21) {
+      createMessage(winMessage, winColor, 0);
+      createMessage(lostMessage, lostColor, pointPlayers.length - 1);
+    }
+
+    $askCardBtn.disabled = true;
     $stopBtn.disabled = true;
   }
 
   function handleStopAskCardPlayer() {
     const lengthArrayCardsOfPlayer = $deckPlayer.children.length;
 
+    const pointCardPlayer = pointPlayers[0];
+
     if (lengthArrayCardsOfPlayer !== 0) {
       $askCardBtn.disabled = true;
 
-      createPcDeck();
-
-      if (pointCardPc < 21 && pointCardPc < pointCardPlayer) {
-        createMessage(lostMessage, lostColor, pointPlayers.length - 1);
-
-        createMessage(winMessage, winColor, 0);
-      }
-
-      console.log({ pointCardPc, pointCardPlayer });
+      createPcDeck(pointCardPlayer);
     }
   }
 
@@ -223,17 +196,15 @@ window.bjModule = (() => {
   }
 
   function newGame() {
-    pointCardPlayer = 0;
-    pointCardPc = 0;
     deck = [];
 
     pointPlayers = [];
 
     initializedGame(2);
 
-    $pointsPlayer.innerText = pointCardPlayer;
+    $pointsPlayer.innerText = pointPlayers[0];
 
-    $pointsPc.innerText = pointCardPc;
+    $pointsPc.innerText = pointPlayers[pointPlayers.length - 1];
 
     deleteMessage();
 
