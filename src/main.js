@@ -1,1 +1,1 @@
-import "./projects/blackjack/blackjack";
+import "./projects/blackjack/blackjack.js";
