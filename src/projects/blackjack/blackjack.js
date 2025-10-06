@@ -1,6 +1,6 @@
-import "../../general.css";
-import "./blackjack.css";
-import _ from "underscore";
+// import "../../general.css";
+// import "./blackjack.css";
+import { shuffle } from "underscore";
 
 window.bjModule = (() => {
   const $decks = document.querySelectorAll(".card-content__cards");
@@ -15,9 +15,9 @@ window.bjModule = (() => {
 
   const $stopBtn = document.querySelector(".btn--stop");
 
-  const $pointsAllPlayers = document.querySelectorAll(
-    ".card-content__pts-value"
-  );
+  // const $pointsAllPlayers = document.querySelectorAll(
+  //   ".card-content__pts-value"
+  // );
 
   const $pointsPlayer = document.querySelectorAll(
     ".card-content__pts-value"
@@ -25,9 +25,9 @@ window.bjModule = (() => {
 
   const $pointsPc = document.querySelectorAll(".card-content__pts-value")[1];
 
-  const $pointsContentMessage = document.querySelector(
-    ".card-content__pts-content-message"
-  );
+  // const $pointsContentMessage = document.querySelector(
+  //   ".card-content__pts-content-message"
+  // );
   const $pointsContentMessageAll = document.querySelectorAll(
     ".card-content__pts-content-message"
   );
@@ -70,7 +70,7 @@ window.bjModule = (() => {
       }
     }
 
-    return _.shuffle(deck);
+    return shuffle(deck);
   };
 
   const numberOfPlayers = (playerNumber) => {
@@ -108,7 +108,7 @@ window.bjModule = (() => {
 
     const cardName = askCard();
 
-    $card.src = `/public/cards/${cardName}.png`;
+    $card.src = `/cards/${cardName}.png`;
 
     const pointCard = extractPointCard(cardName);
 
