@@ -1,6 +1,6 @@
-import _ from "underscore";
 import "../../general.css";
 import "./blackjack.css";
+import _ from "underscore";
 
 window.bjModule = (() => {
   const $decks = document.querySelectorAll(".card-content__cards");
