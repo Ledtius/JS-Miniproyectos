@@ -1,4 +1,6 @@
 import _ from "underscore";
+import "../../general.css";
+import "./blackjack.css";
 
 window.bjModule = (() => {
   const $decks = document.querySelectorAll(".card-content__cards");
@@ -106,7 +108,7 @@ window.bjModule = (() => {
 
     const cardName = askCard();
 
-    $card.src = `assets/cards/${cardName}.png`;
+    $card.src = `/public/cards/${cardName}.png`;
 
     const pointCard = extractPointCard(cardName);
 
