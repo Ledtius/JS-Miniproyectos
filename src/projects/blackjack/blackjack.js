@@ -1,8 +1,7 @@
 // import "../../general.css";
 // import "./blackjack.css";
-import _ from "./underscore-min.js";
+// import _ from "./underscore-min.js";
 
-console.log("ss");
 const $decks = document.querySelectorAll(".card-content__cards");
 
 const $deckPlayer = document.querySelectorAll(".card-content__cards")[0];
