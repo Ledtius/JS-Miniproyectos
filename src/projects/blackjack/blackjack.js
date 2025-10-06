@@ -1,6 +1,6 @@
-// import "../../general.css";
-// import "./blackjack.css";
-import underscore from "underscore";
+import "../../general.css";
+import "./blackjack.css";
+import _ from "underscore";
 
 window.bjModule = (() => {
   const $decks = document.querySelectorAll(".card-content__cards");
@@ -70,7 +70,7 @@ window.bjModule = (() => {
       }
     }
 
-    return underscore.shuffle(deck);
+    return _.shuffle(deck);
   };
 
   const numberOfPlayers = (playerNumber) => {
