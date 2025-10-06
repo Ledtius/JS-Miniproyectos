@@ -106,10 +106,13 @@ body {
   animation: appear-scale-element 2s ease;
 }
 .card:nth-child(3) {
-  animation: appear-scale-element 3s ease;
+  animation: appear-scale-element 2.2s ease;
 }
 .card:nth-child(4) {
-  animation: appear-scale-element 4s ease;
+  animation: appear-scale-element 2.4s ease;
+}
+.card:nth-child(5) {
+  animation: appear-scale-element 2.6s ease;
 }
 .card__btn--view {
   color: #ffffff;
