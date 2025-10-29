@@ -60,9 +60,6 @@ const images = import.meta.glob("./assets/cards/*.png", {
 
 // import _ from "underscore";
 
-
-
-
 const $decks = document.querySelectorAll(".card-content__cards");
 
 const $deckPlayer = document.querySelectorAll(".card-content__cards")[0];
@@ -111,7 +108,6 @@ const lostColor = gameMessages[1].color;
 const drawMessage = gameMessages[2].message;
 
 const drawColor = gameMessages[2].color;
-
 
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
