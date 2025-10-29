@@ -116,7 +116,7 @@ function DOMElement(taskName, id, taskState) {
     "svg"
   );
 
-  $editSVG.className = "todo-list__icon todo-list__icon--edit";
+  $editSVG.setAttribute("class", "todo-list__icon todo-list__icon--edit");
 
   $editSVG.setAttribute("viewBox", "0 0 512 512");
 
@@ -146,7 +146,7 @@ function DOMElement(taskName, id, taskState) {
     "svg"
   );
 
-  $deleteSVG.className = "todo-list__icon todo-list__icon--delete";
+  $deleteSVG.setAttribute("class", "todo-list__icon todo-list__icon--delete");
 
   $deleteSVG.setAttribute("viewBox", "0 0 448 512");
 
