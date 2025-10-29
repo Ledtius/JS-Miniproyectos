@@ -1,59 +1,67 @@
-import "/src/projects/blackjack/assets/cards/10C.png";
-import "/src/projects/blackjack/assets/cards/10D.png";
-import "/src/projects/blackjack/assets/cards/10H.png";
-import "/src/projects/blackjack/assets/cards/10S.png";
-import "/src/projects/blackjack/assets/cards/2C.png";
-import "/src/projects/blackjack/assets/cards/2D.png";
-import "/src/projects/blackjack/assets/cards/2H.png";
-import "/src/projects/blackjack/assets/cards/2S.png";
-import "/src/projects/blackjack/assets/cards/3C.png";
-import "/src/projects/blackjack/assets/cards/3D.png";
-import "/src/projects/blackjack/assets/cards/3H.png";
-import "/src/projects/blackjack/assets/cards/3S.png";
-import "/src/projects/blackjack/assets/cards/4C.png";
-import "/src/projects/blackjack/assets/cards/4D.png";
-import "/src/projects/blackjack/assets/cards/4H.png";
-import "/src/projects/blackjack/assets/cards/4S.png";
-import "/src/projects/blackjack/assets/cards/5C.png";
-import "/src/projects/blackjack/assets/cards/5D.png";
-import "/src/projects/blackjack/assets/cards/5H.png";
-import "/src/projects/blackjack/assets/cards/5S.png";
-import "/src/projects/blackjack/assets/cards/6C.png";
-import "/src/projects/blackjack/assets/cards/6D.png";
-import "/src/projects/blackjack/assets/cards/6H.png";
-import "/src/projects/blackjack/assets/cards/6S.png";
-import "/src/projects/blackjack/assets/cards/7C.png";
-import "/src/projects/blackjack/assets/cards/7D.png";
-import "/src/projects/blackjack/assets/cards/7H.png";
-import "/src/projects/blackjack/assets/cards/7S.png";
-import "/src/projects/blackjack/assets/cards/8C.png";
-import "/src/projects/blackjack/assets/cards/8D.png";
-import "/src/projects/blackjack/assets/cards/8H.png";
-import "/src/projects/blackjack/assets/cards/8S.png";
-import "/src/projects/blackjack/assets/cards/9C.png";
-import "/src/projects/blackjack/assets/cards/9D.png";
-import "/src/projects/blackjack/assets/cards/9H.png";
-import "/src/projects/blackjack/assets/cards/9S.png";
-import "/src/projects/blackjack/assets/cards/AC.png";
-import "/src/projects/blackjack/assets/cards/AD.png";
-import "/src/projects/blackjack/assets/cards/AH.png";
-import "/src/projects/blackjack/assets/cards/AS.png";
-// import "/src/projects/blackjack/assets/cards/grey_back.png";
-import "/src/projects/blackjack/assets/cards/JC.png";
-import "/src/projects/blackjack/assets/cards/JD.png";
-import "/src/projects/blackjack/assets/cards/JH.png";
-import "/src/projects/blackjack/assets/cards/JS.png";
-import "/src/projects/blackjack/assets/cards/KC.png";
-import "/src/projects/blackjack/assets/cards/KD.png";
-import "/src/projects/blackjack/assets/cards/KH.png";
-import "/src/projects/blackjack/assets/cards/KS.png";
-import "/src/projects/blackjack/assets/cards/QC.png";
-import "/src/projects/blackjack/assets/cards/QD.png";
-import "/src/projects/blackjack/assets/cards/QH.png";
-import "/src/projects/blackjack/assets/cards/QS.png";
+// import "/src/projects/blackjack/assets/cards/10C.png";
+// import "/src/projects/blackjack/assets/cards/10D.png";
+// import "/src/projects/blackjack/assets/cards/10H.png";
+// import "/src/projects/blackjack/assets/cards/10S.png";
+// import "/src/projects/blackjack/assets/cards/2C.png";
+// import "/src/projects/blackjack/assets/cards/2D.png";
+// import "/src/projects/blackjack/assets/cards/2H.png";
+// import "/src/projects/blackjack/assets/cards/2S.png";
+// import "/src/projects/blackjack/assets/cards/3C.png";
+// import "/src/projects/blackjack/assets/cards/3D.png";
+// import "/src/projects/blackjack/assets/cards/3H.png";
+// import "/src/projects/blackjack/assets/cards/3S.png";
+// import "/src/projects/blackjack/assets/cards/4C.png";
+// import "/src/projects/blackjack/assets/cards/4D.png";
+// import "/src/projects/blackjack/assets/cards/4H.png";
+// import "/src/projects/blackjack/assets/cards/4S.png";
+// import "/src/projects/blackjack/assets/cards/5C.png";
+// import "/src/projects/blackjack/assets/cards/5D.png";
+// import "/src/projects/blackjack/assets/cards/5H.png";
+// import "/src/projects/blackjack/assets/cards/5S.png";
+// import "/src/projects/blackjack/assets/cards/6C.png";
+// import "/src/projects/blackjack/assets/cards/6D.png";
+// import "/src/projects/blackjack/assets/cards/6H.png";
+// import "/src/projects/blackjack/assets/cards/6S.png";
+// import "/src/projects/blackjack/assets/cards/7C.png";
+// import "/src/projects/blackjack/assets/cards/7D.png";
+// import "/src/projects/blackjack/assets/cards/7H.png";
+// import "/src/projects/blackjack/assets/cards/7S.png";
+// import "/src/projects/blackjack/assets/cards/8C.png";
+// import "/src/projects/blackjack/assets/cards/8D.png";
+// import "/src/projects/blackjack/assets/cards/8H.png";
+// import "/src/projects/blackjack/assets/cards/8S.png";
+// import "/src/projects/blackjack/assets/cards/9C.png";
+// import "/src/projects/blackjack/assets/cards/9D.png";
+// import "/src/projects/blackjack/assets/cards/9H.png";
+// import "/src/projects/blackjack/assets/cards/9S.png";
+// import "/src/projects/blackjack/assets/cards/AC.png";
+// import "/src/projects/blackjack/assets/cards/AD.png";
+// import "/src/projects/blackjack/assets/cards/AH.png";
+// import "/src/projects/blackjack/assets/cards/AS.png";
+// // import "/src/projects/blackjack/assets/cards/grey_back.png";
+// import "/src/projects/blackjack/assets/cards/JC.png";
+// import "/src/projects/blackjack/assets/cards/JD.png";
+// import "/src/projects/blackjack/assets/cards/JH.png";
+// import "/src/projects/blackjack/assets/cards/JS.png";
+// import "/src/projects/blackjack/assets/cards/KC.png";
+// import "/src/projects/blackjack/assets/cards/KD.png";
+// import "/src/projects/blackjack/assets/cards/KH.png";
+// import "/src/projects/blackjack/assets/cards/KS.png";
+// import "/src/projects/blackjack/assets/cards/QC.png";
+// import "/src/projects/blackjack/assets/cards/QD.png";
+// import "/src/projects/blackjack/assets/cards/QH.png";
+// import "/src/projects/blackjack/assets/cards/QS.png";
 // import "/src/projects/blackjack/assets/cards/red_back.png";
 
-import _ from "underscore";
+const images = import.meta.glob("./assets/cards/*.png", {
+  eager: true,
+  as: "url",
+});
+
+// import _ from "underscore";
+
+
+
 
 const $decks = document.querySelectorAll(".card-content__cards");
 
@@ -104,6 +112,15 @@ const drawMessage = gameMessages[2].message;
 
 const drawColor = gameMessages[2].color;
 
+
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
 const createDeck = () => {
   const types = ["C", "D", "H", "S"];
   const specials = ["A", "J", "K", "Q"];
@@ -120,7 +137,7 @@ const createDeck = () => {
     }
   }
 
-  return _.shuffle(deck);
+  return shuffleArray(deck);
 };
 
 const numberOfPlayers = (playerNumber) => {
@@ -151,11 +168,6 @@ const extractPointCard = (card) => {
 
   return isNaN(value) ? (value === "A" ? 11 : 10) : Number(value);
 };
-
-const images = import.meta.glob("./assets/cards/*.png", {
-  eager: true,
-  as: "url",
-});
 
 /* Production Mapper */
 const cardMap = Object.fromEntries(
