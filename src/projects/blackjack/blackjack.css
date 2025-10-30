@@ -193,8 +193,8 @@ footer {
   animation: appear 0.4s;
   position: absolute;
   z-index: 3;
-  fill: #f39c12;
-  /* display: none; */
+  fill: #c5c5c5;
+  display: none;
   pointer-events: none;
   opacity: 0;
   /* bottom: -7rem; */
