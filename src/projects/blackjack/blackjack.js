@@ -137,6 +137,23 @@ const createDeck = () => {
   return _.shuffle(deck);
 };
 
+const $loader = document.querySelectorAll(".card-content__loader");
+// console.log($loader);
+
+// const handleLoader = (playerType = 0, $deckType = $deckPlayer, $card) => {
+//   setTimeout(() => {
+//     $deckType.append($card);
+//   }, 1000);
+
+//   $loader[playerType].setAttribute("style", "pointer-events:none; opacity:0");
+//   $deckType.setAttribute("style", "animation:none");
+//   $loader[playerType].setAttribute(
+//     "style",
+//     "pointer-events:visible; opacity:1"
+//   );
+//   $deckType.setAttribute("style", "animation: appear 1.2s");
+// };
+
 const numberOfPlayers = (playerNumber) => {
   for (let index = 0; index < playerNumber; index++) {
     pointPlayers.push(0);
@@ -189,6 +206,8 @@ const createCard = () => {
 
   const pointCard = extractPointCard(cardName);
 
+  // handleLoader(0, $deckPlayer, $card);
+
   return { $card, cardName, pointCard };
 };
 
@@ -203,7 +222,18 @@ const handleAskCardPlayer = () => {
   let pointCardPlayer;
   const { $card, pointCard } = createCard();
 
+  setTimeout(() => {
+    $loader[0].setAttribute(
+      "style",
+      "pointer-events:none; opacity:0; display:block"
+    );
+  }, 600);
+
+  $loader[0].setAttribute("style", "pointer-events:visible; opacity:1");
+
   $deckPlayer.append($card);
+
+  // handleLoader(0, $deckPlayer, $card);
 
   pointCardPlayer = countPoints(0, pointCard, $pointsPlayer);
 
@@ -220,6 +250,15 @@ function createPcDeck(pointCardPlayer) {
     const { $card, pointCard } = createCard();
 
     pointCardPc = countPoints(pointPlayers.length - 1, pointCard, $pointsPc);
+
+    setTimeout(() => {
+      $loader[1].setAttribute(
+        "style",
+        "pointer-events:none; opacity:0; display:block"
+      );
+    }, 600);
+
+    $loader[1].setAttribute("style", "pointer-events:visible; opacity:1");
 
     $deckPc.append($card);
 
