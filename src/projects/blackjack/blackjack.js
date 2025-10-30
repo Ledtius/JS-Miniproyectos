@@ -225,11 +225,11 @@ const handleAskCardPlayer = () => {
   setTimeout(() => {
     $loader[0].setAttribute(
       "style",
-      "pointer-events:none; opacity:0; display:block"
+      "pointer-events:none; opacity:0; display:none"
     );
   }, 600);
 
-  $loader[0].setAttribute("style", "pointer-events:visible; opacity:1");
+  $loader[0].setAttribute("style", "pointer-events:visible; display: block; opacity:1");
 
   $deckPlayer.append($card);
 
@@ -254,11 +254,14 @@ function createPcDeck(pointCardPlayer) {
     setTimeout(() => {
       $loader[1].setAttribute(
         "style",
-        "pointer-events:none; opacity:0; display:block"
+        "pointer-events:none; opacity:0; display:none"
       );
     }, 600);
 
-    $loader[1].setAttribute("style", "pointer-events:visible; opacity:1");
+    $loader[1].setAttribute(
+      "style",
+      "pointer-events:visible; display: block; opacity:1"
+    );
 
     $deckPc.append($card);
 
