@@ -218,18 +218,25 @@ const countPoints = (playerXTurn, pointCard, $pointPlayerX) => {
   return points;
 };
 
-const handleAskCardPlayer = () => {
-  let pointCardPlayer;
-  const { $card, pointCard } = createCard();
-
+const handleLoader = (loaderPosition) => {
   setTimeout(() => {
-    $loader[0].setAttribute(
+    $loader[loaderPosition].setAttribute(
       "style",
       "pointer-events:none; opacity:0; display:none"
     );
   }, 600);
 
-  $loader[0].setAttribute("style", "pointer-events:visible; display: block; opacity:1");
+  $loader[loaderPosition].setAttribute(
+    "style",
+    "pointer-events:visible; display: block; opacity:1"
+  );
+};
+
+const handleAskCardPlayer = () => {
+  let pointCardPlayer;
+  const { $card, pointCard } = createCard();
+
+  handleLoader(0);
 
   $deckPlayer.append($card);
 
@@ -251,18 +258,7 @@ function createPcDeck(pointCardPlayer) {
 
     pointCardPc = countPoints(pointPlayers.length - 1, pointCard, $pointsPc);
 
-    setTimeout(() => {
-      $loader[1].setAttribute(
-        "style",
-        "pointer-events:none; opacity:0; display:none"
-      );
-    }, 600);
-
-    $loader[1].setAttribute(
-      "style",
-      "pointer-events:visible; display: block; opacity:1"
-    );
-
+    handleLoader(1);
     $deckPc.append($card);
 
     console.log({ pointCardPc, pointCardPlayer });
